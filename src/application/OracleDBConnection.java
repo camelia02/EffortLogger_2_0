@@ -1,16 +1,9 @@
 package application;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
 import oracle.jdbc.pool.OracleDataSource;
 import oracle.jdbc.OracleConnection;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
-
-import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
-
 public class OracleDBConnection {
     private final OracleDataSource ods;
 

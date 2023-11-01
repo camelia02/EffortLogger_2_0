@@ -6,9 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 public class Effort {
 	private LocalDate date;
