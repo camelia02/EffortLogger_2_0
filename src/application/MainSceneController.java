@@ -105,7 +105,7 @@ public class MainSceneController {
 	public ObservableList<String> deliverables = FXCollections.observableArrayList("Project Plan", "Risk Management Plan", "Conceptual Design Plan", "Detailed Design Plan", "Implementation Plan");
     
     @FXML
-    void initialize(int rank) {
+    void initialize() {
 		projectBox.setItems(projects);
 		projectDBox.setItems(projects);
 		projectEBox.setItems(projects);
@@ -119,9 +119,6 @@ public class MainSceneController {
 		deliverablesBox.setItems(deliverables);
 		deliverableEBox.setItems(deliverables);
 		
-		if(rank==1) {
-			
-		}
 		
 //		 logConsole.setOnSelectionChanged(event -> {
 //		        if (logConsole.isSelected()) {

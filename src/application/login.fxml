@@ -23,8 +23,8 @@
    <right>
       <AnchorPane prefHeight="464.0" prefWidth="404.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <PasswordField fx:id="passwordField" layoutX="157.0" layoutY="260.0" onAction="#passwordEntered" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="idField" layoutX="157.0" layoutY="206.0" onAction="#idEntered" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passwordField" layoutX="157.0" layoutY="260.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="idField" layoutX="157.0" layoutY="206.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
             <Label layoutX="73.0" layoutY="210.0" text="Username">
                <font>
                   <Font name="System Bold" size="12.0" />

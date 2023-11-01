@@ -20,7 +20,7 @@ public class Effort {
     private String deliverable;
 
     public Effort(String Sdate, String SstartTime, String SstopTime, String projectName,
-                  String lifeCycleStep, String effortCategory, String deliverable) throws ParseException {
+                  String lifeCycleStep, String effortCategory, String deliverable, LocalDate date) throws ParseException {
     	
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         java.util.Date parsedDate = dateFormat.parse(Sdate);
