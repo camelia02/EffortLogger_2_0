@@ -15,6 +15,7 @@ public class Employee {
 	private String lName;
 	private String email;
 	private String password;
+	private String test;
 	
 	public Employee(int id, int rank, String fName, String mName, String lName, String email, String password) {
 		this.id = id;
