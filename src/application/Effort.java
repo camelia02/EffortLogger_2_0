@@ -41,11 +41,11 @@ public class Effort {
 
     // Getters and Setters
     public LocalDate getDate() {
-        return dat9e;
+        return date;
     }
 
-    public void setDate(LocalDate date5) {
-        this.date = date5;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {
