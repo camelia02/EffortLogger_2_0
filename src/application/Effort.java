@@ -14,6 +14,7 @@ public class Effort {
     private String lifeCycleStep;
     private String effortCategory;
     private String deliverable;
+    private String test;
 
     public Effort(String Sdate, String SstartTime, String SstopTime, String projectName,
                   String lifeCycleStep, String effortCategory, String deliverable, LocalDate date) throws ParseException {
