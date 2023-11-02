@@ -44,8 +44,8 @@ public class Effort {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDate(LocalDate date5) {
+        this.date = date5;
     }
 
     public LocalTime getStartTime() {
