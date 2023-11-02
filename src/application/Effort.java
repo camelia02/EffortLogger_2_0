@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 
-
 public class Effort {
 	private LocalDate date;
     private LocalTime startTime;
