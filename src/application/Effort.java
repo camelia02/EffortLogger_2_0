@@ -41,7 +41,7 @@ public class Effort {
 
     // Getters and Setters
     public LocalDate getDate() {
-        return date;
+        return dat9e;
     }
 
     public void setDate(LocalDate date) {
