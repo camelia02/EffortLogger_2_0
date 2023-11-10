@@ -49,6 +49,10 @@ public class Effort {
         this.date = date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public LocalTime getStartTime() {
         return startTime;
     }
