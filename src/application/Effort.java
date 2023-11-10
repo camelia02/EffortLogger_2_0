@@ -39,7 +39,7 @@ adadasdada
         this.effortCategory = effortCategory;
         this.deliverable = deliverable;
     }
-
+sdvsdvsdvdsvs
     // Getters and Setters
     public LocalDate getDate() {
         return date;
