@@ -19,7 +19,7 @@ public class OracleDBConnection {
 
         ods = new OracleDataSource();
         ods.setURL(DB_URL);
-        ods.setConnectionProperties(info);
+        ods.setConnectionProperties(info);	
     }
 
     public OracleConnection makeConnection() throws SQLException {
