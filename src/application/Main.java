@@ -23,7 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the login scene
-            FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
             Parent loginRoot = loginLoader.load();
             Scene loginScene = new Scene(loginRoot);
             primaryStage.setScene(loginScene);
@@ -33,31 +33,31 @@ public class Main extends Application {
             LoginController loginController = loginLoader.getController();
 
             // Add a listener for the loggedIn property
-            loginController.loggedInProperty().addListener((obs, old, updated) -> {
-                if (updated) {
-                    try {
-                    	FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
-                        Parent mainRoot = mainLoader.load();
-                        Scene mainScene = new Scene(mainRoot);
-
-                        primaryStage.setScene(mainScene);
-                        primaryStage.show();
-
-                        mainController = mainLoader.getController();
-                        mainController.initialize();
-
-                        // Set the MainSceneController instance in Main
-                        setMainController(mainController);
-                        
-                        // Now you can access the employee
-                        Employee employeeFromLogin = mainController.getEmployee();
-                        System.out.println("Employee ID: " + employeeFromLogin.getID());
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            //loginController.loggedInProperty().addListener((obs, old, updated) -> {
+//                if (updated) {
+//                    try {
+//                    	FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
+//                        Parent mainRoot = mainLoader.load();
+//                        Scene mainScene = new Scene(mainRoot);
+//
+//                        primaryStage.setScene(mainScene);
+//                        primaryStage.show();
+//
+//                        mainController = mainLoader.getController();
+//                        mainController.initialize();
+//
+//                        // Set the MainSceneController instance in Main
+//                        setMainController(mainController);
+//                        
+//                        // Now you can access the employee
+//                        Employee employeeFromLogin = mainController.getEmployee();
+//                        System.out.println("Employee ID: " + employeeFromLogin.getID());
+//
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
 
         } catch (Exception e) {
             e.printStackTrace();

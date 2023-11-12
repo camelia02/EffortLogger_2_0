@@ -110,5 +110,10 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/ojdbc10-full/osdt_cert.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ojdbc10-full/osdt_core.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ojdbc10-full/ucp.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/controlsfx-11.2.0.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
