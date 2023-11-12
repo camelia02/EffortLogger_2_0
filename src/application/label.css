@@ -6,12 +6,8 @@
    -fx-custom-grey-color: #dfdfdf;
 }
 
-.button {
-	-fx-background-radius: 10px;
-	-fx-background-color: white;
-	
-}
-
-.button:pressed {
-	-fx-background-color: -fx-custom-grey-color;
+.label {
+	-fx-background: transparent;
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
 }

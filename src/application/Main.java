@@ -12,30 +12,30 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader login = new FXMLLoader(getClass().getResource("login.fxml"));
+			FXMLLoader login = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 			Parent root = login.load();
-			Scene scene=new Scene(root);
+			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			LoginController logincontrol = login.getController();
-			logincontrol.loggedInProperty().addListener((obs, old, updated)-> {
-				if (updated) {
-                    // Load the main scene when loggedIn becomes true
-                    try {
-                        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
-                        Parent mainRoot = mainLoader.load();
-                        Scene mainScene = new Scene(mainRoot);
-                        mainController = mainLoader.getController();
-                      
-            			mainController.initialize();
-
-                        primaryStage.setScene(mainScene);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-			});
+//			LoginController logincontrol = login.getController();
+//			logincontrol.loggedInProperty().addListener((obs, old, updated)-> {
+//				if (updated) {
+//                    // Load the main scene when loggedIn becomes true
+//                    try {
+//                        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
+//                        Parent mainRoot = mainLoader.load();
+//                        Scene mainScene = new Scene(mainRoot);
+//                        mainController = mainLoader.getController();
+//                      
+//            			mainController.initialize();
+//
+//                        primaryStage.setScene(mainScene);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//			});
 			
 		} catch(Exception e) {
 			e.printStackTrace();
