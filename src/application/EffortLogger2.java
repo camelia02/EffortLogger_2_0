@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class EffortLogger2 extends Application {
 	private static MainSceneController mainController;
 	
 	private static DashboardController dashboard;
@@ -16,17 +16,17 @@ public class Main extends Application {
         return mainController;
     }
     public void setMainController(MainSceneController mainController) {
-        Main.mainController = mainController;
+        EffortLogger2.mainController = mainController;
     }
     
     public static DashboardController getDashboard() {
         return dashboard;
     }
     public void setDashboardController(DashboardController dashboard) {
-        Main.dashboard = dashboard;
+        EffortLogger2.dashboard = dashboard;
     }
 
-
+ 
     @Override
     public void start(Stage primaryStage) {
         try {

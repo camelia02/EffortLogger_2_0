@@ -187,7 +187,7 @@ public class DashboardController {
 
 	    if (employeeFromLogin != null) {
 	        setEmployee(employeeFromLogin);
-	        employeename.setText(employeeFromLogin.getFullName());
+	        usernameTextLabel.setText(employeeFromLogin.getFullName());
 	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
 	                employeeFromLogin.getFullName() + "\n");
 	    } else {
@@ -198,6 +198,7 @@ public class DashboardController {
 
     @FXML
     void initialize() {
+    	System.out.println("Dashboard initialized");
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
 		
 		grey_circle = new Image(getClass().getResourceAsStream("grey-circle.png"), 15, 15, true, true);
@@ -205,6 +206,7 @@ public class DashboardController {
 		username_1_1_button.setGraphic(new ImageView(grey_circle));
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
+		initializeEmployeeData();
     }
     @FXML
     void mainHomeClicked(ActionEvent event) {

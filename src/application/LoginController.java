@@ -41,14 +41,15 @@ public class LoginController implements AutoCloseable {
         this.loggedIn.set(loggedIn);
         if (loggedIn) {
             // Ensure that the MainSceneController is initialized
-            //MainSceneController mainSceneController = Main.getMainController();
-        	DashboardController dashboard = Main.getDashboard();
-            if (dashboard != null) {
+            //MainSceneController mainSceneCoSSSntroller = Main.getMainController();
+        	DashboardController dashboard = EffortLogger2.getDashboard();
+           if (dashboard != null) {
                 dashboard.setEmployee(employee);
                 dashboard.initializeEmployeeData();
-            } else {
-                // If MainSceneController is not initialized, you may want to handle it or log an error
-                System.err.println("MainSceneController is not initialized.");
+           }
+            else {
+                //If MainSceneController is not initialized, you may want to handle it or log an error
+                System.err.println("Dashboard is not initialized.");
             }
         }
     }
