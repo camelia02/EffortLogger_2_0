@@ -155,7 +155,7 @@
                   <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="162.0" text="HH/MM" textAlignment="RIGHT" textFill="WHITE" />
                </children>
             </HBox>
-            <Label fx:id="usernameTextLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="177.0" text="Good morning, {name}" textFill="WHITE" />
+            <Label fx:id="usernameTextLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="182.0" text="Good morning, {name}" textFill="WHITE" />
             <Label fx:id="roleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="208.0" text="Engineer 4" textAlignment="RIGHT" textFill="WHITE" />
          </children>
       </VBox>
@@ -860,7 +860,7 @@
             </HBox>
          </children>
       </Pane>
-      <Pane fx:id="mainPlanningPokerPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainPlanningPokerPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0">
          <children>
             <ScrollPane prefHeight="506.0" prefWidth="462.0" visible="false">
                <content>
