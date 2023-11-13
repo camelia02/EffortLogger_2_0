@@ -172,6 +172,29 @@ public class DashboardController {
     
     private Image grey_circle;
     
+	private Employee employee;
+	
+	public void setEmployee(Employee emps) {
+		this.employee = emps;
+	}
+	
+	Employee getEmployee() {
+		return employee;
+	}
+	
+	public void initializeEmployeeData() {
+	    Employee employeeFromLogin = getEmployee();
+
+	    if (employeeFromLogin != null) {
+	        setEmployee(employeeFromLogin);
+	        employeename.setText(employeeFromLogin.getFullName());
+	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+	                employeeFromLogin.getFullName() + "\n");
+	    } else {
+	        System.err.println("Employee not set in MainSceneController");
+	    }
+	}
+    
 
     @FXML
     void initialize() {
