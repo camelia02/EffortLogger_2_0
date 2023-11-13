@@ -52,7 +52,7 @@ public class EffortLogger2 extends Application {
                         primaryStage.show();
 
                         dashboard = mainLoader.getController();
-                        dashboard.initialize();
+                        //dashboard.initialize();
 
                         // Set the MainSceneController instance in Main
                         setDashboardController(dashboard);

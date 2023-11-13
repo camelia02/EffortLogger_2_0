@@ -83,11 +83,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/poi-bin-5.2.3-20220909/poi-bin-5.2.3/controlsfx-11.1.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ojdbc11-full/dms.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/ojdbc11-full/ojdbc11.jar"/>

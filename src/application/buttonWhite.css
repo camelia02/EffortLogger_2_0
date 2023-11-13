@@ -9,9 +9,20 @@
 .button {
 	-fx-background-radius: 10px;
 	-fx-background-color: white;
-	
+	-fx-padding: 2px;
 }
 
 .button:pressed {
 	-fx-background-color: -fx-custom-grey-color;
+}
+
+.toggle-button {
+	-fx-background-radius: 10px;
+	-fx-background-color: white;
+	-fx-padding: 2px;
+}
+
+.toggle-button:pressed {
+	-fx-background-color: -fx-custom-grey-color;
+	
 }
