@@ -1,21 +1,27 @@
 package application;
 
 import javafx.event.ActionEvent;
+
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.application.Platform;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import org.controlsfx.control.MaskerPane;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class LoginController implements AutoCloseable {
+public class LoginController implements AutoCloseable,Initializable {
 
     @FXML
     private Label errorLogin;
@@ -25,6 +31,9 @@ public class LoginController implements AutoCloseable {
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private MaskerPane load;
 
     private final BooleanProperty loggedIn = new SimpleBooleanProperty(false);
     private Connection connection;
@@ -44,8 +53,11 @@ public class LoginController implements AutoCloseable {
             //MainSceneController mainSceneCoSSSntroller = Main.getMainController();
         	DashboardController dashboard = EffortLogger2.getDashboard();
            if (dashboard != null) {
+        	   
                 dashboard.setEmployee(employee);
+                load.setDisable(true);
                 dashboard.initializeEmployeeData();
+                
            }
             else {
                 //If MainSceneController is not initialized, you may want to handle it or log an error
@@ -53,12 +65,25 @@ public class LoginController implements AutoCloseable {
             }
         }
     }
-
-
+    
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    	load.setDisable(true);
+    	load.setVisible(false);
+    	load.setOpacity(0.0);
+    }
+    
+    
     @FXML
     void loginClicked(ActionEvent event) throws SQLException {
         String username = idField.getText();
         String password = passwordField.getText();
+        
+        
+        load.setVisible(true);
+        load.setDisable(false);
+        load.toFront();
+        
 
         try (OracleDBConnection con = new OracleDBConnection()) {
             connection = con.makeConnection();

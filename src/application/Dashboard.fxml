@@ -80,7 +80,6 @@
                   <String fx:value=".radio:selected" />
                </styleClass>
             </RadioButton>
-            <Line endX="98.0" layoutX="111.0" layoutY="99.0" startX="-100.0" stroke="#00000099" />
             <RadioButton fx:id="mainTeamCollabButton" focusTraversable="false" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#mainTeamCollabClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Team Collab" toggleGroup="$navMainTab">
                <padding>
                   <Insets left="10.0" />
@@ -93,6 +92,7 @@
                   <String fx:value=".radio:selected" />
                </styleClass>
             </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="99.0" startX="-100.0" stroke="#00000099" />
             <Line endX="98.0" layoutX="111.0" layoutY="146.0" startX="-100.0" stroke="#00000099" />
             <RadioButton fx:id="mainExportButton" focusTraversable="false" layoutX="10.0" layoutY="137.0" mnemonicParsing="false" onAction="#mainExportClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Export" toggleGroup="$navMainTab">
                <padding>
@@ -963,7 +963,7 @@
                                     </Label>
                                     <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="200.0" prefWidth="373.0">
                                       <content>
-                                        <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc6;">
+                                        <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc0;">
                                              <children>
                                                 <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" text="info" wrapText="true" />
                                              </children>
@@ -975,8 +975,8 @@
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="315.0" layoutX="9.0" layoutY="50.0" stroke="WHITE" strokeType="INSIDE" width="445.0" />
                               <Button layoutX="389.0" layoutY="336.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Next story" />
                               <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
-                              <Button layoutX="70.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 2" />
-                              <Button layoutX="137.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
+                              <Button layoutX="67.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 2" />
+                              <Button layoutX="123.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
                               <Button layoutX="191.0" layoutY="58.0" mnemonicParsing="false" prefWidth="80.0" stylesheets="@buttonWhite.css" text="Weights">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
@@ -992,7 +992,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                          <Button fx:id="myPoint" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -1007,7 +1007,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                          <Button fx:id="empw1" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -1022,7 +1022,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                          <Button fx:id="empw2" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -1037,7 +1037,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                          <Button fx:id="empw3" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -1052,7 +1052,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                          <Button fx:id="empw" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -1063,27 +1063,27 @@
                               </HBox>
                               <HBox alignment="CENTER" layoutX="21.0" layoutY="204.0" prefHeight="34.0" prefWidth="421.0" spacing="30.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="0">
+                                    <Button fx:id="btn0" mnemonicParsing="false" onAction="#zero" prefWidth="50.0" stylesheets="@buttonWhite.css" text="0">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="196.0" layoutY="28.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="1">
+                                    <Button fx:id="btn1" layoutX="196.0" layoutY="28.0" mnemonicParsing="false" onAction="#one" prefWidth="50.0" stylesheets="@buttonWhite.css" text="1">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="231.0" layoutY="28.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="2">
+                                    <Button fx:id="btn2" layoutX="231.0" layoutY="28.0" mnemonicParsing="false" onAction="#two" prefWidth="50.0" stylesheets="@buttonWhite.css" text="2">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="266.0" layoutY="28.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="3">
+                                    <Button fx:id="btn3" layoutX="266.0" layoutY="28.0" mnemonicParsing="false" onAction="#three" prefWidth="50.0" stylesheets="@buttonWhite.css" text="3">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="301.0" layoutY="28.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="4">
+                                    <Button fx:id="btn4" layoutX="301.0" layoutY="28.0" mnemonicParsing="false" onAction="#four" prefWidth="50.0" stylesheets="@buttonWhite.css" text="4">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -1120,18 +1120,33 @@
                                  </children>
                               </HBox>
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="29.0" layoutY="298.0" stroke="WHITE" strokeType="INSIDE" width="207.0" />
-                              <Label contentDisplay="CENTER" layoutX="37.0" layoutY="298.0" prefHeight="31.0" prefWidth="86.0" text="Average: --" wrapText="true">
+                              <Label contentDisplay="CENTER" layoutX="37.0" layoutY="298.0" prefHeight="31.0" prefWidth="60.0" text="Average: " wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label contentDisplay="CENTER" layoutX="135.0" layoutY="298.0" prefHeight="31.0" prefWidth="86.0" text="Range: --" wrapText="true">
+                              <Label contentDisplay="CENTER" layoutX="135.0" layoutY="298.0" prefHeight="31.0" prefWidth="42.0" text="Range: " wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="314.0" layoutY="298.0" stroke="WHITE" strokeType="INSIDE" width="135.0" />
-                              <Label contentDisplay="CENTER" layoutX="319.0" layoutY="299.0" prefHeight="31.0" prefWidth="120.0" text="Time remaining: --" wrapText="true">
+                              <Label contentDisplay="CENTER" layoutX="319.0" layoutY="299.0" prefHeight="31.0" prefWidth="94.0" text="Time remaining:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="timer" layoutX="419.0" layoutY="307.0" text="30">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="avgW" layoutX="95.0" layoutY="305.0" text="?">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rangeW" layoutX="188.0" layoutY="305.0" text="?">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>

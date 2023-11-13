@@ -1,5 +1,7 @@
 package application;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -202,6 +205,44 @@ public class DashboardController implements Initializable {
     @FXML
     private Label title;
     
+    @FXML
+    private Button myPoint;
+    
+    @FXML
+    private Button btn0;
+    
+    @FXML
+    private Button btn1;
+    
+    @FXML
+    private Button btn2;
+    
+    @FXML
+    private Button btn3;
+    
+    @FXML
+    private Button btn4;
+    
+    @FXML
+    private Button empw;
+    
+    @FXML
+    private Button empw1;
+    
+    @FXML
+    private Button empw2;
+    
+    @FXML
+    private Button empw3;
+    
+    @FXML
+    private Label timer;
+    
+    @FXML
+    private Label avgW;
+    
+    @FXML
+    private Label rangeW;
     
     private Image green_circle;
     
@@ -334,6 +375,9 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
     }
+    
+    private int seconds = 30;
+    private Timeline timeline = new Timeline();
     @FXML
     void mainPlanningPokerClicked(ActionEvent event) {
     	mainHomePane.setVisible(false);
@@ -345,7 +389,24 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	
+    	
+    	
+    	
+    	KeyFrame kf = new KeyFrame(Duration.seconds(1), e -> {
+    		timer.setText(String.valueOf(seconds));
+    		seconds--;
+    		if(timeline != null) {
+	    		if(seconds < 0) {
+	    			timeline.stop();
+	    		}
+    		}
+    	});
 
+    	timeline.getKeyFrames().add(kf);
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.play();
+    	
     }
     @FXML
     void mainPrivacylicked(ActionEvent event) {
@@ -500,4 +561,68 @@ public class DashboardController implements Initializable {
     			+ "Scalability problems when the system is unable to handle increasing user load, resulting in site crashes or slow response times."
     			);
     }
+    
+    @FXML
+    void one(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("1");
+    	disableButton(); 
+    	compute(); 
+    	
+    }
+    
+    @FXML
+    void two(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("2");
+    	disableButton(); 
+    	compute(); 
+    }
+    
+    @FXML
+    void three(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("3");
+    	disableButton();
+    	compute(); 
+    }
+    
+    @FXML
+    void four(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("4");
+    	disableButton(); 
+    	compute(); 
+    }
+    
+    @FXML
+    void zero(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("0");
+    	disableButton(); 
+    	compute();
+    }
+    
+    void disableButton() {
+    	btn0.setDisable(true);
+    	btn1.setDisable(true);
+    	btn2.setDisable(true);
+    	btn3.setDisable(true);
+    	btn4.setDisable(true);
+    	empw.setText("4");
+    	empw1.setText("4");
+    	empw2.setText("4");
+    	empw3.setText("4");
+    }
+    
+    void compute() {
+    	int userW = Integer.parseInt(myPoint.getText());
+    	int otherUser = Integer.parseInt(empw.getText());
+    	int avg = (userW + 3*otherUser)/4;
+    	avgW.setText(String.valueOf(avg));
+    	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
+    	
+    	
+    }
+    
 }
