@@ -252,7 +252,7 @@
                <children>
                   <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" text="Add new entry" textAlignment="CENTER">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -266,10 +266,6 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                           <stylesheets>
-                              <URL value="@buttonTransp.css" />
-                              <URL value="@buttonWhite.css" />
-                           </stylesheets>
                         </Button>
                         <AnchorPane prefHeight="80.0" prefWidth="462.0" stylesheets="@application.css">
                            <children>

@@ -634,7 +634,6 @@ public class DashboardController implements Initializable {
     	avgW.setText(String.valueOf(avg));
     	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
     	
-    	
     }
     
 }
