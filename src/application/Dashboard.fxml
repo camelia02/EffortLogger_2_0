@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -24,9 +25,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <children>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="675.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="749.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e58fab" height="446.0" layoutX="14.0" layoutY="84.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
       <VBox layoutX="14.0" layoutY="84.0" prefHeight="445.0" prefWidth="200.0">
          <children>
@@ -80,6 +81,7 @@
                   <String fx:value=".radio:selected" />
                </styleClass>
             </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="146.0" startX="-100.0" stroke="#00000099" />
             <RadioButton fx:id="mainTeamCollabButton" focusTraversable="false" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#mainTeamCollabClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Team Collab" toggleGroup="$navMainTab">
                <padding>
                   <Insets left="10.0" />
@@ -93,7 +95,6 @@
                </styleClass>
             </RadioButton>
             <Line endX="98.0" layoutX="111.0" layoutY="99.0" startX="-100.0" stroke="#00000099" />
-            <Line endX="98.0" layoutX="111.0" layoutY="146.0" startX="-100.0" stroke="#00000099" />
             <RadioButton fx:id="mainExportButton" focusTraversable="false" layoutX="10.0" layoutY="137.0" mnemonicParsing="false" onAction="#mainExportClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Export" toggleGroup="$navMainTab">
                <padding>
                   <Insets left="10.0" />
@@ -151,8 +152,8 @@
          <children>
             <HBox prefHeight="21.0" prefWidth="166.0">
                <children>
-                  <Label fx:id="dateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="214.0" text="MM/DD/YYYY" textAlignment="RIGHT" textFill="WHITE" />
-                  <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="162.0" text="HH/MM" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label fx:id="dateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="213.0" text="MM/DD/YYYY" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="98.0" text="HH/MM" textAlignment="RIGHT" textFill="WHITE" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -161,7 +162,7 @@
                   <Label fx:id="usernameTextLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="259.0" text="name" textFill="WHITE" />
                </children>
             </HBox>
-            <Label fx:id="roleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="208.0" text="Engineer 4" textAlignment="RIGHT" textFill="WHITE" />
+            <Label fx:id="roleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="205.0" text="Engineer 4" textAlignment="RIGHT" textFill="WHITE" />
          </children>
       </VBox>
       <Label layoutX="23.0" layoutY="13.0" prefHeight="34.0" prefWidth="180.0" text="EFFORTLOGGER">
@@ -169,14 +170,14 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0">
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="546.0">
          <children>
-            <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="454.0" spacing="10.0">
+            <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="532.0" spacing="10.0">
                <children>
-                  <Pane prefHeight="209.0" prefWidth="454.0">
+                  <Pane prefHeight="153.0" prefWidth="508.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
-                        <HBox fx:id="taskOverview1" prefHeight="139.0" prefWidth="454.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox fx:id="taskOverview1" prefHeight="150.0" prefWidth="532.0">
                            <children>
                               <Label prefHeight="138.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="Tasks Overview" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -190,8 +191,8 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="10.0" prefHeight="209.0" prefWidth="454.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
-                        <HBox prefHeight="137.0" prefWidth="454.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="150.0" prefWidth="532.0">
                            <children>
                               <Label prefHeight="151.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Task Type" textAlignment="CENTER">
                                  <font>
@@ -215,8 +216,8 @@
                   </Pane>
                   <Pane prefHeight="179.0" prefWidth="454.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
-                        <HBox prefHeight="124.0" prefWidth="454.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="124.0" prefWidth="532.0">
                            <children>
                               <Label prefHeight="147.0" prefWidth="83.0" style="-fx-font-weight: bold;" text="Team Collab" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -229,8 +230,8 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="337.0" prefHeight="102.0" prefWidth="454.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
-                        <HBox prefHeight="45.0" prefWidth="454.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="45.0" prefWidth="532.0">
                            <children>
                               <Label prefHeight="147.0" prefWidth="83.0" style="-fx-font-weight: bold;" text="Time" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -244,19 +245,19 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="446.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
-            <AnchorPane prefHeight="361.0" prefWidth="362.0">
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <AnchorPane prefHeight="543.0" prefWidth="532.0">
                <children>
-                  <VBox prefHeight="506.0" prefWidth="462.0">
+                  <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="404.0" stylesheets="@buttonTransp.css" text="Add new entry">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" text="Add new entry" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="10.0" top="10.0" />
                            </VBox.margin>
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -265,10 +266,14 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <stylesheets>
+                              <URL value="@buttonTransp.css" />
+                              <URL value="@buttonWhite.css" />
+                           </stylesheets>
                         </Button>
                         <AnchorPane prefHeight="80.0" prefWidth="462.0" stylesheets="@application.css">
                            <children>
-                              <HBox prefHeight="72.0" prefWidth="462.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="532.0">
                                  <children>
                                     <VBox layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
                                        <children>
@@ -305,7 +310,7 @@
                            <content>
                               <HBox prefHeight="384.0" prefWidth="463.0" spacing="20.0">
                                  <children>
-                                    <Pane minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                    <Pane minHeight="383.0" minWidth="300.0" prefHeight="485.0" prefWidth="379.0">
                                        <children>
                                           <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
                                           <VBox prefHeight="383.0" prefWidth="300.0">
@@ -427,14 +432,14 @@
             </AnchorPane>
          </children>
       </Pane>
-      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="446.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="506.0" prefWidth="462.0">
                <children>
-                  <VBox prefHeight="506.0" prefWidth="462.0">
+                  <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="404.0" stylesheets="@buttonTransp.css" text="Add new report">
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0" text="Add new report">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -448,10 +453,14 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <stylesheets>
+                              <URL value="@buttonTransp.css" />
+                              <URL value="@buttonWhite.css" />
+                           </stylesheets>
                         </Button>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
                            <children>
-                              <HBox prefHeight="72.0" prefWidth="462.0">
+                              <HBox alignment="CENTER" prefHeight="72.0" prefWidth="532.0">
                                  <children>
                                     <VBox layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
                                        <children>
@@ -605,19 +614,22 @@
                            </content>
                         </ScrollPane>
                      </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </VBox>
                </children></AnchorPane>
          </children>
       </Pane>
-      <Pane fx:id="mainTeamCollabPane" layoutX="214.0" layoutY="71.0" pickOnBounds="false" prefHeight="515.0" prefWidth="476.0" visible="false">
+      <Pane fx:id="mainTeamCollabPane" layoutX="214.0" layoutY="71.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
          <children>
-            <ScrollPane layoutX="7.0" prefHeight="463.0" prefWidth="476.0" stylesheets="@application.css">
+            <ScrollPane layoutX="7.0" prefHeight="543.0" prefWidth="532.0" stylesheets="@application.css">
                <content>
-                  <VBox prefHeight="460.0" prefWidth="454.0" spacing="10.0">
+                  <VBox prefHeight="532.0" prefWidth="532.0" spacing="10.0">
                      <children>
                         <Pane prefHeight="135.0" prefWidth="454.0">
                            <children>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="452.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
                               <Button layoutX="23.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
@@ -688,7 +700,7 @@
                         </Pane>
                         <Pane prefHeight="135.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
                               <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
                               <Button layoutX="24.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
@@ -765,13 +777,13 @@
                </padding></ScrollPane>
          </children>
       </Pane>
-      <Pane fx:id="mainExportPane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainExportPane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="362.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="6.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="235.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
-            <AnchorPane prefHeight="506.0" prefWidth="462.0">
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="374.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="16.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="260.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="248.0" />
+            <AnchorPane prefHeight="543.0" prefWidth="532.0">
                <children>
                   <Label layoutX="14.0" layoutY="155.0" prefHeight="27.0" prefWidth="115.0" stylesheets="@application.css" text="Recent Activities">
                      <opaqueInsets>
@@ -786,7 +798,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <HBox prefHeight="135.0" prefWidth="462.0">
+            <HBox alignment="CENTER" prefHeight="135.0" prefWidth="532.0">
                <children>
                   <VBox prefHeight="160.0" prefWidth="231.0" spacing="6.0">
                      <children>
@@ -825,7 +837,7 @@
                         <Insets top="13.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="85.0" prefWidth="231.0" spacing="6.0">
+                  <VBox prefHeight="85.0" prefWidth="230.0" spacing="6.0">
                      <children>
                         <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Visual Basic">
                            <font>
@@ -865,9 +877,9 @@
             </HBox>
          </children>
       </Pane>
-      <Pane fx:id="mainPlanningPokerPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0">
+      <Pane fx:id="mainPlanningPokerPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
-            <ScrollPane prefHeight="506.0" prefWidth="462.0" visible="false">
+            <ScrollPane prefHeight="543.0" prefWidth="532.0" visible="false">
                <content>
                   <VBox prefHeight="509.0" prefWidth="446.0" spacing="10.0">
                      <children>
@@ -895,30 +907,30 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <VBox prefHeight="506.0" prefWidth="462.0" spacing="10.0">
+            <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                <children>
                   <Pane prefHeight="200.0" prefWidth="462.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="123.0" stroke="#f6bfc6" strokeType="INSIDE" width="462.0" />
-                        <AnchorPane prefHeight="124.0" prefWidth="462.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="123.0" stroke="#f6bfc6" strokeType="INSIDE" width="532.0" />
+                        <AnchorPane prefHeight="124.0" prefWidth="532.0">
                            <children>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="118.0" layoutY="4.0" stroke="WHITE" strokeType="INSIDE" width="63.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="118.0" layoutY="4.0" stroke="WHITE" strokeType="INSIDE" width="75.0" />
                               <Label layoutX="13.0" layoutY="48.0" text="Project 1">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <VBox alignment="CENTER_LEFT" layoutX="128.0" layoutY="5.0" prefHeight="111.0" prefWidth="63.0" spacing="5.0">
+                              <VBox alignment="CENTER" layoutX="121.0" layoutY="5.0" prefHeight="111.0" prefWidth="70.0" spacing="5.0">
                                  <children>
-                                    <Label text="Stories" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Stories" />
                                     <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
                                     <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Story 2" />
                                     <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
                                  </children>
                               </VBox>
                               <Button layoutX="8.0" layoutY="93.0" mnemonicParsing="false" style="-fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Next project" />
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="188.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" width="259.0" />
-                              <HBox layoutX="192.0" layoutY="4.0" prefHeight="111.0" prefWidth="252.0" spacing="10.0">
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="218.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" width="292.0" />
+                              <HBox layoutX="215.0" layoutY="4.0" prefHeight="111.0" prefWidth="292.0" spacing="10.0">
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="111.0" prefWidth="168.0" spacing="10.0">
                                        <children>
@@ -935,6 +947,9 @@
                                        </children>
                                     </VBox>
                                  </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
                               </HBox>
                            </children>
                         </AnchorPane>
@@ -942,8 +957,8 @@
                   </Pane>
                   <Pane prefHeight="450.0" prefWidth="462.0">
                      <children>
-                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="373.0" stroke="#f6bfc6" strokeType="INSIDE" width="462.0" />
-                        <AnchorPane layoutY="7.0" prefHeight="373.0" prefWidth="462.0">
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="392.0" stroke="#f6bfc6" strokeType="INSIDE" width="532.0" />
+                        <AnchorPane layoutY="7.0" prefHeight="392.0" prefWidth="532.0">
                            <children>
                               <Pane fx:id="infoPane" layoutX="-79.0" layoutY="-67.0" prefHeight="309.0" prefWidth="404.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
                                  <children>
@@ -972,17 +987,24 @@
                                     </ScrollPane>
                                  </children>
                               </Pane>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="315.0" layoutX="9.0" layoutY="50.0" stroke="WHITE" strokeType="INSIDE" width="445.0" />
-                              <Button layoutX="389.0" layoutY="336.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Next story" />
-                              <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
-                              <Button layoutX="67.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 2" />
-                              <Button layoutX="123.0" layoutY="14.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
-                              <Button layoutX="191.0" layoutY="58.0" mnemonicParsing="false" prefWidth="80.0" stylesheets="@buttonWhite.css" text="Weights">
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="323.0" layoutX="9.0" layoutY="50.0" stroke="WHITE" strokeType="INSIDE" width="517.0" />
+                              <HBox layoutX="11.0" prefHeight="46.0" prefWidth="189.0" spacing="20.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 2" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Button layoutX="449.0" layoutY="340.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Next story" />
+                              <Button layoutX="228.0" layoutY="75.0" mnemonicParsing="false" prefWidth="80.0" stylesheets="@buttonWhite.css" text="Weights">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
-                              <HBox layoutX="21.0" layoutY="96.0" prefHeight="60.0" prefWidth="421.0" spacing="10.0">
+                              <HBox alignment="CENTER" layoutX="20.0" layoutY="120.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="494.0" spacing="10.0">
                                  <children>
                                     <Pane prefHeight="60.0" prefWidth="60.0">
                                        <children>
@@ -1060,8 +1082,11 @@
                                        </children>
                                     </Pane>
                                  </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="21.0" layoutY="204.0" prefHeight="34.0" prefWidth="421.0" spacing="30.0">
+                              <HBox alignment="CENTER" layoutX="8.0" layoutY="204.0" prefHeight="34.0" prefWidth="517.0" spacing="30.0">
                                  <children>
                                     <Button fx:id="btn0" mnemonicParsing="false" onAction="#zero" prefWidth="50.0" stylesheets="@buttonWhite.css" text="0">
                                        <font>
@@ -1090,7 +1115,7 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <HBox alignment="TOP_CENTER" layoutX="42.0" layoutY="238.0" prefHeight="60.0" prefWidth="397.0" spacing="15.0">
+                              <HBox alignment="TOP_CENTER" layoutX="11.0" layoutY="238.0" prefHeight="60.0" prefWidth="517.0" spacing="15.0">
                                  <children>
                                     <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="58.0" prefWidth="61.0" text="Not relevant" wrapText="true">
                                        <font>
@@ -1119,34 +1144,34 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="29.0" layoutY="298.0" stroke="WHITE" strokeType="INSIDE" width="207.0" />
-                              <Label contentDisplay="CENTER" layoutX="37.0" layoutY="298.0" prefHeight="31.0" prefWidth="60.0" text="Average: " wrapText="true">
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="53.0" layoutY="306.0" stroke="WHITE" strokeType="INSIDE" width="207.0" />
+                              <Label contentDisplay="CENTER" layoutX="58.0" layoutY="307.0" prefHeight="31.0" prefWidth="60.0" text="Average: " wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label contentDisplay="CENTER" layoutX="135.0" layoutY="298.0" prefHeight="31.0" prefWidth="42.0" text="Range: " wrapText="true">
+                              <Label contentDisplay="CENTER" layoutX="156.0" layoutY="307.0" prefHeight="31.0" prefWidth="42.0" text="Range: " wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="314.0" layoutY="298.0" stroke="WHITE" strokeType="INSIDE" width="135.0" />
-                              <Label contentDisplay="CENTER" layoutX="319.0" layoutY="299.0" prefHeight="31.0" prefWidth="94.0" text="Time remaining:" wrapText="true">
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="319.0" layoutY="306.0" stroke="WHITE" strokeType="INSIDE" width="135.0" />
+                              <Label contentDisplay="CENTER" layoutX="325.0" layoutY="307.0" prefHeight="31.0" prefWidth="94.0" text="Time remaining:" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="timer" layoutX="419.0" layoutY="307.0" text="30">
+                              <Label fx:id="timer" layoutX="428.0" layoutY="314.0" text="30">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="avgW" layoutX="95.0" layoutY="305.0" text="?">
+                              <Label fx:id="avgW" layoutX="115.0" layoutY="314.0" text="?">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="rangeW" layoutX="188.0" layoutY="307.0" text="?">
+                              <Label fx:id="rangeW" layoutX="208.0" layoutY="314.0" text="?">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -1159,10 +1184,10 @@
             </VBox>
          </children>
       </Pane>
-      <Pane fx:id="mainPrivacyPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainPrivacyPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="361.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="362.0" />
-            <AnchorPane layoutX="4.0" layoutY="4.0" prefHeight="426.0" prefWidth="386.0">
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="538.0" />
+            <AnchorPane layoutX="4.0" layoutY="4.0" prefHeight="543.0" prefWidth="538.0">
                <children>
                   <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
                      <children>
@@ -1209,9 +1234,9 @@
                </children></AnchorPane>
          </children>
       </Pane>
-      <Pane fx:id="mainSettingsPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+      <Pane fx:id="mainSettingsPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
-            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="361.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="362.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="426.0" prefWidth="386.0">
                <children>
                   <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
@@ -1260,7 +1285,7 @@
             </AnchorPane>
          </children>
       </Pane>
-      <Button fx:id="exitButton" layoutX="638.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+      <Button fx:id="exitButton" layoutX="668.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -1269,7 +1294,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="shrinkButton" layoutX="661.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+      <Button fx:id="shrinkButton" layoutX="717.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
