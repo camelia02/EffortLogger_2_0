@@ -13,13 +13,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="837.0" text="EffortLogger" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController" >
+<TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="837.0" text="EffortLogger" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
 	<content>
 		<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 			<children>
 				<TabPane fx:id="tabView" layoutY="-1.0" prefHeight="592.0" prefWidth="837.0" tabClosingPolicy="UNAVAILABLE">
 					<tabs>
-						<Tab fx:id="logConsole" text="EffortConsole" >
+						<Tab fx:id="logConsole" text="EffortConsole">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 									<children>
@@ -70,6 +70,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="employeename" layoutX="303.0" layoutY="97.0" />
 									</children>
 								</AnchorPane>
 							</content>

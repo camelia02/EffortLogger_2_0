@@ -39,6 +39,6 @@ public class Employee {
 	}
 	
 	public String getFullName() {
-		return this.fName + this.mName + this.lName;
+		return this.fName + " " + this.mName + " " + this.lName;
 	}
 }

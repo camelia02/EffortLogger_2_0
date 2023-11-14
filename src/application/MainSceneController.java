@@ -91,6 +91,9 @@ public class MainSceneController {
     @FXML
     private TabPane tabView;
     
+    @FXML
+    private Label employeename;
+    
     private String start;
     private String end;
     private Effort newEffort;
@@ -104,28 +107,50 @@ public class MainSceneController {
 	public ObservableList<String> effortCategories = FXCollections.observableArrayList("Plans", "Deliverable", "Interuptions", "Defects", "Others");
 	public ObservableList<String> deliverables = FXCollections.observableArrayList("Project Plan", "Risk Management Plan", "Conceptual Design Plan", "Detailed Design Plan", "Implementation Plan");
     
-    @FXML
-    void initialize() {
-		projectBox.setItems(projects);
-		projectDBox.setItems(projects);
-		projectEBox.setItems(projects);
-		
-		categoryBox.setItems(effortCategories);
-		categoryEBox.setItems(effortCategories);
-		
-		cycleBox.setItems(lifeCycles);
-		cycleEBox.setItems(lifeCycles);
-		
-		deliverablesBox.setItems(deliverables);
-		deliverableEBox.setItems(deliverables);
-		
-		
-//		 logConsole.setOnSelectionChanged(event -> {
-//		        if (logConsole.isSelected()) {
-//		            System.out.println("Tab is Selected");
-//		        }
-//		    });
-    }
+	private Employee employee;
+	
+	public void setEmployee(Employee emps) {
+		this.employee = emps;
+	}
+	
+	Employee getEmployee() {
+		return employee;
+	}
+	
+
+	
+	public void initializeEmployeeData() {
+	    Employee employeeFromLogin = getEmployee();
+
+	    if (employeeFromLogin != null) {
+	        setEmployee(employeeFromLogin);
+	        employeename.setText(employeeFromLogin.getFullName());
+	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+	                employeeFromLogin.getFullName() + "\n");
+	    } else {
+	        System.err.println("Employee not set in MainSceneController");
+	    }
+	}
+
+	@FXML
+	void initialize() {
+	    System.out.println("MainSceneController initialized");
+	    projectBox.setItems(projects);
+	    projectDBox.setItems(projects);
+	    projectEBox.setItems(projects);
+
+	    categoryBox.setItems(effortCategories);
+	    categoryEBox.setItems(effortCategories);
+
+	    cycleBox.setItems(lifeCycles);
+	    cycleEBox.setItems(lifeCycles);
+
+	    deliverablesBox.setItems(deliverables);
+	    deliverableEBox.setItems(deliverables);
+
+	    initializeEmployeeData();  // Call the new method
+	}
+
 
     @FXML
     void clearDefectClicked(ActionEvent event) {
@@ -178,7 +203,7 @@ public class MainSceneController {
     void deliverableESelected(ActionEvent event) {
 
     }
-
+    
     @FXML
     void deliverableSelected(ActionEvent event) {
     	this.deliverable = deliverablesBox.getValue();
@@ -257,3 +282,6 @@ public class MainSceneController {
     }
 
 }
+
+
+
