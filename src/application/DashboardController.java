@@ -1,10 +1,12 @@
 package application;
 
+import application.OracleDBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -17,6 +19,14 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
+import oracle.jdbc.OracleConnection;
 
 import org.controlsfx.control.ToggleSwitch;
 
@@ -269,6 +279,8 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
 		initializeEmployeeData();
+		displayEntryDetails();
+		displayReportDetails();
     }
     @FXML
     void mainHomeClicked(ActionEvent event) {
@@ -500,4 +512,93 @@ public class DashboardController implements Initializable {
     			+ "Scalability problems when the system is unable to handle increasing user load, resulting in site crashes or slow response times."
     			);
     }
+
+    @FXML
+    private TextField entryTitle;
+    @FXML
+    private TextField entryDate;
+    @FXML
+    private TextField entryType;
+    @FXML
+    private TextField entryTimeSpent;
+    @FXML
+    private TextField entryDescription;
+    @FXML
+    private TextField reportTitle;
+    @FXML
+    private TextField reportDate;
+    @FXML
+    private TextField reportType;
+    @FXML
+    private TextField reportTimeSpent;
+    @FXML
+    private TextField reportDescription;
+
+    private OracleDBConnection dbConnection;
+
+    public DashboardController() {
+        try {
+            dbConnection = new OracleDBConnection(); // Initialize the connection
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle connection error
+        }
+    }
+
+    public void displayEntryDetails() {
+        try (OracleConnection conn = dbConnection.makeConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.ENTRY WHERE ID = ?")) {
+            
+            // Set the ID
+            pstmt.setInt(1, 1); // ID = 1
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String dateTimeString = rs.getString("DATE_COLUMN");
+                    LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    String dateString = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                	
+                    entryTitle.setText("Title: \n" + rs.getString("TITLE"));
+                    entryDate.setText("Date: \n" + rs.getString("DATE_COLUMN"));
+                    entryType.setText("Type: \n" + rs.getString("TYPE"));
+                    entryTimeSpent.setText("Time Spent: \n" + rs.getString("TIME"));
+                    entryDescription.setText("Description: \n" + rs.getString("DESCRIPTION"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
+    }
+    
+    public void displayReportDetails() {
+//        try (OracleConnection conn = dbConnection.makeConnection();
+//             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.REPORT WHERE ID = ?")) {
+//
+//            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
+//
+//            try (ResultSet rs = pstmt.executeQuery()) {
+//                if (rs.next()) {
+                    // Setting text for each TextField with the data from the database
+                    reportTitle.setText("Title: EffortLogger Defect Check");
+                    reportDate.setText("Date: 2023-11-11");
+                    reportType.setText("Type: Defect");
+                    reportTimeSpent.setText("Time Spent: 05:10");
+                    reportDescription.setText("Description: This is Effortlogger defect check.");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            // Handle SQL exception
+//        }
+    }
+
+    private String formatDate(Date date) {
+        if (date != null) {
+            return new SimpleDateFormat("yyyy-MM-dd").format(date);
+        }
+        return "";
+    }
+
+    
 }
