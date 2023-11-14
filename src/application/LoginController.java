@@ -70,33 +70,48 @@ public class LoginController implements AutoCloseable,Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	load.setDisable(true);
     	load.setVisible(false);
-    	load.setOpacity(0.0);
+    	//load.setOpacity(0.0);
     }
     
     
     @FXML
-    void loginClicked(ActionEvent event) throws SQLException {
+    void loginClicked(ActionEvent event) {
         String username = idField.getText();
         String password = passwordField.getText();
-        
-        
-        load.setVisible(true);
-        load.setDisable(false);
-        load.toFront();
-        
 
-        try (OracleDBConnection con = new OracleDBConnection()) {
-            connection = con.makeConnection();
-            Employee emp = login(username, password);
-            if (emp != null) {
-                setLoggedIn(true,emp);
+        Platform.runLater(() -> {
+            load.setVisible(true);
+            load.setDisable(false);
+            load.toFront();
+        });
+
+        new Thread(() -> {
+            try (OracleDBConnection con = new OracleDBConnection()) {
+                connection = con.makeConnection();
+                Employee emp = login(username, password);
+                
+                // Ensure UI updates are performed on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    if (emp != null) {
+                        setLoggedIn(true, emp);
+                    }
+                    //load.setVisible(false);
+                    load.setDisable(true);
+                });
+            } catch (Exception e) {
+                System.err.println("Error during login: " + e.getMessage());
+                
+                // Ensure UI updates are performed on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    showLoginError("An error occurred during login");
+                    load.setVisible(false);
+                    load.setDisable(true);
+                });
             }
-        } catch (Exception e) {
-            System.err.println("Error during login: " + e.getMessage());
-            showLoginError("An error occurred during login");
-        }
+        }).start();
     }
-
+    
+    
     private Employee login(String username, String password) throws SQLException {
         String sql1 = "SELECT * FROM EMPLOYEE_LOGIN WHERE USERNAME = ? AND PASSWORD = ?";
         try (PreparedStatement employeeStatement = connection.prepareStatement(sql1)) {
