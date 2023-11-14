@@ -2,6 +2,7 @@ package application;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +21,9 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.controlsfx.control.ToggleSwitch;
 
@@ -278,16 +282,33 @@ public class DashboardController implements Initializable {
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         // Format the date using a DateTimeFormatter
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/YYYY");
         String formattedDate = currentDateTime.format(dateFormatter);
 
         // Format the time using a DateTimeFormatter
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm a");
         String formattedTime = currentDateTime.format(timeFormatter);
 
         // Set the formatted date and time to the labels
-        dateLabel.setText("Date: " + formattedDate);
-        timeLabel.setText("Time: " + formattedTime);
+        dateLabel.setText(formattedDate);
+        timeLabel.setText(formattedTime);
+        
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+        // Schedule a task to update the time every second
+        scheduler.scheduleAtFixedRate(() -> {
+            // Get the current date and time
+            LocalDateTime updatedDateTime = LocalDateTime.now();
+
+            // Format the updated time using a DateTimeFormatter
+            String updatedFormattedTime = updatedDateTime.format(timeFormatter);
+
+            // Update the time label with the new formatted time
+            Platform.runLater(() -> timeLabel.setText(updatedFormattedTime));
+        }, 0, 1, TimeUnit.SECONDS); // Update every second
+
+        // Add a shutdown hook to stop the scheduler when the program exits
+        Runtime.getRuntime().addShutdownHook(new Thread(scheduler::shutdown));
         
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
 		
@@ -300,15 +321,6 @@ public class DashboardController implements Initializable {
 		username_1_1_button.setGraphic(new ImageView(grey_circle));
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
-		mainHomePane.setVisible(true);
-    	mainEntryPane.setVisible(false);
-    	mainReportPane.setVisible(false);
-    	mainTeamCollabPane.setVisible(false);
-    	mainExportPane.setVisible(false);
-    	mainPlanningPokerPane.setVisible(false);
-    	mainPrivacyPane.setVisible(false);
-    	mainSettingsPane.setVisible(false);
-    	infoPane.setVisible(false);
 		initializeEmployeeData();
     }
     @FXML

@@ -25,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="749.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e58fab" height="446.0" layoutX="14.0" layoutY="84.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
@@ -170,7 +170,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="546.0">
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0">
          <children>
             <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="532.0" spacing="10.0">
                <children>
@@ -306,7 +306,7 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                        <ScrollPane prefHeight="535.0" prefWidth="462.0" stylesheets="@application.css">
+                        <ScrollPane prefHeight="535.0" prefWidth="530.0" stylesheets="@application.css">
                            <content>
                               <HBox prefHeight="384.0" prefWidth="463.0" spacing="20.0">
                                  <children>
