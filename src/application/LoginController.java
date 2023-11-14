@@ -1,21 +1,27 @@
 package application;
 
 import javafx.event.ActionEvent;
+
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.application.Platform;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+import org.controlsfx.control.MaskerPane;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class LoginController implements AutoCloseable {
+public class LoginController implements AutoCloseable,Initializable {
 
     @FXML
     private Label errorLogin;
@@ -25,6 +31,9 @@ public class LoginController implements AutoCloseable {
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private MaskerPane load;
 
     private final BooleanProperty loggedIn = new SimpleBooleanProperty(false);
     private Connection connection;
@@ -44,8 +53,11 @@ public class LoginController implements AutoCloseable {
             //MainSceneController mainSceneCoSSSntroller = Main.getMainController();
         	DashboardController dashboard = EffortLogger2.getDashboard();
            if (dashboard != null) {
+        	   
                 dashboard.setEmployee(employee);
+                load.setDisable(true);
                 dashboard.initializeEmployeeData();
+                
            }
             else {
                 //If MainSceneController is not initialized, you may want to handle it or log an error
@@ -53,25 +65,53 @@ public class LoginController implements AutoCloseable {
             }
         }
     }
-
-
+    
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    	load.setDisable(true);
+    	load.setVisible(false);
+    	//load.setOpacity(0.0);
+    }
+    
+    
     @FXML
-    void loginClicked(ActionEvent event) throws SQLException {
+    void loginClicked(ActionEvent event) {
         String username = idField.getText();
         String password = passwordField.getText();
 
-        try (OracleDBConnection con = new OracleDBConnection()) {
-            connection = con.makeConnection();
-            Employee emp = login(username, password);
-            if (emp != null) {
-                setLoggedIn(true,emp);
-            }
-        } catch (Exception e) {
-            System.err.println("Error during login: " + e.getMessage());
-            showLoginError("An error occurred during login");
-        }
-    }
+        Platform.runLater(() -> {
+            load.setVisible(true);
+            load.setDisable(false);
+            load.toFront();
+        });
 
+        new Thread(() -> {
+            try (OracleDBConnection con = new OracleDBConnection()) {
+                connection = con.makeConnection();
+                Employee emp = login(username, password);
+                
+                // Ensure UI updates are performed on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    if (emp != null) {
+                        setLoggedIn(true, emp);
+                    }
+                    //load.setVisible(false);
+                    load.setDisable(true);
+                });
+            } catch (Exception e) {
+                System.err.println("Error during login: " + e.getMessage());
+                
+                // Ensure UI updates are performed on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    showLoginError("An error occurred during login");
+                    load.setVisible(false);
+                    load.setDisable(true);
+                });
+            }
+        }).start();
+    }
+    
+    
     private Employee login(String username, String password) throws SQLException {
         String sql1 = "SELECT * FROM EMPLOYEE_LOGIN WHERE USERNAME = ? AND PASSWORD = ?";
         try (PreparedStatement employeeStatement = connection.prepareStatement(sql1)) {

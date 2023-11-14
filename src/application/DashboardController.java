@@ -1,6 +1,9 @@
 package application;
 
 import application.OracleDBConnection;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -25,9 +29,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-
 import oracle.jdbc.OracleConnection;
-
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import org.controlsfx.control.ToggleSwitch;
 
 public class DashboardController implements Initializable {
@@ -212,6 +217,44 @@ public class DashboardController implements Initializable {
     @FXML
     private Label title;
     
+    @FXML
+    private Button myPoint;
+    
+    @FXML
+    private Button btn0;
+    
+    @FXML
+    private Button btn1;
+    
+    @FXML
+    private Button btn2;
+    
+    @FXML
+    private Button btn3;
+    
+    @FXML
+    private Button btn4;
+    
+    @FXML
+    private Button empw;
+    
+    @FXML
+    private Button empw1;
+    
+    @FXML
+    private Button empw2;
+    
+    @FXML
+    private Button empw3;
+    
+    @FXML
+    private Label timer;
+    
+    @FXML
+    private Label avgW;
+    
+    @FXML
+    private Label rangeW;
     
     private Image green_circle;
     
@@ -247,16 +290,33 @@ public class DashboardController implements Initializable {
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         // Format the date using a DateTimeFormatter
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/YYYY");
         String formattedDate = currentDateTime.format(dateFormatter);
 
         // Format the time using a DateTimeFormatter
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm a");
         String formattedTime = currentDateTime.format(timeFormatter);
 
         // Set the formatted date and time to the labels
-        dateLabel.setText("Date: " + formattedDate);
-        timeLabel.setText("Time: " + formattedTime);
+        dateLabel.setText(formattedDate);
+        timeLabel.setText(formattedTime);
+        
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+        // Schedule a task to update the time every second
+        scheduler.scheduleAtFixedRate(() -> {
+            // Get the current date and time
+            LocalDateTime updatedDateTime = LocalDateTime.now();
+
+            // Format the updated time using a DateTimeFormatter
+            String updatedFormattedTime = updatedDateTime.format(timeFormatter);
+
+            // Update the time label with the new formatted time
+            Platform.runLater(() -> timeLabel.setText(updatedFormattedTime));
+        }, 0, 1, TimeUnit.SECONDS); // Update every second
+
+        // Add a shutdown hook to stop the scheduler when the program exits
+        Runtime.getRuntime().addShutdownHook(new Thread(scheduler::shutdown));
         
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
 		
@@ -269,15 +329,6 @@ public class DashboardController implements Initializable {
 		username_1_1_button.setGraphic(new ImageView(grey_circle));
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
-		mainHomePane.setVisible(true);
-    	mainEntryPane.setVisible(false);
-    	mainReportPane.setVisible(false);
-    	mainTeamCollabPane.setVisible(false);
-    	mainExportPane.setVisible(false);
-    	mainPlanningPokerPane.setVisible(false);
-    	mainPrivacyPane.setVisible(false);
-    	mainSettingsPane.setVisible(false);
-    	infoPane.setVisible(false);
 		initializeEmployeeData();
 		displayEntryDetails();
 		displayReportDetails();
@@ -346,6 +397,9 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
     }
+    
+    private int seconds = 30;
+    private Timeline timeline = new Timeline();
     @FXML
     void mainPlanningPokerClicked(ActionEvent event) {
     	mainHomePane.setVisible(false);
@@ -357,7 +411,24 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	
+    	
+    	
+    	
+    	KeyFrame kf = new KeyFrame(Duration.seconds(1), e -> {
+    		timer.setText(String.valueOf(seconds));
+    		seconds--;
+    		if(timeline != null) {
+	    		if(seconds < 0) {
+	    			timeline.stop();
+	    		}
+    		}
+    	});
 
+    	timeline.getKeyFrames().add(kf);
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.play();
+    	
     }
     @FXML
     void mainPrivacylicked(ActionEvent event) {
@@ -600,5 +671,68 @@ public class DashboardController implements Initializable {
         return "";
     }
 
+    
+    @FXML
+    void one(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("1");
+    	disableButton(); 
+    	compute(); 
+    	
+    }
+    
+    @FXML
+    void two(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("2");
+    	disableButton(); 
+    	compute(); 
+    }
+    
+    @FXML
+    void three(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("3");
+    	disableButton();
+    	compute(); 
+    }
+    
+    @FXML
+    void four(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("4");
+    	disableButton(); 
+    	compute(); 
+    }
+    
+    @FXML
+    void zero(ActionEvent event) {
+    	timeline.stop();
+    	myPoint.setText("0");
+    	disableButton(); 
+    	compute();
+    }
+    
+    void disableButton() {
+    	btn0.setDisable(true);
+    	btn1.setDisable(true);
+    	btn2.setDisable(true);
+    	btn3.setDisable(true);
+    	btn4.setDisable(true);
+    	empw.setText("4");
+    	empw1.setText("4");
+    	empw2.setText("4");
+    	empw3.setText("4");
+    }
+    
+    void compute() {
+    	int userW = Integer.parseInt(myPoint.getText());
+    	int otherUser = Integer.parseInt(empw.getText());
+    	int avg = (userW + 3*otherUser)/4;
+    	avgW.setText(String.valueOf(avg));
+    	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
+    	
+    	
+    }
     
 }

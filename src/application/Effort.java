@@ -16,7 +16,7 @@ public class Effort {
     private String lifeCycleStep;
     private String effortCategory;
     private String deliverable;
-
+adadasdada
     public Effort(String Sdate, String SstartTime, String SstopTime, String projectName,
                   String lifeCycleStep, String effortCategory, String deliverable, LocalDate date) throws ParseException {
     	
@@ -39,7 +39,7 @@ public class Effort {
         this.effortCategory = effortCategory;
         this.deliverable = deliverable;
     }
-
+sdvsdvsdvdsvs
     // Getters and Setters
     public LocalDate getDate() {
         return date;
