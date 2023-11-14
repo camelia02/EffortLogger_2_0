@@ -26,7 +26,7 @@ adadasdada
         // Convert java.util.Date to LocalDate and LocalTime
         date = parsedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         startTime = parsedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-
+ 
         // Similarly parse the stopTimeString and create a LocalTime object
         java.util.Date parsedDate2 = dateFormat.parse(SstopTime);
         stopTime = parsedDate2.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
