@@ -16,7 +16,7 @@ public class Effort {
     private String lifeCycleStep;
     private String effortCategory;
     private String deliverable;
-
+adadasdada
     public Effort(String Sdate, String SstartTime, String SstopTime, String projectName,
                   String lifeCycleStep, String effortCategory, String deliverable, LocalDate date) throws ParseException {
     	
@@ -26,7 +26,7 @@ public class Effort {
         // Convert java.util.Date to LocalDate and LocalTime
         date = parsedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         startTime = parsedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-
+ 
         // Similarly parse the stopTimeString and create a LocalTime object
         java.util.Date parsedDate2 = dateFormat.parse(SstopTime);
         stopTime = parsedDate2.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
@@ -39,7 +39,7 @@ public class Effort {
         this.effortCategory = effortCategory;
         this.deliverable = deliverable;
     }
-
+sdvsdvsdvdsvs
     // Getters and Setters
     public LocalDate getDate() {
         return date;
