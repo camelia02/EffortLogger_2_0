@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+   <children>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="749.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e58fab" height="446.0" layoutX="14.0" layoutY="84.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <VBox layoutX="14.0" layoutY="84.0" prefHeight="445.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="mainMenuButton" cache="true" focusTraversable="false" layoutX="10.0" layoutY="53.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#mainHomeClicked" prefHeight="60.0" prefWidth="224.0" style="-fx-background-color: transparent;" styleClass=".radio-button:selected" stylesheets="@application.css" text="MENU">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <toggleGroup>
+                  <ToggleGroup fx:id="navMainTab" />
+               </toggleGroup>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@main_menu_icon.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </RadioButton>
+            <Line endX="98.0" smooth="false" startX="-100.0" strokeWidth="2.0" />
+            <RadioButton fx:id="mainEntryButton" cache="true" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#mainEntryClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Entry" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <styleClass>
+                  <String fx:value=".radio-button .dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainReportButton" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#mainReportClicked" prefHeight="60.0" prefWidth="224.0" scaleShape="false" stylesheets="@application.css" text="Report" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="146.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainTeamCollabButton" focusTraversable="false" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#mainTeamCollabClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Team Collab" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="99.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainExportButton" focusTraversable="false" layoutX="10.0" layoutY="137.0" mnemonicParsing="false" onAction="#mainExportClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Export" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="192.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainPlanningPoklerButton" focusTraversable="false" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#mainPlanningPokerClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Planning Poker" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="236.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainPrivacyButton" focusTraversable="false" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#mainPrivacylicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Privacy" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="281.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainSettingsButton" focusTraversable="false" layoutX="10.0" layoutY="264.0" mnemonicParsing="false" onAction="#mainSettingsClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Settings" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+         </children>
+      </VBox>
+      <VBox layoutX="329.0" layoutY="14.0" prefHeight="58.0" prefWidth="292.0">
+         <children>
+            <HBox prefHeight="21.0" prefWidth="166.0">
+               <children>
+                  <Label fx:id="dateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="213.0" text="MM/DD/YYYY" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="98.0" text="HH/MM" textAlignment="RIGHT" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="376.0" text="Good morning" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label fx:id="usernameTextLabel" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="259.0" text="name" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label fx:id="roleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="205.0" text="Engineer 4" textAlignment="RIGHT" textFill="WHITE" />
+         </children>
+      </VBox>
+      <Label layoutX="23.0" layoutY="13.0" prefHeight="34.0" prefWidth="180.0" text="EFFORTLOGGER">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0">
+         <children>
+            <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="532.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="153.0" prefWidth="508.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox fx:id="taskOverview1" prefHeight="150.0" prefWidth="532.0">
+                           <children>
+                              <Label prefHeight="138.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="Tasks Overview" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <PieChart layoutX="100.0" prefHeight="33.0" prefWidth="118.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="209.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="150.0" prefWidth="532.0">
+                           <children>
+                              <Label prefHeight="151.0" prefWidth="93.0" style="-fx-font-weight: bold;" text="Task Type" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <BarChart prefHeight="150.0" prefWidth="335.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="179.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="124.0" prefWidth="532.0">
+                           <children>
+                              <Label prefHeight="147.0" prefWidth="83.0" style="-fx-font-weight: bold;" text="Team Collab" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="337.0" prefHeight="102.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                        <HBox prefHeight="45.0" prefWidth="532.0">
+                           <children>
+                              <Label prefHeight="147.0" prefWidth="83.0" style="-fx-font-weight: bold;" text="Time" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children></Pane>
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <AnchorPane prefHeight="543.0" prefWidth="532.0">
+               <children>
+                  <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@add_new_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <AnchorPane prefHeight="80.0" prefWidth="462.0" stylesheets="@application.css">
+                           <children>
+                              <HBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="532.0">
+                                 <children>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="requirementAnlyButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Requirement Anly ()" />
+                                          <Button fx:id="sysDesignButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="System Design ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="debuggingButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Debugging ()" />
+                                          <Button fx:id="refactoringButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Refactoring ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox layoutX="160.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="codingButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Coding ()" />
+                                          <Button fx:id="testingButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Testing ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <ScrollPane prefHeight="535.0" prefWidth="530.0" stylesheets="@application.css">
+                           <content>
+                              <HBox prefHeight="384.0" prefWidth="463.0" spacing="20.0">
+                                 <children>
+                                    <Pane minHeight="383.0" minWidth="300.0" prefHeight="485.0" prefWidth="379.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="entryTitle" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryDate" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryType" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryTimeSpent" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryDescription" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="entryUpdate" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="20.0" layoutY="10.0" minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="entryTitle1" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryDate1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryType1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryTimeSpent1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="entryDescription1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="entryUpdate1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </content></ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <AnchorPane prefHeight="506.0" prefWidth="462.0">
+               <children>
+                  <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0" text="Add new report">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@add_new_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@buttonTransp.css" />
+                              <URL value="@buttonWhite.css" />
+                           </stylesheets>
+                        </Button>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="72.0" prefWidth="532.0">
+                                 <children>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="performanceButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Performance ()" />
+                                          <Button fx:id="eventButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Event ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="defectButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Defect ()" />
+                                          <Button fx:id="securityButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Security ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox layoutX="160.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="deploymentButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Deployment ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <ScrollPane prefHeight="535.0" prefWidth="462.0" stylesheets="@application.css">
+                           <content>
+                              <HBox prefHeight="384.0" prefWidth="463.0" spacing="20.0">
+                                 <children>
+                                    <Pane minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="reportTitle" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDate" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportType" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportTimeSpent" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDescription" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="reportUpdate" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="20.0" layoutY="10.0" minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="reportTitle1" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDate1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportType1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportTimeSpent1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDescription1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="reportUpdate1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </children></AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainTeamCollabPane" layoutX="214.0" layoutY="71.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
+         <children>
+            <ScrollPane layoutX="7.0" prefHeight="543.0" prefWidth="532.0" stylesheets="@application.css">
+               <content>
+                  <VBox prefHeight="532.0" prefWidth="532.0" spacing="10.0">
+                     <children>
+                        <Pane prefHeight="135.0" prefWidth="454.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Button layoutX="23.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="14.0" layoutY="33.0" stylesheets="@label.css" text="Project 1">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="144.0" layoutY="14.0" stylesheets="@label.css" text="Team Chat">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="299.0" layoutY="14.0" stylesheets="@label.css" text="Individual">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="144.0" layoutY="40.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Availability ()" />
+                              <Button layoutX="143.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Files" />
+                              <Button layoutX="144.0" layoutY="96.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Tasks" />
+                              <ScrollPane layoutX="294.0" layoutY="32.0" prefHeight="94.0" prefWidth="143.0">
+                                 <content>
+                                    <VBox prefHeight="200.0" prefWidth="126.0" spacing="8.0">
+                                       <children>
+                                          <ToggleButton fx:id="username_1_1_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <graphic>
+                                                <ImageView fx:id="username_1_1_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_1_2_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_1_2_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_1_3_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_1_3_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="8.0" top="8.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="135.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Button layoutX="24.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="14.0" layoutY="33.0" stylesheets="@label.css" text="Project 2">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="144.0" layoutY="14.0" stylesheets="@label.css" text="Team Chat">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="298.0" layoutY="13.0" stylesheets="@label.css" text="Individual">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="143.0" layoutY="40.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Availability ()" />
+                              <Button layoutX="143.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Files" />
+                              <Button layoutX="143.0" layoutY="96.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Tasks" />
+                              <ScrollPane layoutX="294.0" layoutY="32.0" prefHeight="94.0" prefWidth="143.0">
+                                 <content>
+                                    <VBox prefHeight="200.0" prefWidth="126.0" spacing="8.0">
+                                       <children>
+                                          <ToggleButton mnemonicParsing="false" stylesheets="@buttonWhite.css" text="username">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton mnemonicParsing="false" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton mnemonicParsing="false" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="8.0" top="8.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </content>
+               <padding>
+                  <Insets top="11.0" />
+               </padding></ScrollPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainExportPane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="374.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="16.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="260.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="248.0" />
+            <AnchorPane prefHeight="543.0" prefWidth="532.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="155.0" prefHeight="27.0" prefWidth="115.0" stylesheets="@application.css" text="Recent Activities">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER" prefHeight="135.0" prefWidth="532.0">
+               <children>
+                  <VBox prefHeight="160.0" prefWidth="231.0" spacing="6.0">
+                     <children>
+                        <Button graphicTextGap="8.0" mnemonicParsing="false" style="-fx-border-radius: 10px;" stylesheets="@buttonWhite.css" text="Excel">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@microsoft_office_excel.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Destination">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="3.0" prefWidth="67.0" stylesheets="@buttonWhite.css" text="Finish">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="13.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="85.0" prefWidth="230.0" spacing="6.0">
+                     <children>
+                        <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Visual Basic">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@visual_basic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="7.0" prefWidth="157.0" stylesheets="@buttonWhite.css" text="Choose file">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="158.0" stylesheets="@buttonWhite.css" text="Destination">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="67.0" stylesheets="@buttonWhite.css" text="Finish">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="13.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="mainPlanningPokerPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+         <children>
+            <ScrollPane prefHeight="543.0" prefWidth="532.0" visible="false">
+               <content>
+                  <VBox prefHeight="509.0" prefWidth="446.0" spacing="10.0">
+                     <children>
+                        <Pane prefHeight="150.0" prefWidth="445.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="150.0" stroke="#f6bfc6" strokeType="INSIDE" width="446.0" />
+                              <Button fx:id="plannngPokerProject1" mnemonicParsing="false" prefHeight="150.0" prefWidth="447.0" stylesheets="@buttonTransp.css" text="Project 1">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="445.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="150.0" stroke="#f6bfc6" strokeType="INSIDE" width="446.0" />
+                              <Button fx:id="plannngPokerProject2" mnemonicParsing="false" prefHeight="150.0" prefWidth="447.0" stylesheets="@buttonTransp.css" text="Project 2">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="462.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="123.0" stroke="#f6bfc6" strokeType="INSIDE" width="532.0" />
+                        <AnchorPane prefHeight="124.0" prefWidth="532.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="118.0" layoutY="4.0" stroke="WHITE" strokeType="INSIDE" width="75.0" />
+                              <Label layoutX="13.0" layoutY="48.0" text="Project 1">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <VBox alignment="CENTER" layoutX="121.0" layoutY="5.0" prefHeight="111.0" prefWidth="70.0" spacing="5.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Stories" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
+                                    <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Story 2" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
+                                 </children>
+                              </VBox>
+                              <Button layoutX="8.0" layoutY="93.0" mnemonicParsing="false" style="-fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Next project" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="115.0" layoutX="218.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" width="292.0" />
+                              <HBox layoutX="215.0" layoutY="4.0" prefHeight="111.0" prefWidth="292.0" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="111.0" prefWidth="168.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="sPoints" mnemonicParsing="false" onAction="#spOpened" prefHeight="21.0" prefWidth="155.0" stylesheets="@buttonWhite.css" text="Story points" />
+                                          <Button fx:id="estimationTime" mnemonicParsing="false" onAction="#estOpened" prefHeight="21.0" prefWidth="187.0" stylesheets="@buttonWhite.css" text="Estimation Accuracy" />
+                                          <Button fx:id="avgTime" mnemonicParsing="false" onAction="#avgTOpened" prefHeight="21.0" prefWidth="164.0" stylesheets="@buttonWhite.css" text="Avg. Completion t" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="111.0" prefWidth="168.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="similarProj" mnemonicParsing="false" onAction="#projsOpened" prefHeight="21.0" prefWidth="181.0" stylesheets="@buttonWhite.css" text="Similar Projects" />
+                                          <Button fx:id="defects" layoutX="36.0" layoutY="55.0" mnemonicParsing="false" onAction="#defectOpened" prefHeight="21.0" prefWidth="175.0" stylesheets="@buttonWhite.css" text="Defects" />
+                                          <Button layoutX="10.0" layoutY="71.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="175.0" style="-fx-background-color: transparent;" stylesheets="@buttonWhite.css" text="Next project" textFill="#f6bfc6" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="450.0" prefWidth="462.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="392.0" stroke="#f6bfc6" strokeType="INSIDE" width="532.0" />
+                        <AnchorPane layoutY="7.0" prefHeight="392.0" prefWidth="532.0">
+                           <children>
+                              <Pane fx:id="infoPane" layoutX="-79.0" layoutY="-67.0" prefHeight="309.0" prefWidth="404.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+                                 <children>
+                                    <Button fx:id="exitButton1" layoutX="361.0" layoutY="6.0" mnemonicParsing="false" onAction="#infoClosed" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css" textAlignment="RIGHT">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@exit_butt.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Label fx:id="title" layoutX="14.0" layoutY="34.0" prefHeight="17.0" prefWidth="335.0" text="title">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="200.0" prefWidth="373.0">
+                                      <content>
+                                        <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc0;">
+                                             <children>
+                                                <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" text="info" wrapText="true" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                 </children>
+                              </Pane>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="323.0" layoutX="9.0" layoutY="50.0" stroke="WHITE" strokeType="INSIDE" width="517.0" />
+                              <HBox layoutX="11.0" prefHeight="46.0" prefWidth="189.0" spacing="20.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 1" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 2" />
+                                    <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Story 3" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Button layoutX="449.0" layoutY="340.0" mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Next story" />
+                              <Button layoutX="228.0" layoutY="75.0" mnemonicParsing="false" prefWidth="80.0" stylesheets="@buttonWhite.css" text="Weights">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <HBox alignment="CENTER" layoutX="20.0" layoutY="120.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="494.0" spacing="10.0">
+                                 <children>
+                                    <Pane prefHeight="60.0" prefWidth="60.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="60.0" stroke="WHITE" strokeType="INSIDE" width="60.0" />
+                                          <Label layoutX="17.0" layoutY="5.0" text="You">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="myPoint" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="60.0" stroke="WHITE" strokeType="INSIDE" width="60.0" />
+                                          <Label layoutX="10.0" layoutY="4.0" text="Emp 1">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="empw1" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="60.0" stroke="WHITE" strokeType="INSIDE" width="60.0" />
+                                          <Label layoutX="10.0" layoutY="4.0" text="Emp 2">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="empw2" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="60.0" stroke="WHITE" strokeType="INSIDE" width="60.0" />
+                                          <Label layoutX="10.0" layoutY="4.0" text="Emp 3">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="empw3" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="60.0" stroke="WHITE" strokeType="INSIDE" width="60.0" />
+                                          <Label layoutX="10.0" layoutY="4.0" text="Emp 4">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="empw" layoutX="5.0" layoutY="27.0" mnemonicParsing="false" prefWidth="50.0" stylesheets="@buttonWhite.css" text="?">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="8.0" layoutY="204.0" prefHeight="34.0" prefWidth="517.0" spacing="30.0">
+                                 <children>
+                                    <Button fx:id="btn0" mnemonicParsing="false" onAction="#zero" prefWidth="50.0" stylesheets="@buttonWhite.css" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btn1" layoutX="196.0" layoutY="28.0" mnemonicParsing="false" onAction="#one" prefWidth="50.0" stylesheets="@buttonWhite.css" text="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btn2" layoutX="231.0" layoutY="28.0" mnemonicParsing="false" onAction="#two" prefWidth="50.0" stylesheets="@buttonWhite.css" text="2">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btn3" layoutX="266.0" layoutY="28.0" mnemonicParsing="false" onAction="#three" prefWidth="50.0" stylesheets="@buttonWhite.css" text="3">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="btn4" layoutX="301.0" layoutY="28.0" mnemonicParsing="false" onAction="#four" prefWidth="50.0" stylesheets="@buttonWhite.css" text="4">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" layoutX="11.0" layoutY="238.0" prefHeight="60.0" prefWidth="517.0" spacing="15.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="58.0" prefWidth="61.0" text="Not relevant" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="208.0" layoutY="10.0" prefHeight="45.0" prefWidth="60.0" text="Some relevance" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="236.0" layoutY="10.0" prefHeight="51.0" prefWidth="62.0" text="Moderate relevance" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="259.0" layoutY="10.0" prefHeight="51.0" prefWidth="59.0" text="Major relevance" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="299.0" layoutY="10.0" prefHeight="51.0" prefWidth="61.0" text="Complete relevance" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="53.0" layoutY="306.0" stroke="WHITE" strokeType="INSIDE" width="207.0" />
+                              <Label contentDisplay="CENTER" layoutX="58.0" layoutY="307.0" prefHeight="31.0" prefWidth="60.0" text="Average: " wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label contentDisplay="CENTER" layoutX="156.0" layoutY="307.0" prefHeight="31.0" prefWidth="42.0" text="Range: " wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="34.0" layoutX="319.0" layoutY="306.0" stroke="WHITE" strokeType="INSIDE" width="135.0" />
+                              <Label contentDisplay="CENTER" layoutX="325.0" layoutY="307.0" prefHeight="31.0" prefWidth="94.0" text="Time remaining:" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="timer" layoutX="428.0" layoutY="314.0" text="30">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="avgW" layoutX="115.0" layoutY="314.0" text="?">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="rangeW" layoutX="208.0" layoutY="314.0" text="?">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="mainPrivacyPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="538.0" />
+            <AnchorPane layoutX="4.0" layoutY="4.0" prefHeight="543.0" prefWidth="538.0">
+               <children>
+                  <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
+                     <children>
+                        <ToggleSwitch fx:id="userConsentButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="TwoFAButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="ProfileVisButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="DataEncryptButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="DataAnonyButton" alignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+                  <Label layoutX="67.0" layoutY="11.0" prefHeight="60.0" prefWidth="226.0" text="obtain explicit user consent for data collection, storage, and processing." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="76.0" prefHeight="60.0" prefWidth="226.0" text="an option for enhanced account security." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="141.0" prefHeight="60.0" prefWidth="226.0" text="control the visibility of profile information. Users should be able to see their profile as public, private, or accessible only to connections." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="216.0" prefHeight="60.0" prefWidth="226.0" text="implement data encryption at rest and in transit to protect user data from unauthorized access." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="285.0" prefHeight="60.0" prefWidth="226.0" text="anonymizing or pseudonymizing data when possible." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="7.0" text="User Consent and Data Collection">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="79.0" text="Two Factor Authentication">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="130.0" text="Profile Visibility">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="205.0" text="Data Encryption">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="282.0" text="Data Anonymization and Pseudonymization">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainSettingsPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
+            <AnchorPane prefHeight="426.0" prefWidth="386.0">
+               <children>
+                  <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
+                     <children>
+                        <ToggleSwitch fx:id="darkModeButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="emailNotifButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="autoUpdateButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="autoCorrectButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="notifSoundButton" alignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+                  <Label layoutX="67.0" layoutY="11.0" prefHeight="60.0" prefWidth="226.0" text="switch between light and dark themes for the user interface." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="74.0" prefHeight="60.0" prefWidth="226.0" text="opt in of receiving email notifications for different events or updates." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="145.0" prefHeight="60.0" prefWidth="226.0" text="allow EffortLogger to automatically update to the latest version." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="216.0" prefHeight="60.0" prefWidth="226.0" text="enable auto-correction and spell check features in text input." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="282.0" prefHeight="60.0" prefWidth="226.0" text="enable notifcation sounds and vibrations." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="7.0" text="Dark Mode">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="70.0" text="Email Notification">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="140.0" text="Auto-update:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="209.0" text="Auto-correct and Spell Check:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="286.0" text="Notification sounds and vibrations">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Button fx:id="exitButton" layoutX="668.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit_butt.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="shrinkButton" layoutX="717.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@shrink_butt.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <!--  
+      <Button layoutX="563.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+      <Button layoutX="540.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+ 		-->
+   </children>
+</AnchorPane>
