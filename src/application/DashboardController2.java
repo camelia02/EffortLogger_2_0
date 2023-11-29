@@ -35,7 +35,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.controlsfx.control.ToggleSwitch;
 
-public class DashboardController implements Initializable {
+public class DashboardController2 implements AutoCloseable, Initializable {
 
     @FXML
     private ToggleSwitch DataAnonyButton;
@@ -607,14 +607,6 @@ public class DashboardController implements Initializable {
 
     private OracleDBConnection dbConnection;
 
-    public DashboardController() {
-        try {
-            dbConnection = new OracleDBConnection(); // Initialize the connection
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle connection error
-        }
-    }
 
     public void displayEntryDetails() {
         try (OracleConnection conn = dbConnection.makeConnection();
@@ -733,5 +725,7 @@ public class DashboardController implements Initializable {
     	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
     	
     }
+
+	
     
 }

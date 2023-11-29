@@ -11,7 +11,7 @@ public class EffortLogger2 extends Application {
 	private static MainSceneController mainController;
 	
 	private static DashboardController dashboard;
-
+	
     public static MainSceneController getMainController() {
         return mainController;
     }
@@ -30,7 +30,7 @@ public class EffortLogger2 extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load the login scene
+    
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
             Parent loginRoot = loginLoader.load();
             Scene loginScene = new Scene(loginRoot);
@@ -56,7 +56,7 @@ public class EffortLogger2 extends Application {
 
                         // Set the MainSceneController instance in Main
                         setDashboardController(dashboard);
-                        
+                        dashboard.setConnection(loginController.getConnection());
                         // Now you can access the employee
                         Employee employeeFromLogin = dashboard.getEmployee();
                         System.out.println("Employee ID: " + employeeFromLogin.getID());

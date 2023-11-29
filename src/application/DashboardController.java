@@ -14,9 +14,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -262,6 +260,13 @@ public class DashboardController implements Initializable {
     
 	private Employee employee;
 	
+	private Connection connection;
+	
+
+	public void setConnection(Connection connection) {
+	    this.connection = connection;
+	}
+	
 	public void setEmployee(Employee emps) {
 		this.employee = emps;
 	}
@@ -270,9 +275,16 @@ public class DashboardController implements Initializable {
 		return employee;
 	}
 	
-	public void initializeEmployeeData() {
-	    Employee employeeFromLogin = getEmployee();
+	public DashboardController() {
+		
+	}
 
+	public DashboardController(Connection connection) {
+        this.connection = connection;
+    }
+	
+	public void initializeEmployeeData(){
+	    Employee employeeFromLogin = getEmployee();
 	    if (employeeFromLogin != null) {
 	        setEmployee(employeeFromLogin);
 	        usernameTextLabel.setText(employeeFromLogin.getFullName());
@@ -283,9 +295,28 @@ public class DashboardController implements Initializable {
 	    }
 	}
     
-
+	
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	
+    	try {
+    		OracleDBConnection con = new OracleDBConnection();
+            connection = con.makeConnection();
+            Employee employeeFromLogin = getEmployee();
+
+            if (employeeFromLogin != null) {
+                setEmployee(employeeFromLogin);
+                usernameTextLabel.setText(employeeFromLogin.getFullName());
+                System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+                        employeeFromLogin.getFullName() + "\n");
+            } else {
+                System.err.println("Employee not set in DashboardController");
+            }
+        } catch (Exception e) {
+            // Handle the SQLException (log or propagate)
+            e.printStackTrace();
+        }
+
     	// Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -329,10 +360,12 @@ public class DashboardController implements Initializable {
 		username_1_1_button.setGraphic(new ImageView(grey_circle));
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
+		
 		initializeEmployeeData();
 		displayEntryDetails();
 		displayReportDetails();
     }
+    
     @FXML
     void mainHomeClicked(ActionEvent event) {
     	mainHomePane.setVisible(true);
@@ -605,20 +638,22 @@ public class DashboardController implements Initializable {
     @FXML
     private TextField reportDescription;
 
-    private OracleDBConnection dbConnection;
+    //private OracleDBConnection dbConnection;
 
-    public DashboardController() {
-        try {
-            dbConnection = new OracleDBConnection(); // Initialize the connection
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle connection error
-        }
-    }
+//    public DashboardController() {
+//        try {
+//            dbConnection = new OracleDBConnection(); // Initialize the connection
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            // Handle connection error
+//        }
+//    }
 
     public void displayEntryDetails() {
-        try (OracleConnection conn = dbConnection.makeConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.ENTRY WHERE ID = ?")) {
+    	
+    	String entry = "SELECT * FROM ADMIN.ENTRY WHERE ID = ?";
+    	
+        try (PreparedStatement pstmt = connection.prepareStatement(entry)) {
             
             // Set the ID
             pstmt.setInt(1, 1); // ID = 1
@@ -643,25 +678,39 @@ public class DashboardController implements Initializable {
     }
     
     public void displayReportDetails() {
-//        try (OracleConnection conn = dbConnection.makeConnection();
-//             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.REPORT WHERE ID = ?")) {
-//
-//            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
-//
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-                    // Setting text for each TextField with the data from the database
-                    reportTitle.setText("Title: EffortLogger Defect Check");
-                    reportDate.setText("Date: 2023-11-11");
-                    reportType.setText("Type: Defect");
-                    reportTimeSpent.setText("Time Spent: 05:10");
-                    reportDescription.setText("Description: This is Effortlogger defect check.");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            // Handle SQL exception
-//        }
+    	String deffect = "SELECT * FROM REPORT WHERE ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(deffect)) {
+
+            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                	String dateTimeString = rs.getString("DATE_COLUMN");
+                    LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    String dateString = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                	
+                    reportTitle.setText("Title: \n" + rs.getString("TITLE"));
+                    reportDate.setText("Date: \n" + rs.getString("DATE_COLUMN"));
+                    reportType.setText("Type: \n" + rs.getString("TYPE"));
+                    reportTimeSpent.setText("Time Spent: \n" + rs.getString("TIME"));
+                    reportDescription.setText("Description: \n" + rs.getString("DESCRIPTION"));
+                	
+                	
+                	
+                	
+                	
+//                    // Setting text for each TextField with the data from the database
+//                    reportTitle.setText("Title: EffortLogger Defect Check");
+//                    reportDate.setText("Date: 2023-11-11");
+//                    reportType.setText("Type: Defect");
+//                    reportTimeSpent.setText("Time Spent: 05:10");
+//                    reportDescription.setText("Description: This is Effortlogger defect check.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
     }
 
     private String formatDate(Date date) {
@@ -733,5 +782,6 @@ public class DashboardController implements Initializable {
     	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
     	
     }
-    
+
+ 
 }

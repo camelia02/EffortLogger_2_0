@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.MaskerPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <left>
@@ -50,6 +51,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
+            <MaskerPane fx:id="load" layoutX="143.0" layoutY="180.0" />
          </children>
       </AnchorPane>
    </right>
