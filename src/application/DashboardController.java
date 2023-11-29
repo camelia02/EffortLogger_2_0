@@ -549,16 +549,48 @@ public class DashboardController implements Initializable {
     
     @FXML
     void spOpened(ActionEvent event) {
-    	infoPane.toFront();
-    	infoPane.setVisible(true);
-   	    title.setText(sPoints.getText());
-   	    information.setText(
-   	    		"1. As a user, I want to create a new account with my personal information.\r\n"
-   	    		+ "2. As a user, I want to log in to my account securely using my email and password.\r\n"
-   	    		+ " .......\r\n"
-   	    		);
+        infoPane.toFront();
+        infoPane.setVisible(true);
+        title.setText(sPoints.getText());
 
+        String getStoryIDQuery = "SELECT STORYID FROM USERSTORIES WHERE EMPLOYEEID = ?";
+        String getStoryPointsQuery = "SELECT * FROM HISTORICALSTORYPOINTS WHERE STORYID = ?";
+
+        StringBuilder infoText = new StringBuilder();
+        int count = 1;
+        try (PreparedStatement pstmtStoryID = connection.prepareStatement(getStoryIDQuery);
+             PreparedStatement pstmtStoryPoints = connection.prepareStatement(getStoryPointsQuery)) {
+
+            pstmtStoryID.setInt(1, employee.getID());
+
+            // Execute the query to get STORYID
+            try (ResultSet resultSetStoryID = pstmtStoryID.executeQuery()) {
+                while (resultSetStoryID.next()) {
+                    int storyID = resultSetStoryID.getInt("STORYID");
+
+                    // Execute the query to get STORYPOINTS based on STORYID
+                    pstmtStoryPoints.setInt(1, storyID);
+                    try (ResultSet resultSetStoryPoints = pstmtStoryPoints.executeQuery()) {
+                        while (resultSetStoryPoints.next()) {
+                            // Process each row in the STORYPOINTS table
+                            //int storyPoints = resultSetStoryPoints.getInt("STORYPOINTS");
+                            // Do something with the storyPoints, e.g., print or use as needed
+                            //System.out.println("StoryID: " + storyID + ", StoryPoints: " + storyPoints);
+                        	String task = resultSetStoryPoints.getString("TASK");
+                        	infoText.append(count).append(". ").append(task).append(".\n");
+                        	count++;
+                        }
+                    }
+                }
+            }
+            information.setText(infoText.toString());
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately, log or propagate
+        }
     }
+
     
     @FXML
     void estOpened(ActionEvent event) {
