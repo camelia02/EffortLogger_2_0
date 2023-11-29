@@ -40,6 +40,12 @@ public class LoginController implements Initializable {
     
     private Connection connection;
     
+    private Employee loginEmployee;
+    
+    public Employee getEmployee() {
+    	return this.loginEmployee;
+    }
+    
  
     
     public Connection getConnection() {
@@ -147,6 +153,7 @@ public class LoginController implements Initializable {
                                 String mName = employeeData.getString("MIDDLE_NAME");
                                 String lName = employeeData.getString("LAST_NAME");
                                 // System.out.println(id + "\n" + rank + "\n" + fName + "\n" + mName + "\n" + lName);
+                                loginEmployee = new Employee(id, rank, fName, mName, lName, username, password);
                                 return new Employee(id, rank, fName, mName, lName, username, password);
                             }
                             return null;

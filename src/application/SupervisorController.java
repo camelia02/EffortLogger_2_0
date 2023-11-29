@@ -17,6 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
+import java.sql.Connection;
+
 import org.controlsfx.control.ToggleSwitch;
 // custom
 import javafx.scene.image.Image;
@@ -507,7 +510,41 @@ public class SupervisorController {
     
     private Image grey_circle;
     
+    private Connection connection;
+    private Employee employee;
 
+	public void setConnection(Connection connection) {
+	    this.connection = connection;
+	}
+	
+	public void setEmployee(Employee emps) {
+		this.employee = emps;
+	}
+	
+	Employee getEmployee() {
+		return employee;
+	}
+	
+	public SupervisorController() {
+		
+	}
+
+	public SupervisorController(Connection connection) {
+        this.connection = connection;
+    }
+	
+	public void initializeEmployeeData(){
+	    Employee employeeFromLogin = getEmployee();
+	    if (employeeFromLogin != null) {
+	        setEmployee(employeeFromLogin);
+	        usernameTextLabel.setText(employeeFromLogin.getFullName());
+	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+	                employeeFromLogin.getFullName() + "\n");
+	    } else {
+	        System.err.println("Employee not set in MainSceneController");
+	    }
+	}
+    
     @FXML
     void initialize() {
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
