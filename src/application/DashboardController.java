@@ -597,10 +597,24 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(estimationTime.getText());
-    	information.setText(
-    			"1. Rough Order of Magnitude (ROM) Estimate: ±50% accuracy - This is a very high-level estimate made early in the project when there is limited information available. It provides a ballpark figure but is subject to substantial variation.\r\n"
-    			+ "2. Preliminary Estimate: ±30% accuracy - As the project progresses and more information becomes available, you can provide a preliminary estimate that is somewhat more accurate than a ROM estimate but still has a significant margin of error.\r\n"
-    			+ ".......");
+    	
+    	String getEst = "Select TASK from HISTORICALAVGCOMPLETIONTIME";
+    	int count = 1;
+    	StringBuilder infoText = new StringBuilder();
+    	try(PreparedStatement pstmt = connection.prepareStatement(getEst)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String estimation = result.getString("TASK");
+    				infoText.append(count).append(". ").append(estimation).append(".\n");
+    			}
+    		}
+    		
+    	information.setText(infoText.toString());
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
     
     @FXML
@@ -608,16 +622,26 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(avgTime.getText());
-    	information.setText(
-    			"1. Project Planning and Initiation:\r\n"
-    			+ "- Duration: 1 to 2 weeks\r\n"
-    			+ "- Activities: Project kickoff, requirement gathering, initial architecture design, and team formation.\r\n"
-    			+ "2. Requirements Gathering and Analysis:\r\n"
-    			+ "- Duration: 2 to 4 weeks\r\n"
-    			+ "- Activities: Detailed discussions with stakeholders, user stories creation, and use case analysis.\r\n"
-    			+ "3. Design and Architecture:\r\n"
-    			+ "- Duration: 4 to 6 weeks\r\n"
-    			+ "4. Activities: ");
+    	
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select * from HISTORICALESTIMATIONACCURACY";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String task = result.getString("TASK");
+    				String duration = result.getString("DURATIONRANGE");
+    				String activities = result.getString("ACTIVITIES");
+    				infoText.append(count).append(". ").append(task).append(":\n - ").append(duration).append("\n - ").append(activities).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
     
     @FXML
@@ -625,13 +649,23 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(similarProj.getText());
-    	information.setText(
-    			"1. Online Marketplace Platform\r\n"
-    			+ "2. Classifieds Website\r\n"
-    			+ "3. Auction Platform\r\n"
-    			+ "4. Event Ticketing System\r\n"
-    			+ "5. Food Delivery and Ordering App\r\n"
-    			);
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select PROJECTNAME from PROJECTS";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String name = result.getString("PROJECTNAME");
+    				infoText.append(count).append(". ").append(name).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
     
     @FXML
@@ -639,14 +673,24 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);	
     	title.setText(defects.getText());
-    	information.setText(
-    			"1. Security Vulnerabilities:\r\n"
-    			+ "Vulnerabilities in payment processing and credit card handling, potentially leading to data breaches.\r\n"
-    			+ "Inadequate security measures for user data, exposing sensitive information to potential threats.\r\n"
-    			+ "2. Performance and Scalability Issues:\r\n"
-    			+ "Slow loading times, particularly during peak traffic periods, leading to poor user experience.\r\n"
-    			+ "Scalability problems when the system is unable to handle increasing user load, resulting in site crashes or slow response times."
-    			);
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select * from HISTORICALDEFECTS";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String title = result.getString("TITLE");
+    				String description = result.getString("DESCRIPTION");
+    				infoText.append(count).append(". ").append(title).append("\n").append(description).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
 
     @FXML
