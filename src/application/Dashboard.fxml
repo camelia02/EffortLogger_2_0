@@ -11,6 +11,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -170,7 +171,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0">
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
          <children>
             <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="532.0" spacing="10.0">
                <children>
@@ -245,14 +246,14 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="543.0" prefWidth="532.0">
                <children>
                   <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
+                        <Button fx:id="entry" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createEntry" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -309,7 +310,7 @@
                                     <Pane minHeight="383.0" minWidth="300.0" prefHeight="485.0" prefWidth="379.0">
                                        <children>
                                           <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
-                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                          <VBox fx:id="entrycard" prefHeight="383.0" prefWidth="300.0">
                                              <children>
                                                 <TextField fx:id="entryTitle" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
                                                    <font>
@@ -428,14 +429,14 @@
             </AnchorPane>
          </children>
       </Pane>
-      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="506.0" prefWidth="462.0">
                <children>
                   <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0" text="Add new report">
+                        <Button fx:id="report" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createReport" prefHeight="25.0" prefWidth="510.0" text="Add new report">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -972,7 +973,7 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="200.0" prefWidth="373.0">
+                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="402.0" prefWidth="373.0">
                                       <content>
                                         <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc0;">
                                              <children>
@@ -1299,6 +1300,79 @@
             </ImageView>
          </graphic>
       </Button>
+      <Pane fx:id="loggerPane" layoutX="115.0" layoutY="126.0" prefHeight="455.0" prefWidth="545.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;">
+         <children>
+            <Button fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <VBox layoutX="18.0" layoutY="66.0" prefHeight="310.0" prefWidth="510.0" spacing="1.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Title ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTitle" prefHeight="59.0" prefWidth="413.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Date ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDate" prefHeight="60.0" prefWidth="414.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Type ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logType" prefHeight="60.0" prefWidth="414.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Time ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTime" prefHeight="60.0" prefWidth="414.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: white;" text="Description ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDescription" prefHeight="60.0" prefWidth="414.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="createLog" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="241.0" stylesheets="@buttonWhite.css" text="Create" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="closeLog" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="241.0" style="-fx-background-color: #df6969;" stylesheets="@buttonWhite.css" text="Close" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
       <!--  
       <Button layoutX="563.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
       <Button layoutX="540.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />

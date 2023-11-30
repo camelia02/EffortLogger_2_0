@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -254,6 +255,40 @@ public class DashboardController implements Initializable {
     @FXML
     private Label rangeW;
     
+    @FXML
+    private Pane loggerPane;
+    
+    @FXML
+    private Button type;
+    
+    @FXML
+    private Button createLog;
+    
+    @FXML
+    private Button close;
+    
+    @FXML
+    private Button entry;
+    
+    @FXML
+    private Button report;
+    
+    @FXML
+    private TextArea logTitle;
+    
+    @FXML
+    private TextArea logDate;
+    
+    @FXML
+    private TextArea logType;
+    
+    @FXML
+    private TextArea logTime;
+    
+    @FXML
+    private TextArea logDescription;
+    
+    
     private Image green_circle;
     
     private Image grey_circle;
@@ -338,7 +373,7 @@ public class DashboardController implements Initializable {
         scheduler.scheduleAtFixedRate(() -> {
             // Get the current date and time
             LocalDateTime updatedDateTime = LocalDateTime.now();
-
+ 
             // Format the updated time using a DateTimeFormatter
             String updatedFormattedTime = updatedDateTime.format(timeFormatter);
 
@@ -361,6 +396,7 @@ public class DashboardController implements Initializable {
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
 		
+		loggerPane.setVisible(false);
 		initializeEmployeeData();
 		displayEntryDetails();
 		displayReportDetails();
@@ -836,6 +872,37 @@ public class DashboardController implements Initializable {
     	myPoint.setText("0");
     	disableButton(); 
     	compute();
+    }
+    
+    @FXML
+    void createEntry(ActionEvent event) {
+    	loggerPane.setVisible(true);
+    	type.setText("Create new entry");
+    }
+    
+    @FXML
+    void createReport(ActionEvent event) {
+    	loggerPane.setVisible(true);
+    	type.setText("Create new report");
+    }
+    
+    private boolean[] validatedField = {false, false, false, false, false};
+    @FXML 
+    void createLog(ActionEvent event) {
+    	boolean allValidated = false;
+    	
+    	validatedField[0] = !logTitle.getText().isEmpty();
+    	validatedField[1] = !logDate.getText().isEmpty();
+    	validatedField[2] = !logType.getText().isEmpty();
+    	validatedField[3] = !logTime.getText().isEmpty();
+    	validatedField[4] = !logDescription.getText().isEmpty();
+    	
+    	allValidated = validatedField[0] && validatedField[1] && validatedField[3] && validatedField[4] && validatedField[2];
+    	
+    	if(!allValidated) {
+    		
+    	}
+    	
     }
     
     void disableButton() {

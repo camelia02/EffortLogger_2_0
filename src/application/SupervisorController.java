@@ -1,8 +1,10 @@
 package application;
 
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +20,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
+import java.net.URL;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.controlsfx.control.ToggleSwitch;
 // custom
@@ -28,7 +37,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 
-public class SupervisorController {
+public class SupervisorController implements Initializable{
 
     @FXML
     private PieChart CSAT_pie;
@@ -545,8 +554,58 @@ public class SupervisorController {
 	    }
 	}
     
-    @FXML
-    void initialize() {
+	@Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+		try {
+    		OracleDBConnection con = new OracleDBConnection();
+            connection = con.makeConnection();
+            Employee employeeFromLogin = getEmployee();
+
+            if (employeeFromLogin != null) {
+                setEmployee(employeeFromLogin);
+                usernameTextLabel.setText(employeeFromLogin.getFullName());
+                System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+                        employeeFromLogin.getFullName() + "\n");
+            } else {
+                System.err.println("Employee not set in SupervisorController");
+            }
+        } catch (Exception e) {
+            // Handle the SQLException (log or propagate)
+            e.printStackTrace();
+        }
+
+    	// Get the current date and time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        // Format the date using a DateTimeFormatter
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/YYYY");
+        String formattedDate = currentDateTime.format(dateFormatter);
+
+        // Format the time using a DateTimeFormatter
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm a");
+        String formattedTime = currentDateTime.format(timeFormatter);
+
+        // Set the formatted date and time to the labels
+        dateLabel.setText(formattedDate);
+        timeLabel.setText(formattedTime);
+        
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+        // Schedule a task to update the time every second
+        scheduler.scheduleAtFixedRate(() -> {
+            // Get the current date and time
+            LocalDateTime updatedDateTime = LocalDateTime.now();
+ 
+            // Format the updated time using a DateTimeFormatter
+            String updatedFormattedTime = updatedDateTime.format(timeFormatter);
+
+            // Update the time label with the new formatted time
+            Platform.runLater(() -> timeLabel.setText(updatedFormattedTime));
+        }, 0, 1, TimeUnit.SECONDS); // Update every second
+
+        // Add a shutdown hook to stop the scheduler when the program exits
+        Runtime.getRuntime().addShutdownHook(new Thread(scheduler::shutdown));
+		
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
 		
 		grey_circle = new Image(getClass().getResourceAsStream("grey-circle.png"), 15, 15, true, true);

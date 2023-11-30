@@ -65,21 +65,35 @@ public class LoginController implements Initializable {
     public void setLoggedIn(boolean loggedIn, Employee employee){
         this.loggedIn.set(loggedIn);
         if (loggedIn) {
-            // Ensure that the MainSceneController is initialized
-            //MainSceneController mainSceneCoSSSntroller = Main.getMainController();
-        	DashboardController dashboard = EffortLogger2.getDashboard();
-           if (dashboard != null) {
-                dashboard.setEmployee(employee);
-                load.setDisable(true);
-                dashboard.initializeEmployeeData();
-                
-                //Close connection
-                //close();
-           }
-            else {
-                //If MainSceneController is not initialized, you may want to handle it or log an error
-                System.err.println("Dashboard is not initialized.");
-            }
+        	if(employee.getRank() == 1) {
+	        	DashboardController dashboard = EffortLogger2.getDashboard();
+	           if (dashboard != null) {
+	                dashboard.setEmployee(employee);
+	                
+	                load.setDisable(true);
+	                dashboard.initializeEmployeeData();
+	                
+	                //Close connection
+	                //close();
+	           }
+	            else {
+	                //If MainSceneController is not initialized, you may want to handle it or log an error
+	                System.err.println("Dashboard is not initialized.");
+	            }
+	        }
+        	else if(employee.getRank() == 2) {
+        		SupervisorController supervisor = EffortLogger2.getSupervisor();
+        		if (supervisor!= null) {
+	                supervisor.setEmployee(employee);
+	                
+	                load.setDisable(true);
+	                supervisor.initializeEmployeeData();
+        		}else {
+	                //If MainSceneController is not initialized, you may want to handle it or log an error
+	                System.err.println("Supervisor is not initialized.");
+	            }
+        	
+        	}
         }
     }
     
