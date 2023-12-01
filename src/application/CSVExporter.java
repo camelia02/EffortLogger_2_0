@@ -12,11 +12,11 @@ import java.sql.SQLException;
 
 public class CSVExporter {
 
-    public static void exportToCSV(Connection connection, String tableName, String csvFilePath) {
+    public static void exportToCSV(Connection connection, String tableName) {
         String query = "SELECT * FROM " + tableName;
 
         try (Workbook workbook = new XSSFWorkbook();
-             FileOutputStream fileOut = new FileOutputStream(csvFilePath);
+             FileOutputStream fileOut = new FileOutputStream("/EffortLogger_2_0/downloads/" + tableName + ".xlsx");
              ResultSet resultSet = connection.prepareStatement(query).executeQuery()) {
 
             Sheet sheet = workbook.createSheet(tableName);

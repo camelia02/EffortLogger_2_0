@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.LocalDate;
@@ -491,12 +492,35 @@ public class DashboardController implements Initializable {
     
     @FXML
     void entryToCSV(ActionEvent event) {
-    	CSVExporter.exportToCSV(connection, "ENTRY", "/EffortLogger_2_0");
+//    	 String userHome = System.getProperty("user.home");
+//
+//         //String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads";
+//    	String relativePath = "/Downloads";
+//         String fullPath = Paths.get(userHome, relativePath).toString();
+//
+//         // Use fullPath for file operations
+//         System.out.println("Full Download Path: " + fullPath);
+     	CSVExporter.exportToCSV(connection, "ENTRY");
     }
     
     @FXML
     void reportToCSV(ActionEvent event) {
-    	CSVExporter.exportToCSV(connection, "REPORT", "/EffortLogger_2_0");
+    	// Get the user's name
+//        String user = System.getProperty("user.name");
+//
+//        System.out.println("Current user: " + user);
+//    	
+//        String userHome = System.getProperty("user.home");
+//
+//        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads";
+//
+//        String fullPath = Paths.get(userHome, relativePath).toString();
+//        
+     
+
+//        // Use fullPath for file operations
+//        System.out.println("Full Download Path: " + fullPath);
+    	CSVExporter.exportToCSV(connection, "REPORT");
     }
     
     private int seconds = 30;
