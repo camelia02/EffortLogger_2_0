@@ -1,42 +1,16 @@
-.table-view {
-    
-}
-
-/* top right corner of the header section above the scroll bars */
-
-.table-view .column-header-background .filler {
+.text-area {
     -fx-background-color: transparent;
 }
 
-.table-view .corner {
+.text-area .scroll-pane {
     -fx-background-color: transparent;
 }
 
-.table-view .column-header-background{
-    
-    -fx-background-color: white;
-}
-
-.table-view .table-cell{
-    -fx-border-color: #a0a0a0;
-    -fx-border-color: 1px;
-}
-
-/* Styleclass noheader: hide header */
-.noheader .column-header-background {
-    -fx-max-height: 0;
-    -fx-pref-height: 0;
-    -fx-min-height: 0;
-}
-
-/* Styleclass transparent header */
-.transp-header .column-header {
+.text-area .scroll-pane .viewport{
     -fx-background-color: transparent;
 }
 
-/* Styleclass gray header */
-.gray-header .column-header {
+
+.text-area .scroll-pane .content{
     -fx-background-color: transparent;
-    -fx-border-width: 1px;
-    -fx-border-color: #a0a0a0;
 }

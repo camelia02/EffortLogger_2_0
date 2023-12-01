@@ -171,7 +171,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0" visible="false">
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="543.0" prefWidth="538.0">
          <children>
             <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="532.0" spacing="10.0">
                <children>
@@ -246,7 +246,7 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="543.0" prefWidth="532.0">
@@ -260,13 +260,6 @@
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@add_new_icon.PNG" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                         <AnchorPane prefHeight="80.0" prefWidth="462.0" stylesheets="@application.css">
                            <children>
@@ -429,7 +422,7 @@
             </AnchorPane>
          </children>
       </Pane>
-      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
+      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="506.0" prefWidth="462.0">
@@ -1293,7 +1286,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Pane fx:id="loggerPane" layoutX="115.0" layoutY="126.0" prefHeight="455.0" prefWidth="545.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;">
+      <Pane fx:id="loggerPane" layoutX="115.0" layoutY="126.0" prefHeight="455.0" prefWidth="545.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
          <children>
             <Button fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
                <font>
@@ -1363,7 +1356,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="closeLog" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="241.0" style="-fx-background-color: #df6969;" stylesheets="@buttonWhite.css" text="Close" textAlignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" onAction="#closeLog" prefHeight="30.0" prefWidth="241.0" style="-fx-background-color: #df6969;" stylesheets="@buttonWhite.css" text="Close" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

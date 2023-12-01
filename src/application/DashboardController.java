@@ -819,10 +819,7 @@ public class DashboardController implements Initializable {
                     reportType.setText("Type: \n" + rs.getString("TYPE"));
                     reportTimeSpent.setText("Time Spent: \n" + rs.getString("TIME"));
                     reportDescription.setText("Description: \n" + rs.getString("DESCRIPTION"));
-                	
-                	
-                	
-                	
+                	    	
                 	
 //                    // Setting text for each TextField with the data from the database
 //                    reportTitle.setText("Title: EffortLogger Defect Check");
@@ -970,12 +967,12 @@ public class DashboardController implements Initializable {
     	            System.out.println(logTime.getText());
     	        }
     		
+    	        boolean executed = false;
 	    	    if(allValidated) {
 	    	    	String entryOrDefect = type.getText().equals("Create new report") ? "REPORT" : "ENTRY";
 		    		System.out.println(entryOrDefect);
-		    		String createLog = "insert into " + entryOrDefect + " (TYPE, TITLE, DESCRIPTION, DATE_COLUMN, TIME) VALUES ('?', '?', '?', TO_DATE('?', 'MM/DD/YYYY'), '?')";
+		    		String createLog = "insert into " + entryOrDefect + " (TYPE, TITLE, DESCRIPTION, DATE_COLUMN, TIME) VALUES (?, ?, ?, TO_DATE(?, 'MM/DD/YYYY'), ?)";
 		    		try (PreparedStatement pstmt = connection.prepareStatement(createLog)) {
-		           
 		                pstmt.setString(1, logType.getText());
 		                pstmt.setString(2, logTitle.getText());
 		                pstmt.setString(3, logDescription.getText());
@@ -984,10 +981,19 @@ public class DashboardController implements Initializable {
 
 		                // Execute the update
 		                pstmt.executeUpdate();
+		                executed = true;
 		            } catch (SQLException e) {
 		                e.printStackTrace();
 		            }
 	    	    
+	    	    }
+	    	    if(executed) {
+	    	    	logTitle.clear();
+	    	    	logType.clear();
+	    	    	logDate.clear();
+	    	    	logTime.clear();
+	    	    	logDescription.clear();
+	    	    	loggerPane.setVisible(false);
 	    	    }
     	    }
     	
