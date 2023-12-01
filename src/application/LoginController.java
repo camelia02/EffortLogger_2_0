@@ -21,7 +21,7 @@ import org.controlsfx.control.MaskerPane;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class LoginController implements AutoCloseable,Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private Label errorLogin;
@@ -36,9 +36,24 @@ public class LoginController implements AutoCloseable,Initializable {
     private MaskerPane load;
 
     private final BooleanProperty loggedIn = new SimpleBooleanProperty(false);
+    
+    
     private Connection connection;
-
-    public BooleanProperty loggedInProperty() {
+    
+    private Employee loginEmployee;
+    
+    public Employee getEmployee() {
+    	return this.loginEmployee;
+    }
+    
+ 
+    
+    public Connection getConnection() {
+        return connection;
+    }
+    
+   
+    BooleanProperty loggedInProperty() {
         return loggedIn;
     }
 
@@ -46,25 +61,43 @@ public class LoginController implements AutoCloseable,Initializable {
         return loggedIn.get();
     }
 
-    public void setLoggedIn(boolean loggedIn, Employee employee) {
+
+    public void setLoggedIn(boolean loggedIn, Employee employee){
         this.loggedIn.set(loggedIn);
         if (loggedIn) {
-            // Ensure that the MainSceneController is initialized
-            //MainSceneController mainSceneCoSSSntroller = Main.getMainController();
-        	DashboardController dashboard = EffortLogger2.getDashboard();
-           if (dashboard != null) {
-        	   
-                dashboard.setEmployee(employee);
-                load.setDisable(true);
-                dashboard.initializeEmployeeData();
-                
-           }
-            else {
-                //If MainSceneController is not initialized, you may want to handle it or log an error
-                System.err.println("Dashboard is not initialized.");
-            }
+        	if(employee.getRank() == 1) {
+	        	DashboardController dashboard = EffortLogger2.getDashboard();
+	           if (dashboard != null) {
+	                dashboard.setEmployee(employee);
+	                
+	                load.setDisable(true);
+	                dashboard.initializeEmployeeData();
+	                
+	                //Close connection
+	                //close();
+	           }
+	            else {
+	                //If MainSceneController is not initialized, you may want to handle it or log an error
+	                System.err.println("Dashboard is not initialized.");
+	            }
+	        }
+        	else if(employee.getRank() == 2) {
+        		SupervisorController supervisor = EffortLogger2.getSupervisor();
+        		if (supervisor!= null) {
+	                supervisor.setEmployee(employee);
+	                
+	                load.setDisable(true);
+	                supervisor.initializeEmployeeData();
+        		}else {
+	                //If MainSceneController is not initialized, you may want to handle it or log an error
+	                System.err.println("Supervisor is not initialized.");
+	            }
+        	
+        	}
         }
     }
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,7 +108,7 @@ public class LoginController implements AutoCloseable,Initializable {
     
     
     @FXML
-    void loginClicked(ActionEvent event) {
+    void loginClicked(ActionEvent event)throws SQLException {
         String username = idField.getText();
         String password = passwordField.getText();
 
@@ -86,15 +119,16 @@ public class LoginController implements AutoCloseable,Initializable {
         });
 
         new Thread(() -> {
-            try (OracleDBConnection con = new OracleDBConnection()) {
+            try(OracleDBConnection con = new OracleDBConnection()) { 
                 connection = con.makeConnection();
                 Employee emp = login(username, password);
                 
                 // Ensure UI updates are performed on the JavaFX Application Thread
                 Platform.runLater(() -> {
                     if (emp != null) {
-                        setLoggedIn(true, emp);
+							setLoggedIn(true, emp);
                     }
+                    System.out.println(username + " " + password);
                     //load.setVisible(false);
                     load.setDisable(true);
                 });
@@ -111,7 +145,7 @@ public class LoginController implements AutoCloseable,Initializable {
         }).start();
     }
     
-    
+     
     private Employee login(String username, String password) throws SQLException {
         String sql1 = "SELECT * FROM EMPLOYEE_LOGIN WHERE USERNAME = ? AND PASSWORD = ?";
         try (PreparedStatement employeeStatement = connection.prepareStatement(sql1)) {
@@ -133,6 +167,7 @@ public class LoginController implements AutoCloseable,Initializable {
                                 String mName = employeeData.getString("MIDDLE_NAME");
                                 String lName = employeeData.getString("LAST_NAME");
                                 // System.out.println(id + "\n" + rank + "\n" + fName + "\n" + mName + "\n" + lName);
+                                loginEmployee = new Employee(id, rank, fName, mName, lName, username, password);
                                 return new Employee(id, rank, fName, mName, lName, username, password);
                             }
                             return null;
@@ -151,11 +186,7 @@ public class LoginController implements AutoCloseable,Initializable {
         });
     }
 
-    @Override
-    public void close() throws Exception {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
+   
+
 }
 

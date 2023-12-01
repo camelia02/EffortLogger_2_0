@@ -1,0 +1,1527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SupervisorController">
+   <children>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="462.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="675.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e58fab" height="446.0" layoutX="14.0" layoutY="84.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
+      <VBox layoutX="14.0" layoutY="84.0" prefHeight="445.0" prefWidth="200.0">
+         <children>
+            <RadioButton fx:id="mainMenuButton" cache="true" focusTraversable="false" layoutX="10.0" layoutY="53.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#mainHomeClicked" prefHeight="60.0" prefWidth="224.0" style="-fx-background-color: transparent;" styleClass=".radio-button:selected" stylesheets="@application.css" text="MENU">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <toggleGroup>
+                  <ToggleGroup fx:id="navMainTab" />
+               </toggleGroup>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@main_menu_icon.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </RadioButton>
+            <Line endX="98.0" smooth="false" startX="-100.0" strokeWidth="2.0" />
+            <RadioButton fx:id="mainProjectButton" cache="true" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#mainProjectClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Project" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <styleClass>
+                  <String fx:value=".radio-button .dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainReportButton" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#mainReportClicked" prefHeight="60.0" prefWidth="224.0" scaleShape="false" stylesheets="@application.css" text="Report" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="99.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainTeamButton" focusTraversable="false" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#mainTeamClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Team" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="158.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainCollabButton" focusTraversable="false" layoutX="10.0" layoutY="176.0" mnemonicParsing="false" onAction="#mainCollabClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Collaboration" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="146.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainExportButton" focusTraversable="false" layoutX="10.0" layoutY="137.0" mnemonicParsing="false" onAction="#mainExportClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Export" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="192.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainCustSuppButton" focusTraversable="false" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#mainCustSuppClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Customer Support" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="236.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainPrivacyButton" focusTraversable="false" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#mainPrivacylicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Privacy" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+            <Line endX="98.0" layoutX="111.0" layoutY="281.0" startX="-100.0" stroke="#00000099" />
+            <RadioButton fx:id="mainSettingsButton" focusTraversable="false" layoutX="10.0" layoutY="264.0" mnemonicParsing="false" onAction="#mainSettingsClicked" prefHeight="60.0" prefWidth="224.0" stylesheets="@application.css" text="Settings" toggleGroup="$navMainTab">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="dot" />
+                  <String fx:value=".radio:selected" />
+               </styleClass>
+            </RadioButton>
+         </children>
+      </VBox>
+      <VBox layoutX="455.0" layoutY="13.0" prefHeight="58.0" prefWidth="166.0">
+         <children>
+            <HBox prefHeight="21.0" prefWidth="166.0">
+               <children>
+                  <Label fx:id="dateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="214.0" text="MM/DD/YYYY" textAlignment="RIGHT" textFill="WHITE" />
+                  <Label fx:id="timeLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="162.0" text="HH/MM" textAlignment="RIGHT" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label fx:id="usernameTextLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="177.0" text="Good morning, {name}" textFill="WHITE" />
+            <Label fx:id="roleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="20.0" prefWidth="208.0" text="Engineer 4" textAlignment="RIGHT" textFill="WHITE" />
+         </children>
+      </VBox>
+      <Label layoutX="23.0" layoutY="13.0" prefHeight="34.0" prefWidth="180.0" text="EFFORTLOGGER">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Pane fx:id="mainHomePane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0">
+         <children>
+            <VBox fx:id="homescreen1" prefHeight="506.0" prefWidth="454.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="157.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="151.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
+                        <HBox fx:id="taskOverview1" prefHeight="150.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="138.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="Cycle Overview" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="130.0" prefWidth="339.0">
+                                 <children>
+                                    <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="129.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="338.0" />
+                                    <Label fx:id="cycle_avg_time" layoutX="14.0" layoutY="12.0" prefHeight="27.0" prefWidth="129.0" text="days hours">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="150.0" layoutY="18.0" text="AVG CYCLE TIME">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="321.0">
+                                       <children>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="57.0">
+                                             <children>
+                                                <Label fx:id="cycle_CODING" text="21h">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="CODING">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <ImageView fitHeight="45.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cycle_arrow.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="57.0">
+                                             <children>
+                                                <Label fx:id="cycle_PICKUP" text="21h">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="PICKUP">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <ImageView fitHeight="45.0" fitWidth="29.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cycle_arrow.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="57.0">
+                                             <children>
+                                                <Label fx:id="cycle_review" text="21h">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="REVIEW">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <ImageView fitHeight="45.0" fitWidth="29.0" layoutX="153.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cycle_arrow.PNG" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="57.0">
+                                             <children>
+                                                <Label fx:id="cycle_DEPLOY" text="21h">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="DEPLOY">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <ImageView fitHeight="45.0" fitWidth="29.0" layoutX="229.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cycle_arrow.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Line endX="-44.0" layoutX="109.0" layoutY="65.0" smooth="false" startX="-100.0" stroke="#40c700" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                    <Line endX="-44.0" layoutX="186.0" layoutY="65.0" startX="-100.0" stroke="#ffb700" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                    <Line endX="-44.0" layoutX="264.0" layoutY="65.0" startX="-100.0" stroke="#f80122" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                    <Line endX="-44.0" layoutX="347.0" layoutY="65.0" startX="-100.0" stroke="#0095ff" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="120.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
+                        <HBox prefHeight="120.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="151.0" prefWidth="100.0" style="-fx-font-weight: bold;" text="Deploy Frequency" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="120.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="114.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
+                        <HBox prefHeight="120.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="120.0" prefWidth="100.0" style="-fx-font-weight: bold;" text="Merge Frequency" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="337.0" prefHeight="102.0" prefWidth="454.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="454.0" />
+                        <HBox prefHeight="45.0" prefWidth="454.0">
+                           <children>
+                              <ImageView fitHeight="45.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label prefHeight="45.0" prefWidth="453.0" style="-fx-font-weight: bold;" text="day(s) remaining in Sprint" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children></Pane>
+      <Pane fx:id="mainProjectPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="446.0" prefWidth="462.0" visible="false">
+         <children>
+            <AnchorPane prefHeight="445.0" prefWidth="462.0">
+               <children>
+                  <VBox fx:id="project_vbox_list" prefHeight="446.0" prefWidth="462.0" spacing="10.0">
+                     <children>
+                        <Pane fx:id="project_1_pane" prefHeight="140.0" prefWidth="462.0">
+                           <children>
+                              <Rectangle fx:id="project_1_rect" arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="140.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                              <AnchorPane prefHeight="140.0" prefWidth="462.0">
+                                 <children>
+                                    <Button fx:id="project_1_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="35.10%">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Line endX="347.0" layoutX="115.0" layoutY="55.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                    <Label fx:id="project_1_title" layoutX="14.0" layoutY="16.0" prefHeight="17.0" prefWidth="321.0" text="Project 1: E-commerce platform">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="project_add_mem" layoutX="6.0" layoutY="104.0" mnemonicParsing="false" onAction="#projectAddMember" style="-fx-border-color: WHITE; -fx-border-radius: 20; -fx-label-padding: 3;" stylesheets="@buttonTransp.css" text="Add new member">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@add_new_icon.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <TextArea fx:id="project_1_names" layoutY="60.0" prefHeight="40.0" prefWidth="462.0" stylesheets="@textfieldTransp.css" text="John Smith, Greg Collens">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="project_1_open_btn" mnemonicParsing="false" onAction="#projectOpenClicked" prefHeight="103.0" prefWidth="462.0" stylesheets="@buttonTransp.css" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="project_2_pane" layoutX="10.0" layoutY="10.0" prefHeight="140.0" prefWidth="462.0">
+                           <children>
+                              <Rectangle fx:id="project_2_rect" arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="140.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                              <AnchorPane prefHeight="140.0" prefWidth="462.0">
+                                 <children>
+                                    <Button fx:id="project_2_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="25%">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Button>
+                                    <Line endX="347.0" layoutX="115.0" layoutY="55.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" />
+                                    <Label fx:id="project_2_title" layoutX="14.0" layoutY="16.0" prefHeight="17.0" prefWidth="321.0" text="Project 2: Social media aggregator">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="project_add_mem1" layoutX="6.0" layoutY="104.0" mnemonicParsing="false" onAction="#projectAddMember" style="-fx-border-color: WHITE; -fx-border-radius: 20; -fx-label-padding: 3;" stylesheets="@buttonTransp.css" text="Add new member">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@add_new_icon.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <TextArea fx:id="project_2_names" layoutY="60.0" prefHeight="40.0" prefWidth="462.0" stylesheets="@textfieldTransp.css" text="John Smith, Greg Collens">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="project_2_open_btn" mnemonicParsing="false" onAction="#projectOpenClicked" prefHeight="103.0" prefWidth="462.0" stylesheets="@buttonTransp.css" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+                  <Pane fx:id="project1_open_pane" prefHeight="457.0" prefWidth="462.0" visible="false">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="457.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                        <Button fx:id="project_add_stakeholder" layoutX="309.0" layoutY="432.0" mnemonicParsing="false" onAction="#projectAddStakeholder" style="-fx-border-radius: 20;" stylesheets="@buttonTransp.css" text="Add new stakeholder">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@add_new_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label fx:id="project1_open_title" layoutX="45.0" layoutY="2.0" prefHeight="25.0" prefWidth="372.0" text="Project 1: E-commerce platform">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="project_add_mem3" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#projectAddMember" style="-fx-border-radius: 20;" stylesheets="@buttonTransp.css" text="Add new member">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@add_new_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="200.0" layoutX="5.0" layoutY="50.0" stroke="WHITE" strokeType="INSIDE" width="451.0" />
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="86.0" layoutX="5.0" layoutY="255.0" stroke="WHITE" strokeType="INSIDE" width="451.0" />
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="86.0" layoutX="5.0" layoutY="346.0" stroke="WHITE" strokeType="INSIDE" width="451.0" />
+                        <TableView layoutX="13.0" layoutY="57.0" prefHeight="187.0" prefWidth="435.0" style="-fx-background-color: transparent;" styleClass="noheader" stylesheets="@tableviewTransp.css">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                        <Pane fx:id="stakeholder_pane1" layoutX="5.0" layoutY="255.0" prefHeight="86.0" prefWidth="451.0">
+                           <children>
+                              <Label layoutX="6.0" layoutY="5.0" text="Sent to:" />
+                              <Label fx:id="stakeholder1_name" layoutX="51.0" layoutY="6.0" prefHeight="17.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Stakeholder 1">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <HBox layoutX="8.0" layoutY="26.0" prefHeight="38.0" prefWidth="435.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="33.0" text="Every" />
+                                    <TextArea fx:id="stakeholder1_year" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="27.0" text="Year" />
+                                    <TextArea fx:id="stakeholder1_month" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="115.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Month" />
+                                    <TextArea fx:id="stakeholder1_week" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="156.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Week" />
+                                    <TextArea fx:id="stakeholder1_day" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="238.0" layoutY="10.0" prefHeight="30.0" prefWidth="27.0" text="Day" />
+                                    <TextArea fx:id="stakeholder1_hour" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="238.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Hour" />
+                                 </children>
+                              </HBox>
+                              <ToggleSwitch fx:id="stakeholder1_toggleSwitch" layoutX="391.0" layoutY="63.0" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="stakeholder_pane11" layoutX="6.0" layoutY="346.0" prefHeight="86.0" prefWidth="451.0">
+                           <children>
+                              <Label layoutX="6.0" layoutY="5.0" text="Sent to:" />
+                              <Label fx:id="stakeholder2_name" layoutX="51.0" layoutY="6.0" prefHeight="17.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Stakeholder 1">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <HBox layoutX="8.0" layoutY="26.0" prefHeight="38.0" prefWidth="435.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="33.0" text="Every" />
+                                    <TextArea fx:id="stakeholder2_year" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="27.0" text="Year" />
+                                    <TextArea fx:id="stakeholder2_month" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="115.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Month" />
+                                    <TextArea fx:id="stakeholder2_week" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="156.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Week" />
+                                    <TextArea fx:id="stakeholder2_day" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="238.0" layoutY="10.0" prefHeight="30.0" prefWidth="27.0" text="Day" />
+                                    <TextArea fx:id="stakeholder2_hour" prefHeight="38.0" prefWidth="43.0" promptText="Type here" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@textfieldTransp.css" />
+                                    <Label layoutX="238.0" layoutY="10.0" prefHeight="30.0" prefWidth="39.0" text="Hour" />
+                                 </children>
+                              </HBox>
+                              <ToggleSwitch fx:id="stakeholder2_toggleSwitch" layoutX="391.0" layoutY="63.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainReportPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="446.0" prefWidth="462.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="506.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+            <AnchorPane prefHeight="506.0" prefWidth="462.0">
+               <children>
+                  <VBox prefHeight="506.0" prefWidth="462.0">
+                     <children>
+                        <Button fx:id="report" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#createReport" prefHeight="40.0" prefWidth="404.0" stylesheets="@buttonTransp.css" text="Add new report">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@add_new_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css">
+                           <children>
+                              <HBox prefHeight="72.0" prefWidth="462.0">
+                                 <children>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="performanceButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Performance ()" />
+                                          <Button fx:id="eventButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Event ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="defectButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Defect ()" />
+                                          <Button fx:id="securityButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Security ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox layoutX="160.0" layoutY="10.0" prefHeight="72.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="deploymentButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="150.0" stylesheets="@buttonWhite.css" text="Deployment ()" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <ScrollPane prefHeight="535.0" prefWidth="462.0" stylesheets="@application.css">
+                           <content>
+                              <HBox prefHeight="384.0" prefWidth="463.0" spacing="20.0">
+                                 <children>
+                                    <Pane minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="reportTitle" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDate" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportType" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportTimeSpent" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDescription" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="reportUpdate" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="20.0" layoutY="10.0" minHeight="383.0" minWidth="300.0" prefHeight="383.0" prefWidth="300.0">
+                                       <children>
+                                          <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
+                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                             <children>
+                                                <TextField fx:id="reportTitle1" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDate1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="300.0" stylesheets="@application.css" text="Date: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportType1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Type:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportTimeSpent1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="64.0" prefHeight="35.0" prefWidth="300.0" stylesheets="@application.css" text="Time spent: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <TextField fx:id="reportDescription1" alignment="TOP_LEFT" editable="false" layoutX="10.0" layoutY="91.0" prefHeight="180.0" prefWidth="300.0" stylesheets="@application.css" text="Description: ">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Button fx:id="reportUpdate1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="19.0" prefWidth="300.0" stylesheets="@buttonTransp.css" text="Update">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="30.0" />
+                                                   </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <graphic>
+                                                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@update_icon.PNG" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainTeamPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="446.0" prefWidth="462.0" visible="false">
+         <children>
+            <VBox fx:id="team_1_vbox" prefHeight="446.0" prefWidth="462.0" spacing="10.0">
+               <children>
+                  <Pane fx:id="team_1_pane" prefHeight="130.0" prefWidth="462.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                        <AnchorPane prefHeight="140.0" prefWidth="462.0">
+                           <children>
+                              <Label fx:id="team_1" layoutX="14.0" layoutY="41.0" prefHeight="58.0" prefWidth="76.0" text="Team 1">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="team_add_mem" layoutX="127.0" layoutY="84.0" mnemonicParsing="false" onAction="#teamAddMember" style="-fx-border-color: WHITE; -fx-border-radius: 20; -fx-label-padding: 3;" stylesheets="@buttonTransp.css" text="Add new member">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@add_new_icon.PNG" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <TextArea fx:id="team_1_names" layoutX="127.0" layoutY="14.0" prefHeight="58.0" prefWidth="321.0" stylesheets="@textfieldTransp.css" text="John Smith, " wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="team_1_btn" mnemonicParsing="false" onAction="#teamOpenClicked" prefHeight="103.0" prefWidth="462.0" stylesheets="@buttonTransp.css" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="team_2_pane" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="462.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                        <AnchorPane prefHeight="140.0" prefWidth="462.0">
+                           <children>
+                              <Label fx:id="team_2" layoutX="14.0" layoutY="41.0" prefHeight="58.0" prefWidth="76.0" text="Team 2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="team_add_mem1" layoutX="127.0" layoutY="84.0" mnemonicParsing="false" onAction="#teamAddMember" style="-fx-border-color: WHITE; -fx-border-radius: 20; -fx-label-padding: 3;" stylesheets="@buttonTransp.css" text="Add new member">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@add_new_icon.PNG" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <TextArea fx:id="team_2_names" layoutX="127.0" layoutY="14.0" prefHeight="58.0" prefWidth="321.0" stylesheets="@textfieldTransp.css" text="John Smith" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="team_2_btn" mnemonicParsing="false" onAction="#teamOpenClicked" prefHeight="103.0" prefWidth="462.0" stylesheets="@buttonTransp.css" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Pane fx:id="team_1_open_pane" prefHeight="446.0" prefWidth="462.0" stylesheets="@textFieldWhite.css">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                  <Label fx:id="team_21" layoutX="21.0" prefHeight="40.0" prefWidth="129.0" text="Team 1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="team_add_mem11" layoutX="317.0" layoutY="7.0" mnemonicParsing="false" onAction="#teamAddMember" style="-fx-border-color: WHITE; -fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Add new member">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@add_new_icon_w.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ScrollPane layoutY="51.0" prefHeight="398.0" prefWidth="476.0" style="-fx-vbar-policy: NEVER;" stylesheets="@application.css">
+                     <content>
+                        <VBox prefHeight="400.0" prefWidth="461.0" spacing="11.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="446.0">
+                                 <children>
+                                    <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                                    <Label fx:id="team_open_member_1" layoutX="8.0" layoutY="8.0" stylesheets="@label.css" text="John E Smith">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="edit_access_perms_btn" layoutX="298.0" layoutY="8.0" mnemonicParsing="false" onAction="#editAccessPermission" style="-fx-border-color: WHITE; -fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Edit access permission">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@add_new_icon_w.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <ScrollPane layoutX="11.0" layoutY="41.0" prefHeight="157.0" prefWidth="445.0" style="-fx-vbar-policy: NEVER; -fx-hbar-policy: NEVER;">
+                                       <content>
+                                          <HBox prefHeight="351.0" prefWidth="561.0" spacing="10.0" stylesheets="@textFieldWhite.css">
+                                             <children>
+                                                <TextArea fx:id="tm1_roles" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Roles and Responsibility&#10;&#10;Primary Role: Backend Developer&#10;&#10;Key responsibility:&#10;Design and develop robust and scalable backend solutions.&#10;Conduct thorough code reviews to ensure code quality.&#10;Provide guidance and support to junior team members.&#10;&#10;&#10;&#10;" wrapText="true" />
+                                                <TextArea fx:id="tm1_curProjects" layoutX="10.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Current Projects&#10;&#10;1. E-commerce Platform Upgrade&#10;Role: Lead Developer&#10;Responsibilities: Oversee backend development, ensure API integrations, etc.&#10;2. Mobile App Development&#10;Role: Backend Developer&#10;Responsibilities: Implement server-side logic, database design, etc." wrapText="true" />
+                                                <TextArea fx:id="tm1_workload" layoutX="149.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Workload and Availablity&#10;&#10;1. Current workload: 80%&#10;2. Upcoming Availability: Available for new tasks/projects starting next month." wrapText="true" />
+                                                <TextArea fx:id="tm1_dev" layoutX="288.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Professional Development&#10;&#10;1. Training Completed: Recent workshops or courses attended.&#10;2. Upcoming Training: Planned professional development activities." wrapText="true" />
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="446.0">
+                                 <children>
+                                    <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+                                    <Label fx:id="team_open_member_2" layoutX="8.0" layoutY="8.0" stylesheets="@label.css" text="Greg Collens">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="edit_access_perms_btn1" layoutX="298.0" layoutY="8.0" mnemonicParsing="false" onAction="#editAccessPermission" style="-fx-border-color: WHITE; -fx-border-radius: 20;" stylesheets="@buttonWhite.css" text="Edit access permission">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@add_new_icon_w.PNG" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <ScrollPane layoutX="12.0" layoutY="41.0" prefHeight="161.0" prefWidth="444.0" style="-fx-vbar-policy: NEVER; -fx-hbar-policy: NEVER;">
+                                       <content>
+                                          <HBox prefHeight="351.0" prefWidth="561.0" spacing="10.0" stylesheets="@textFieldWhite.css">
+                                             <children>
+                                                <TextArea fx:id="tm2_roles" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Roles and Responsibility&#10;&#10;Primary Role: Backend Developer&#10;&#10;Key responsibility:&#10;Design and develop robust and scalable backend solutions.&#10;Conduct thorough code reviews to ensure code quality.&#10;Provide guidance and support to junior team members.&#10;&#10;&#10;&#10;" wrapText="true" />
+                                                <TextArea fx:id="tm2_curProjects" layoutX="10.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Current Projects&#10;&#10;1. E-commerce Platform Upgrade&#10;Role: Lead Developer&#10;Responsibilities: Oversee backend development, ensure API integrations, etc.&#10;2. Mobile App Development&#10;Role: Backend Developer&#10;Responsibilities: Implement server-side logic, database design, etc." wrapText="true" />
+                                                <TextArea fx:id="tm2_workload" layoutX="149.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="Workload and Availablity&#10;&#10;1. Current workload: 80%&#10;2. Upcoming Availability: Available for new tasks/projects starting next month." wrapText="true" />
+                                                <TextArea fx:id="tm2_dev" layoutX="288.0" layoutY="10.0" prefHeight="344.0" prefWidth="129.0" style="-fx-background-radius: 10;" stylesheets="@textFieldWhite.css" text="Professional Development&#10;&#10;1. Training Completed: Recent workshops or courses attended.&#10;2. Upcoming Training: Planned professional development activities." wrapText="true" />
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainCollabPane" layoutX="214.0" layoutY="71.0" pickOnBounds="false" prefHeight="515.0" prefWidth="476.0" visible="false">
+         <children>
+            <ScrollPane layoutX="7.0" prefHeight="463.0" prefWidth="476.0" style="-fx-vbar-policy: NEVER;" stylesheets="@application.css">
+               <content>
+                  <VBox prefHeight="460.0" prefWidth="454.0" spacing="10.0">
+                     <children>
+                        <Pane prefHeight="135.0" prefWidth="454.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="452.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Button layoutX="23.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="14.0" layoutY="33.0" stylesheets="@label.css" text="Project 1">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="144.0" layoutY="14.0" stylesheets="@label.css" text="Team Chat">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="299.0" layoutY="14.0" stylesheets="@label.css" text="Individual">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="144.0" layoutY="40.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Availability ()" />
+                              <Button layoutX="143.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Files" />
+                              <Button layoutX="144.0" layoutY="96.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Tasks" />
+                              <ScrollPane layoutX="294.0" layoutY="32.0" prefHeight="94.0" prefWidth="143.0" style="-fx-vbar-policy: NEVER;">
+                                 <content>
+                                    <VBox prefHeight="200.0" prefWidth="126.0" spacing="8.0">
+                                       <children>
+                                          <ToggleButton fx:id="username_1_1_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <graphic>
+                                                <ImageView fx:id="username_1_1_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_1_2_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_1_2_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_1_3_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_1_3_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="8.0" top="8.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <Button fx:id="collab_proj1_open_btn" layoutX="137.0" layoutY="1.0" mnemonicParsing="false" onAction="#collabOpenClicked1" prefHeight="129.0" prefWidth="146.0" stylesheets="@buttonTransp.css" />
+                              <Button fx:id="collab_proj2_open_btn" layoutX="293.0" layoutY="4.0" mnemonicParsing="false" onAction="#collabOpenClicked2" prefHeight="129.0" prefWidth="146.0" stylesheets="@buttonTransp.css" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="135.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="451.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="292.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="137.0" layoutY="6.0" stroke="WHITE" strokeType="INSIDE" width="148.0" />
+                              <Button layoutX="24.0" layoutY="91.0" mnemonicParsing="false" stylesheets="@buttonTransp.css" text="Add people">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="14.0" layoutY="33.0" stylesheets="@label.css" text="Project 2">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="144.0" layoutY="14.0" stylesheets="@label.css" text="Team Chat">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="298.0" layoutY="13.0" stylesheets="@label.css" text="Individual">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="143.0" layoutY="40.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Availability ()" />
+                              <Button layoutX="143.0" layoutY="68.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Files" />
+                              <Button layoutX="143.0" layoutY="96.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="135.0" stylesheets="@buttonWhite.css" text="Tasks" />
+                              <ScrollPane layoutX="294.0" layoutY="32.0" prefHeight="94.0" prefWidth="143.0" style="-fx-vbar-policy: NEVER;">
+                                 <content>
+                                    <VBox prefHeight="200.0" prefWidth="126.0" spacing="8.0">
+                                       <children>
+                                          <ToggleButton fx:id="username_2_1_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <graphic>
+                                                <ImageView fx:id="username_2_1_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_2_2_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_2_1_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="username_2_3_button" mnemonicParsing="false" onAction="#usernameToggleClicked" stylesheets="@buttonWhite.css" text="username">
+                                             <graphic>
+                                                <ImageView fx:id="username_2_3_img" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@grey-circle.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </ToggleButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="8.0" top="8.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </content>
+               <padding>
+                  <Insets top="11.0" />
+               </padding></ScrollPane>
+            <Pane fx:id="collab_proj_open_pane1" layoutX="7.0" layoutY="157.0" prefHeight="335.0" prefWidth="464.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="335.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="464.0" />
+                  <TableView fx:id="collab_tasks_files_table" layoutX="176.0" layoutY="14.0" prefHeight="220.0" prefWidth="220.0" styleClass="transp-header" stylesheets="@tableviewTransp.css">
+                    <columns>
+                      <TableColumn prefWidth="110.0" text="Tasks" />
+                      <TableColumn prefWidth="110.0" text="Files" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="collab_chat_members_table" layoutX="14.0" layoutY="14.0" prefHeight="220.0" prefWidth="157.0" styleClass="noheader" stylesheets="@tableviewTransp.css">
+                     <columns>
+                        <TableColumn prefWidth="157.0" text="Chat Members" />
+                     </columns>
+                  </TableView>
+                  <TextArea fx:id="collab_type_message_textarea" layoutX="14.0" layoutY="234.0" prefHeight="30.0" prefWidth="157.0" promptText="Type your message here..." style="-fx-background-color: white;" stylesheets="@textfieldTransp.css" wrapText="true" />
+               </children>
+            </Pane>
+            <Pane fx:id="collab_proj_open_pane2" layoutX="8.0" layoutY="157.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="335.0" prefWidth="464.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="335.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="464.0" />
+                  <TableView fx:id="collab_chat_members_table1" layoutX="14.0" layoutY="15.0" prefHeight="311.0" prefWidth="157.0" styleClass="noheader" stylesheets="@tableviewTransp.css">
+                     <columns>
+                        <TableColumn prefWidth="157.0" text="Chat Members" />
+                     </columns>
+                  </TableView>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="311.0" layoutX="178.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.0" />
+                  <VBox layoutX="178.0" layoutY="15.0" prefHeight="311.0" prefWidth="228.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="228.0" spacing="5.0">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@grey-circle.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@member_icon.PNG" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Member 1" />
+                           </children>
+                        </HBox>
+                        <Line endX="127.29289245605469" startX="-100.0" stroke="#ababab" strokeType="OUTSIDE" />
+                        <ScrollPane prefHeight="239.0" prefWidth="230.0" style="-fx-background-color: transparent;" />
+                        <Line endX="127.29289245605469" startX="-100.0" stroke="#ababab" strokeType="OUTSIDE" />
+                        <TextArea fx:id="collab_type_message_textarea1" prefHeight="30.0" prefWidth="157.0" promptText="Type your message here..." style="-fx-background-color: transparent;" stylesheets="@textfieldTransp.css" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainExportPane" layoutX="224.0" layoutY="82.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="362.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="6.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="124.0" layoutX="235.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="220.0" />
+            <AnchorPane prefHeight="506.0" prefWidth="462.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="155.0" prefHeight="27.0" prefWidth="115.0" stylesheets="@application.css" text="Recent Activities">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox prefHeight="135.0" prefWidth="462.0">
+               <children>
+                  <VBox prefHeight="160.0" prefWidth="231.0" spacing="6.0">
+                     <children>
+                        <Button graphicTextGap="8.0" mnemonicParsing="false" style="-fx-border-radius: 10px;" stylesheets="@buttonWhite.css" text="Excel">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@microsoft_office_excel.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#chooseFile" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Destination">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="3.0" prefWidth="67.0" stylesheets="@buttonWhite.css" text="Finish">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="13.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="85.0" prefWidth="231.0" spacing="6.0">
+                     <children>
+                        <Button mnemonicParsing="false" stylesheets="@buttonWhite.css" text="Visual Basic">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@visual_basic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="7.0" prefWidth="157.0" stylesheets="@buttonWhite.css" text="Choose file">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="158.0" stylesheets="@buttonWhite.css" text="Destination">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="5.0" prefWidth="67.0" stylesheets="@buttonWhite.css" text="Finish">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="13.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <ScrollPane layoutX="24.0" layoutY="200.0" prefHeight="323.0" prefWidth="510.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-vbar-policy: NEVER;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="494.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <Label fx:id="activityLogs" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="478.0" style="-fx-text-fill: black;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainCustSupportPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="268.0" />
+            <PieChart fx:id="CSAT_pie" layoutX="34.0" layoutY="37.0" prefHeight="91.0" prefWidth="63.0" />
+            <Label layoutX="7.0" layoutY="3.0" text="CSAT (past 7 days)">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="200.0" layoutX="275.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="187.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="235.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.0" />
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="235.0" layoutX="234.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.0" />
+            <Label layoutX="282.0" layoutY="3.0" text="Inbound calls today">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cust_inbound_calls_total" layoutX="282.0" layoutY="37.0" prefHeight="58.0" prefWidth="100.0" text="60" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="282.0" layoutY="80.0" text="total" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="cust_inbound_calls_wait_time" layoutX="282.0" layoutY="105.0" prefHeight="58.0" prefWidth="168.0" text="58 sec" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="282.0" layoutY="151.0" prefHeight="25.0" prefWidth="174.0" text="Avg. wait time" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="240.0" layoutY="211.0" text="Most calls resolved">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="211.0" text="Queue">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cust_queue_calls_waiting" layoutX="7.0" layoutY="238.0" prefHeight="58.0" prefWidth="109.0" text="21" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="284.0" prefHeight="25.0" prefWidth="129.0" text="calls waiting" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TableView fx:id="cust_queue_agents_table" layoutX="7.0" layoutY="309.0" prefHeight="124.0" prefWidth="213.0" styleClass="gray-header" stylesheets="@tableviewTransp.css">
+              <columns>
+                  <TableColumn prefWidth="213.0" text="Agents available" />
+              </columns>
+            </TableView>
+            <TableView fx:id="cust_calls_resolved_table" layoutX="242.0" layoutY="247.0" prefHeight="187.0" prefWidth="213.0" styleClass="noheader" stylesheets="@tableviewTransp.css">
+               <columns>
+                  <TableColumn prefWidth="213.0" text="Agents" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane fx:id="mainPrivacyPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="361.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="362.0" />
+            <AnchorPane layoutX="4.0" layoutY="4.0" prefHeight="426.0" prefWidth="386.0">
+               <children>
+                  <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
+                     <children>
+                        <ToggleSwitch fx:id="userConsentButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="TwoFAButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="ProfileVisButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="DataEncryptButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="DataAnonyButton" alignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+                  <Label layoutX="67.0" layoutY="11.0" prefHeight="60.0" prefWidth="226.0" text="obtain explicit user consent for data collection, storage, and processing." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="76.0" prefHeight="60.0" prefWidth="226.0" text="an option for enhanced account security." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="141.0" prefHeight="60.0" prefWidth="226.0" text="control the visibility of profile information. Users should be able to see their profile as public, private, or accessible only to connections." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="216.0" prefHeight="60.0" prefWidth="226.0" text="implement data encryption at rest and in transit to protect user data from unauthorized access." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="285.0" prefHeight="60.0" prefWidth="226.0" text="anonymizing or pseudonymizing data when possible." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="7.0" text="User Consent and Data Collection">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="79.0" text="Two Factor Authentication">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="130.0" text="Profile Visibility">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="205.0" text="Data Encryption">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="282.0" text="Data Anonymization and Pseudonymization">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </children>
+      </Pane>
+      <Pane fx:id="mainSettingsPane" layoutX="224.0" layoutY="85.0" pickOnBounds="false" prefHeight="506.0" prefWidth="462.0" visible="false">
+         <children>
+            <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="361.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="362.0" />
+            <AnchorPane prefHeight="426.0" prefWidth="386.0">
+               <children>
+                  <VBox prefHeight="355.0" prefWidth="67.0" spacing="50.0">
+                     <children>
+                        <ToggleSwitch fx:id="darkModeButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="emailNotifButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="autoUpdateButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="autoCorrectButton" alignment="CENTER" />
+                        <ToggleSwitch fx:id="notifSoundButton" alignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+                  <Label layoutX="67.0" layoutY="11.0" prefHeight="60.0" prefWidth="226.0" text="switch between light and dark themes for the user interface." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="74.0" prefHeight="60.0" prefWidth="226.0" text="opt in of receiving email notifications for different events or updates." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="145.0" prefHeight="60.0" prefWidth="226.0" text="allow EffortLogger to automatically update to the latest version." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="216.0" prefHeight="60.0" prefWidth="226.0" text="enable auto-correction and spell check features in text input." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="282.0" prefHeight="60.0" prefWidth="226.0" text="enable notifcation sounds and vibrations." wrapText="true" />
+                  <Label layoutX="67.0" layoutY="7.0" text="Dark Mode">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="70.0" text="Email Notification">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="140.0" text="Auto-update:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="209.0" text="Auto-correct and Spell Check:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="67.0" layoutY="286.0" text="Notification sounds and vibrations">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Button fx:id="exitButton" layoutX="638.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit_butt.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="shrinkButton" layoutX="661.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" stylesheets="@buttonTransp.css">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@shrink_butt.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="loggerPane" layoutX="92.0" layoutY="93.0" prefHeight="455.0" prefWidth="545.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+         <children>
+            <Button fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <VBox layoutX="18.0" layoutY="66.0" prefHeight="310.0" prefWidth="510.0" spacing="1.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label fx:id="titleLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Title ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTitle" prefHeight="18.0" prefWidth="414.0" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label fx:id="dateLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Date ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDate" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="typeLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Type ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logType" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="timeLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Time ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTime" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="descriptionLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: white;" text="Description ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDescription" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" onAction="#createLog" prefHeight="30.0" prefWidth="241.0" stylesheets="@buttonWhite.css" text="Create" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" onAction="#closeLog" prefHeight="30.0" prefWidth="241.0" style="-fx-background-color: #df6969;" stylesheets="@buttonWhite.css" text="Close" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="exportPane" layoutX="197.0" layoutY="244.0" prefHeight="135.0" prefWidth="308.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+         <children>
+            <Button fx:id="files" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="273.0" stylesheets="@buttonWhite.css" text="Choose File" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="53.0" mnemonicParsing="false" onAction="#entryToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: orange;" stylesheets="@buttonWhite.css" text="Entry" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="91.0" mnemonicParsing="false" onAction="#reportToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: skyblue;" stylesheets="@buttonWhite.css" text="Report" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+         </children>
+      </Pane>
+      <!--  
+      <Button layoutX="563.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+      <Button layoutX="540.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+ 		-->
+   </children>
+</AnchorPane>

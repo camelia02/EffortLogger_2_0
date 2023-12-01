@@ -1,6 +1,5 @@
 package application;
 
-import application.OracleDBConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -9,18 +8,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.sql.Connection;
@@ -29,7 +30,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import oracle.jdbc.OracleConnection;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -256,11 +256,92 @@ public class DashboardController implements Initializable {
     @FXML
     private Label rangeW;
     
+    @FXML
+    private Pane loggerPane;
+    
+    @FXML
+    private Button type;
+    
+    
+    @FXML
+    private Button close;
+    
+    @FXML
+    private Button entry;
+    
+    @FXML
+    private Button report;
+    
+    @FXML
+    private TextArea logTitle;
+    
+    @FXML
+    private TextArea logDate;
+    
+    @FXML
+    private TextArea logType;
+    
+    @FXML
+    private TextArea logTime;
+    
+    @FXML
+    private TextArea logDescription;
+    
+    @FXML
+    private Label titleLabel;
+    
+    @FXML
+    private Label dateLabelLog;
+    
+    @FXML
+    private Label typeLabel;
+    
+    @FXML
+    private Label timeLabelLog;
+    
+    @FXML
+    private Label descriptionLabel;
+    
+    @FXML
+    private Pane exportPane;
+    
+    @FXML
+    private TextField entryTitle;
+    @FXML
+    private TextField entryDate;
+    @FXML
+    private TextField entryType;
+    @FXML
+    private TextField entryTimeSpent;
+    @FXML
+    private TextField entryDescription;
+    @FXML
+    private TextField reportTitle;
+    @FXML
+    private TextField reportDate;
+    @FXML
+    private TextField reportType;
+    @FXML
+    private TextField reportTimeSpent;
+    @FXML
+    private TextField reportDescription;
+    
+    @FXML
+    private Label activityLogs;
+   
+    
     private Image green_circle;
     
     private Image grey_circle;
     
 	private Employee employee;
+	
+	private Connection connection;
+	
+
+	public void setConnection(Connection connection) {
+	    this.connection = connection;
+	}
 	
 	public void setEmployee(Employee emps) {
 		this.employee = emps;
@@ -270,22 +351,48 @@ public class DashboardController implements Initializable {
 		return employee;
 	}
 	
-	public void initializeEmployeeData() {
-	    Employee employeeFromLogin = getEmployee();
+	public DashboardController() {
+		
+	}
 
+	public DashboardController(Connection connection) {
+        this.connection = connection;
+    }
+	
+	public void initializeEmployeeData(){
+	    Employee employeeFromLogin = getEmployee();
 	    if (employeeFromLogin != null) {
 	        setEmployee(employeeFromLogin);
 	        usernameTextLabel.setText(employeeFromLogin.getFullName());
 	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
 	                employeeFromLogin.getFullName() + "\n");
 	    } else {
-	        System.err.println("Employee not set in MainSceneController");
+	        System.err.println("Employee not set in DashboardController");
 	    }
 	}
     
-
+	
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	
+    	try {
+    		OracleDBConnection con = new OracleDBConnection();
+            connection = con.makeConnection();
+            Employee employeeFromLogin = getEmployee();
+
+            if (employeeFromLogin != null) {
+                setEmployee(employeeFromLogin);
+                usernameTextLabel.setText(employeeFromLogin.getFullName());
+                System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
+                        employeeFromLogin.getFullName() + "\n");
+            } else {
+                System.err.println("Employee not set in DashboardController");
+            }
+        } catch (Exception e) {
+            // Handle the SQLException (log or propagate)
+            e.printStackTrace();
+        }
+
     	// Get the current date and time
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -307,7 +414,7 @@ public class DashboardController implements Initializable {
         scheduler.scheduleAtFixedRate(() -> {
             // Get the current date and time
             LocalDateTime updatedDateTime = LocalDateTime.now();
-
+ 
             // Format the updated time using a DateTimeFormatter
             String updatedFormattedTime = updatedDateTime.format(timeFormatter);
 
@@ -329,10 +436,14 @@ public class DashboardController implements Initializable {
 		username_1_1_button.setGraphic(new ImageView(grey_circle));
 		username_1_2_button.setGraphic(new ImageView(grey_circle));
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
+		
+		loggerPane.setVisible(false);
+		exportPane.setVisible(false);
 		initializeEmployeeData();
 		displayEntryDetails();
 		displayReportDetails();
     }
+    
     @FXML
     void mainHomeClicked(ActionEvent event) {
     	mainHomePane.setVisible(true);
@@ -359,6 +470,7 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	//mainEntryPane.setVisible(true);
     	infoPane.setVisible(false);
+    	//exportPane.toBack();
     }
     
     @FXML
@@ -372,6 +484,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	//exportPane.toBack();
     }
     @FXML
     void mainTeamCollabClicked(ActionEvent event) {
@@ -384,9 +497,32 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	//exportPane.toBack();
     }
+    
+    void displayLog() {
+    	String updateLog = "Select * from logs";
+     	StringBuilder activityText = new StringBuilder();
+     	int count = 1;
+     	try (PreparedStatement pstmt = connection.prepareStatement(updateLog)) {
+     		try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                        String activity = rs.getString("DESCRIPTION");
+                        activityText.append(count).append(". ").append(activity).append(".\n");
+                        count++;
+                }
+            }
+            activityLogs.setText(activityText.toString());
+            
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
     @FXML
     void mainExportClicked(ActionEvent event) {
+    	
+    	
     	mainHomePane.setVisible(false);
     	mainEntryPane.setVisible(false);
     	mainReportPane.setVisible(false);
@@ -396,6 +532,32 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.setVisible(false);
+    	exportPane.toBack();
+    	displayLog();
+    	  
+    }
+    
+    @FXML
+    void chooseFile(ActionEvent event) {
+    	exportPane.setVisible(true);
+    	exportPane.toFront();
+    }
+    
+    @FXML
+    void entryToCSV(ActionEvent event) {
+     	CSVExporter.exportToCSV(connection, "ENTRY");
+     	exportPane.setVisible(false);
+     	exportPane.toBack();
+     	displayLog();
+    }
+    
+    @FXML
+    void reportToCSV(ActionEvent event) {
+    	CSVExporter.exportToCSV(connection, "REPORT");
+    	exportPane.setVisible(false);
+    	exportPane.toBack();
+    	displayLog();
     }
     
     private int seconds = 30;
@@ -411,9 +573,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
-    	
-    	
-    	
+    	exportPane.toBack();
     	
     	KeyFrame kf = new KeyFrame(Duration.seconds(1), e -> {
     		timer.setText(String.valueOf(seconds));
@@ -441,6 +601,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(true);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	//exportPane.toBack();
 
     }
     
@@ -455,6 +616,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(true);
     	infoPane.setVisible(false);
+    	//exportPane.toBack();
     }
     
     @FXML
@@ -483,18 +645,7 @@ public class DashboardController implements Initializable {
     			username_1_3_button.setGraphic(new ImageView(grey_circle));
     		}
     	}
-    	/*
-		else if () {
-			
-		}
-		    	
-		else if () {
-			
-		}
-		    	
-		else if () {
-			
-		} */
+    	
     }
     
     boolean checkGray(ToggleButton btn) {
@@ -516,26 +667,72 @@ public class DashboardController implements Initializable {
     
     @FXML
     void spOpened(ActionEvent event) {
-    	infoPane.toFront();
-    	infoPane.setVisible(true);
-   	    title.setText(sPoints.getText());
-   	    information.setText(
-   	    		"1. As a user, I want to create a new account with my personal information.\r\n"
-   	    		+ "2. As a user, I want to log in to my account securely using my email and password.\r\n"
-   	    		+ " .......\r\n"
-   	    		);
+        infoPane.toFront();
+        infoPane.setVisible(true);
+        title.setText(sPoints.getText());
 
+        String getStoryIDQuery = "SELECT STORYID FROM USERSTORIES WHERE EMPLOYEEID = ?";
+        String getStoryPointsQuery = "SELECT * FROM HISTORICALSTORYPOINTS WHERE STORYID = ?";
+
+        StringBuilder infoText = new StringBuilder();
+        int count = 1;
+        try (PreparedStatement pstmtStoryID = connection.prepareStatement(getStoryIDQuery);
+             PreparedStatement pstmtStoryPoints = connection.prepareStatement(getStoryPointsQuery)) {
+
+            pstmtStoryID.setInt(1, employee.getID());
+
+            // Execute the query to get STORYID
+            try (ResultSet resultSetStoryID = pstmtStoryID.executeQuery()) {
+                while (resultSetStoryID.next()) {
+                    int storyID = resultSetStoryID.getInt("STORYID");
+
+                    // Execute the query to get STORYPOINTS based on STORYID
+                    pstmtStoryPoints.setInt(1, storyID);
+                    try (ResultSet resultSetStoryPoints = pstmtStoryPoints.executeQuery()) {
+                        while (resultSetStoryPoints.next()) {
+                            // Process each row in the STORYPOINTS table
+                            //int storyPoints = resultSetStoryPoints.getInt("STORYPOINTS");
+                            // Do something with the storyPoints, e.g., print or use as needed
+                            //System.out.println("StoryID: " + storyID + ", StoryPoints: " + storyPoints);
+                        	String task = resultSetStoryPoints.getString("TASK");
+                        	infoText.append(count).append(". ").append(task).append(".\n");
+                        	count++;
+                        }
+                    }
+                }
+            }
+            information.setText(infoText.toString());
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately, log or propagate
+        }
     }
+
     
     @FXML
     void estOpened(ActionEvent event) {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(estimationTime.getText());
-    	information.setText(
-    			"1. Rough Order of Magnitude (ROM) Estimate: ±50% accuracy - This is a very high-level estimate made early in the project when there is limited information available. It provides a ballpark figure but is subject to substantial variation.\r\n"
-    			+ "2. Preliminary Estimate: ±30% accuracy - As the project progresses and more information becomes available, you can provide a preliminary estimate that is somewhat more accurate than a ROM estimate but still has a significant margin of error.\r\n"
-    			+ ".......");
+    	
+    	String getEst = "Select TASK from HISTORICALAVGCOMPLETIONTIME";
+    	int count = 1;
+    	StringBuilder infoText = new StringBuilder();
+    	try(PreparedStatement pstmt = connection.prepareStatement(getEst)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String estimation = result.getString("TASK");
+    				infoText.append(count).append(". ").append(estimation).append(".\n");
+    			}
+    		}
+    		
+    	information.setText(infoText.toString());
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
     
     @FXML
@@ -543,16 +740,26 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(avgTime.getText());
-    	information.setText(
-    			"1. Project Planning and Initiation:\r\n"
-    			+ "- Duration: 1 to 2 weeks\r\n"
-    			+ "- Activities: Project kickoff, requirement gathering, initial architecture design, and team formation.\r\n"
-    			+ "2. Requirements Gathering and Analysis:\r\n"
-    			+ "- Duration: 2 to 4 weeks\r\n"
-    			+ "- Activities: Detailed discussions with stakeholders, user stories creation, and use case analysis.\r\n"
-    			+ "3. Design and Architecture:\r\n"
-    			+ "- Duration: 4 to 6 weeks\r\n"
-    			+ "4. Activities: ");
+    	
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select * from HISTORICALESTIMATIONACCURACY";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String task = result.getString("TASK");
+    				String duration = result.getString("DURATIONRANGE");
+    				String activities = result.getString("ACTIVITIES");
+    				infoText.append(count).append(". ").append(task).append(":\n - ").append(duration).append("\n - ").append(activities).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
     
     @FXML
@@ -560,13 +767,23 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);
     	title.setText(similarProj.getText());
-    	information.setText(
-    			"1. Online Marketplace Platform\r\n"
-    			+ "2. Classifieds Website\r\n"
-    			+ "3. Auction Platform\r\n"
-    			+ "4. Event Ticketing System\r\n"
-    			+ "5. Food Delivery and Ordering App\r\n"
-    			);
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select PROJECTNAME from PROJECTS";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String name = result.getString("PROJECTNAME");
+    				infoText.append(count).append(". ").append(name).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
     
     @FXML
@@ -574,51 +791,31 @@ public class DashboardController implements Initializable {
     	infoPane.toFront();
     	infoPane.setVisible(true);	
     	title.setText(defects.getText());
-    	information.setText(
-    			"1. Security Vulnerabilities:\r\n"
-    			+ "Vulnerabilities in payment processing and credit card handling, potentially leading to data breaches.\r\n"
-    			+ "Inadequate security measures for user data, exposing sensitive information to potential threats.\r\n"
-    			+ "2. Performance and Scalability Issues:\r\n"
-    			+ "Slow loading times, particularly during peak traffic periods, leading to poor user experience.\r\n"
-    			+ "Scalability problems when the system is unable to handle increasing user load, resulting in site crashes or slow response times."
-    			);
-    }
-
-    @FXML
-    private TextField entryTitle;
-    @FXML
-    private TextField entryDate;
-    @FXML
-    private TextField entryType;
-    @FXML
-    private TextField entryTimeSpent;
-    @FXML
-    private TextField entryDescription;
-    @FXML
-    private TextField reportTitle;
-    @FXML
-    private TextField reportDate;
-    @FXML
-    private TextField reportType;
-    @FXML
-    private TextField reportTimeSpent;
-    @FXML
-    private TextField reportDescription;
-
-    private OracleDBConnection dbConnection;
-
-    public DashboardController() {
-        try {
-            dbConnection = new OracleDBConnection(); // Initialize the connection
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle connection error
-        }
+    	StringBuilder infoText = new StringBuilder();
+    	String avqHistorical = "Select * from HISTORICALDEFECTS";
+    	int count = 1;
+    	try(PreparedStatement pstmt = connection.prepareStatement(avqHistorical)){
+    		try(ResultSet result = pstmt.executeQuery()){
+    			while(result.next()) {
+    				String title = result.getString("TITLE");
+    				String description = result.getString("DESCRIPTION");
+    				infoText.append(count).append(". ").append(title).append("\n").append(description).append("\n");
+    			}
+    		}
+    		
+    		information.setText(infoText.toString());
+	    } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	    }
     }
 
     public void displayEntryDetails() {
-        try (OracleConnection conn = dbConnection.makeConnection();
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.ENTRY WHERE ID = ?")) {
+    	
+    	String entry = "SELECT * FROM ADMIN.ENTRY WHERE ID = ?";
+    	
+        try (PreparedStatement pstmt = connection.prepareStatement(entry)) {
             
             // Set the ID
             pstmt.setInt(1, 1); // ID = 1
@@ -643,25 +840,36 @@ public class DashboardController implements Initializable {
     }
     
     public void displayReportDetails() {
-//        try (OracleConnection conn = dbConnection.makeConnection();
-//             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM admin.REPORT WHERE ID = ?")) {
-//
-//            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
-//
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                if (rs.next()) {
-                    // Setting text for each TextField with the data from the database
-                    reportTitle.setText("Title: EffortLogger Defect Check");
-                    reportDate.setText("Date: 2023-11-11");
-                    reportType.setText("Type: Defect");
-                    reportTimeSpent.setText("Time Spent: 05:10");
-                    reportDescription.setText("Description: This is Effortlogger defect check.");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            // Handle SQL exception
-//        }
+    	String deffect = "SELECT * FROM REPORT WHERE ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(deffect)) {
+
+            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                	String dateTimeString = rs.getString("DATE_COLUMN");
+                    LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    String dateString = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                	
+                    reportTitle.setText("Title: \n" + rs.getString("TITLE"));
+                    reportDate.setText("Date: \n" + rs.getString("DATE_COLUMN"));
+                    reportType.setText("Type: \n" + rs.getString("TYPE"));
+                    reportTimeSpent.setText("Time Spent: \n" + rs.getString("TIME"));
+                    reportDescription.setText("Description: \n" + rs.getString("DESCRIPTION"));
+                	    	
+                	
+//                    // Setting text for each TextField with the data from the database
+//                    reportTitle.setText("Title: EffortLogger Defect Check");
+//                    reportDate.setText("Date: 2023-11-11");
+//                    reportType.setText("Type: Defect");
+//                    reportTimeSpent.setText("Time Spent: 05:10");
+//                    reportDescription.setText("Description: This is Effortlogger defect check.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
     }
 
     private String formatDate(Date date) {
@@ -713,6 +921,132 @@ public class DashboardController implements Initializable {
     	compute();
     }
     
+    @FXML
+    void createEntry(ActionEvent event) {
+    	loggerPane.setVisible(true);
+    	type.setText("Create new entry");
+    }
+    
+    @FXML
+    void createReport(ActionEvent event) {
+    	loggerPane.setVisible(true);
+    	type.setText("Create new report");
+    }
+    
+    private boolean[] validatedField = {false, false, false, false, false};
+    @FXML 
+    void createLog(ActionEvent event) {
+    	boolean allValidated = false;
+    	validatedField[0] = !logTitle.getText().isEmpty();
+    	validatedField[1] = !logDate.getText().isEmpty();
+    	validatedField[2] = !logType.getText().isEmpty();
+    	validatedField[3] = !logTime.getText().isEmpty();
+    	validatedField[4] = !logDescription.getText().isEmpty();
+    	
+    	allValidated = validatedField[0] && validatedField[1] && validatedField[3] && validatedField[4] && validatedField[2];
+    	System.out.println(allValidated);
+    	
+    	if(!allValidated) {
+    		if(!validatedField[0]) {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.RED);
+    		} else {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[1]) {
+				dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(!isValidDate(logDate.getText())) {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+				}else {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logDate.getText());
+				}
+    		}
+			if(!validatedField[2]) {
+			    typeLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				typeLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[3]) {
+    			timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(isValidTime(logTime.getText())) {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logTime.getText());
+				}else {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//System.out.println(timeLabelLog.getText());
+				}
+    		}
+			if(!validatedField[4]) {
+    			descriptionLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				descriptionLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+    	}else {	
+    		 	boolean isDateValid = isValidDate(logDate.getText());
+    	        boolean isTimeValid = isValidTime(logTime.getText());
+
+    	        if (!isDateValid) {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	            allValidated = false;
+    	        } else {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logDate.getText());
+    	        }
+
+    	        if (!isTimeValid) {
+    	        	allValidated = false;
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	        } else {
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logTime.getText());
+    	        }
+    		
+    	        boolean executed = false;
+	    	    if(allValidated) {
+	    	    	String entryOrDefect = type.getText().equals("Create new report") ? "REPORT" : "ENTRY";
+		    		System.out.println(entryOrDefect);
+		    		String createLog = "insert into " + entryOrDefect + " (TYPE, TITLE, DESCRIPTION, DATE_COLUMN, TIME) VALUES (?, ?, ?, TO_DATE(?, 'MM/DD/YYYY'), ?)";
+		    		try (PreparedStatement pstmt = connection.prepareStatement(createLog)) {
+		                pstmt.setString(1, logType.getText());
+		                pstmt.setString(2, logTitle.getText());
+		                pstmt.setString(3, logDescription.getText());
+		                pstmt.setString(4, logDate.getText()); 
+		                pstmt.setString(5, logTime.getText());
+
+		                // Execute the update
+		                pstmt.executeUpdate();
+		                executed = true;
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+	    	    
+	    	    }
+	    	    if(executed) {
+	    	    	logTitle.clear();
+	    	    	logType.clear();
+	    	    	logDate.clear();
+	    	    	logTime.clear();
+	    	    	logDescription.clear();
+	    	    	loggerPane.setVisible(false);
+	    	    }
+    	    }
+    	
+    }
+    
+    @FXML
+    void closeLog(ActionEvent event) {
+    	logTitle.clear();
+    	logType.clear();
+    	logDate.clear();
+    	logTime.clear();
+    	logDescription.clear();
+    	loggerPane.setVisible(false);
+   
+    }
+    
     void disableButton() {
     	btn0.setDisable(true);
     	btn1.setDisable(true);
@@ -724,15 +1058,35 @@ public class DashboardController implements Initializable {
     	empw2.setText("4");
     	empw3.setText("4");
     }
-    
-    void compute() {
+     
+    void compute() { 
     	int userW = Integer.parseInt(myPoint.getText());
     	int otherUser = Integer.parseInt(empw.getText());
     	int avg = (userW + 3*otherUser)/4;
     	avgW.setText(String.valueOf(avg));
     	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
     	
-    	
     }
     
+    public static boolean isValidDate(String dateString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate.parse(dateString, formatter);
+            return true; // Parsing successful, valid date
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid date
+        }
+    }
+
+    public static boolean isValidTime(String timeString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(timeString, formatter);
+            return true; // Parsing successful, valid time
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid time
+        }
+    }
+
+ 
 }

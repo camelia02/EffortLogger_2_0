@@ -24,7 +24,6 @@
    <right>
       <AnchorPane prefHeight="464.0" prefWidth="404.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <MaskerPane fx:id="load" disable="true" layoutX="138.0" layoutY="168.0" visible="false" />
             <PasswordField fx:id="passwordField" layoutX="157.0" layoutY="260.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="idField" layoutX="157.0" layoutY="206.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: #b0e0e6; -fx-border-width: 0px 0px 2px 0px;" />
             <Label layoutX="73.0" layoutY="210.0" text="Username">
@@ -52,6 +51,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
+            <MaskerPane fx:id="load" layoutX="143.0" layoutY="180.0" />
          </children>
       </AnchorPane>
    </right>

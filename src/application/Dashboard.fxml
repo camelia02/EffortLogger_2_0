@@ -11,6 +11,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -25,7 +26,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="631.0" minWidth="777.0" prefHeight="631.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8f8a93" height="60.0" layoutX="13.0" layoutY="14.0" stroke="TRANSPARENT" strokeType="INSIDE" width="749.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#e58fab" height="446.0" layoutX="14.0" layoutY="84.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
@@ -245,31 +246,20 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="543.0" prefWidth="532.0">
                <children>
                   <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" text="Add new entry" textAlignment="CENTER">
+                        <Button fx:id="entry" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createEntry" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@add_new_icon.PNG" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <stylesheets>
-                              <URL value="@buttonTransp.css" />
-                              <URL value="@buttonWhite.css" />
-                           </stylesheets>
                         </Button>
                         <AnchorPane prefHeight="80.0" prefWidth="462.0" stylesheets="@application.css">
                            <children>
@@ -313,7 +303,7 @@
                                     <Pane minHeight="383.0" minWidth="300.0" prefHeight="485.0" prefWidth="379.0">
                                        <children>
                                           <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="383.0" stroke="WHITE" strokeType="INSIDE" width="300.0" />
-                                          <VBox prefHeight="383.0" prefWidth="300.0">
+                                          <VBox fx:id="entrycard" prefHeight="383.0" prefWidth="300.0">
                                              <children>
                                                 <TextField fx:id="entryTitle" alignment="TOP_LEFT" editable="false" prefHeight="52.0" prefWidth="300.0" stylesheets="@application.css" text="Title: ">
                                                    <font>
@@ -439,20 +429,13 @@
                <children>
                   <VBox prefHeight="543.0" prefWidth="532.0" spacing="10.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="510.0" text="Add new report">
+                        <Button fx:id="report" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createReport" prefHeight="25.0" prefWidth="510.0" text="Add new report">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@add_new_icon.PNG" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <stylesheets>
                               <URL value="@buttonTransp.css" />
                               <URL value="@buttonWhite.css" />
@@ -796,6 +779,47 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Pane fx:id="exportPane" layoutX="72.0" layoutY="155.0" prefHeight="135.0" prefWidth="308.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+                     <children>
+                        <Button fx:id="files" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="273.0" stylesheets="@buttonWhite.css" text="Choose File" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="53.0" mnemonicParsing="false" onAction="#entryToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: orange;" stylesheets="@buttonWhite.css" text="Entry" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="91.0" mnemonicParsing="false" onAction="#reportToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: skyblue;" stylesheets="@buttonWhite.css" text="Report" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <ScrollPane layoutX="14.0" layoutY="190.0" prefHeight="323.0" prefWidth="510.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-vbar-policy: NEVER;">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="494.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label fx:id="activityLogs" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="478.0" style="-fx-text-fill: black;">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="135.0" prefWidth="532.0">
@@ -814,7 +838,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
+                        <Button mnemonicParsing="false" onAction="#chooseFile" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -976,11 +1000,11 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="200.0" prefWidth="373.0">
+                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="402.0" prefWidth="373.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-vbar-policy: NEVER;">
                                       <content>
                                         <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc0;">
                                              <children>
-                                                <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" text="info" wrapText="true" />
+                                                <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" style="-fx-text-fill: BLACK;" text="info" wrapText="true" />
                                              </children>
                                           </AnchorPane>
                                       </content>
@@ -1303,6 +1327,99 @@
             </ImageView>
          </graphic>
       </Button>
+      <Pane fx:id="loggerPane" layoutX="115.0" layoutY="126.0" prefHeight="455.0" prefWidth="545.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+         <children>
+            <Button fx:id="type" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="510.0" stylesheets="@buttonWhite.css" text="Add new entry" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <VBox layoutX="18.0" layoutY="66.0" prefHeight="310.0" prefWidth="510.0" spacing="1.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label fx:id="titleLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Title ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTitle" prefHeight="18.0" prefWidth="414.0" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+                     <children>
+                        <Label fx:id="dateLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Date ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDate" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="typeLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Type ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logType" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="timeLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Time ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logTime" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
+                     <children>
+                        <Label fx:id="descriptionLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: white;" text="Description ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="logDescription" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" onAction="#createLog" prefHeight="30.0" prefWidth="241.0" stylesheets="@buttonWhite.css" text="Create" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="389.0" mnemonicParsing="false" onAction="#closeLog" prefHeight="30.0" prefWidth="241.0" style="-fx-background-color: #df6969;" stylesheets="@buttonWhite.css" text="Close" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
       <!--  
       <Button layoutX="563.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
       <Button layoutX="540.0" layoutY="18.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
