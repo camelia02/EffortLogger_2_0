@@ -8,19 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class EffortLogger2 extends Application {
-	private static MainSceneController mainController;
 	
 	private static DashboardController dashboard;
 	
 	private static SupervisorController supervisor;
-	
-    public static MainSceneController getMainController() {
-        return mainController;
-    }
-    public void setMainController(MainSceneController mainController) {
-        EffortLogger2.mainController = mainController;
-    }
-    
+
     public static DashboardController getDashboard() {
         return dashboard;
     }
