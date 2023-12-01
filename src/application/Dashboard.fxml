@@ -443,13 +443,6 @@
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@add_new_icon.PNG" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <stylesheets>
                               <URL value="@buttonTransp.css" />
                               <URL value="@buttonWhite.css" />
@@ -1311,17 +1304,21 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Title ">
+                        <Label fx:id="titleLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Title ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="logTitle" prefHeight="59.0" prefWidth="413.0" />
+                        <TextArea fx:id="logTitle" prefHeight="18.0" prefWidth="414.0" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Date ">
+                        <Label fx:id="dateLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Date ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1331,7 +1328,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Type ">
+                        <Label fx:id="typeLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Type ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1341,7 +1338,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Time ">
+                        <Label fx:id="timeLabelLog" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" text="Time ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1351,7 +1348,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: white;" text="Description ">
+                        <Label fx:id="descriptionLabel" alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="96.0" style="-fx-background-color: white;" text="Description ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -1361,7 +1358,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Button fx:id="createLog" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="241.0" stylesheets="@buttonWhite.css" text="Create" textAlignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" onAction="#createLog" prefHeight="30.0" prefWidth="241.0" stylesheets="@buttonWhite.css" text="Create" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

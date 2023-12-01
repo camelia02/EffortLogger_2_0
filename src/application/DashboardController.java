@@ -1,6 +1,5 @@
 package application;
 
-import application.OracleDBConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -20,6 +19,8 @@ import javafx.util.Duration;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.sql.Connection;
@@ -28,7 +29,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import oracle.jdbc.OracleConnection;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -261,8 +261,6 @@ public class DashboardController implements Initializable {
     @FXML
     private Button type;
     
-    @FXML
-    private Button createLog;
     
     @FXML
     private Button close;
@@ -287,6 +285,21 @@ public class DashboardController implements Initializable {
     
     @FXML
     private TextArea logDescription;
+    
+    @FXML
+    private Label titleLabel;
+    
+    @FXML
+    private Label dateLabelLog;
+    
+    @FXML
+    private Label typeLabel;
+    
+    @FXML
+    private Label timeLabelLog;
+    
+    @FXML
+    private Label descriptionLabel;
     
     
     private Image green_circle;
@@ -890,7 +903,6 @@ public class DashboardController implements Initializable {
     @FXML 
     void createLog(ActionEvent event) {
     	boolean allValidated = false;
-    	
     	validatedField[0] = !logTitle.getText().isEmpty();
     	validatedField[1] = !logDate.getText().isEmpty();
     	validatedField[2] = !logType.getText().isEmpty();
@@ -898,11 +910,98 @@ public class DashboardController implements Initializable {
     	validatedField[4] = !logDescription.getText().isEmpty();
     	
     	allValidated = validatedField[0] && validatedField[1] && validatedField[3] && validatedField[4] && validatedField[2];
+    	System.out.println(allValidated);
     	
     	if(!allValidated) {
+    		if(!validatedField[0]) {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.RED);
+    		} else {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[1]) {
+				dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(!isValidDate(logDate.getText())) {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+				}else {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logDate.getText());
+				}
+    		}
+			if(!validatedField[2]) {
+			    typeLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				typeLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[3]) {
+    			timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(isValidTime(logTime.getText())) {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logTime.getText());
+				}else {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//System.out.println(timeLabelLog.getText());
+				}
+    		}
+			if(!validatedField[4]) {
+    			descriptionLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				descriptionLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+    	}else {	
+    		 	boolean isDateValid = isValidDate(logDate.getText());
+    	        boolean isTimeValid = isValidTime(logTime.getText());
+
+    	        if (!isDateValid) {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	            allValidated = false;
+    	        } else {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logDate.getText());
+    	        }
+
+    	        if (!isTimeValid) {
+    	        	allValidated = false;
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	        } else {
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logTime.getText());
+    	        }
     		
-    	}
+	    	    if(allValidated) {
+	    	    	String entryOrDefect = type.getText().equals("Create new report") ? "REPORT" : "ENTRY";
+		    		System.out.println(entryOrDefect);
+		    		String createLog = "insert into " + entryOrDefect + " (TYPE, TITLE, DESCRIPTION, DATE_COLUMN, TIME) VALUES ('?', '?', '?', TO_DATE('?', 'MM/DD/YYYY'), '?')";
+		    		try (PreparedStatement pstmt = connection.prepareStatement(createLog)) {
+		           
+		                pstmt.setString(1, logType.getText());
+		                pstmt.setString(2, logTitle.getText());
+		                pstmt.setString(3, logDescription.getText());
+		                pstmt.setString(4, logDate.getText()); 
+		                pstmt.setString(5, logTime.getText());
+
+		                // Execute the update
+		                pstmt.executeUpdate();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+	    	    
+	    	    }
+    	    }
     	
+    }
+    
+    @FXML
+    void closeLog(ActionEvent event) {
+    	logTitle.clear();
+    	logType.clear();
+    	logDate.clear();
+    	logTime.clear();
+    	logDescription.clear();
+    	loggerPane.setVisible(false);
+   
     }
     
     void disableButton() {
@@ -916,7 +1015,7 @@ public class DashboardController implements Initializable {
     	empw2.setText("4");
     	empw3.setText("4");
     }
-    
+     
     void compute() {
     	int userW = Integer.parseInt(myPoint.getText());
     	int otherUser = Integer.parseInt(empw.getText());
@@ -924,6 +1023,26 @@ public class DashboardController implements Initializable {
     	avgW.setText(String.valueOf(avg));
     	rangeW.setText(String.valueOf(userW > otherUser? userW - otherUser: otherUser - userW));;
     	
+    }
+    
+    public static boolean isValidDate(String dateString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate.parse(dateString, formatter);
+            return true; // Parsing successful, valid date
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid date
+        }
+    }
+
+    public static boolean isValidTime(String timeString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(timeString, formatter);
+            return true; // Parsing successful, valid time
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid time
+        }
     }
 
  
