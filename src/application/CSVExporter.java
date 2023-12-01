@@ -10,15 +10,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CSVExporter {
 
     public static void exportToCSV(Connection connection, String tableName) {
+        LocalDateTime currentTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm");
+        String timestamp = currentTime.format(formatter);
+    	
         String query = "SELECT * FROM " + tableName;
 
         String userHome = System.getProperty("user.home");
-
-        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads/" + tableName + ".xlsx";
+        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads/" + tableName + "_" + timestamp + ".xlsx";
         //String relativePath = "/Downloads";
         String fullPath = Paths.get(userHome, relativePath).toString();
 
