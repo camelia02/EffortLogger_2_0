@@ -1,4 +1,5 @@
 package application;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -15,15 +16,15 @@ import java.time.format.DateTimeFormatter;
 
 public class CSVExporter {
 
-    public static void exportToCSV(Connection connection, String tableName) {
+    public static boolean exportToCSV(Connection connection, String tableName) {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmm");
         String timestamp = currentTime.format(formatter);
-    	
+    	boolean exported = false;
         String query = "SELECT * FROM " + tableName;
 
         String userHome = System.getProperty("user.home");
-        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads/" + tableName + "_" + timestamp + ".xlsx";
+        String relativePath = "Downloads/" + tableName + "_" + timestamp + ".xlsx";
         //String relativePath = "/Downloads";
         String fullPath = Paths.get(userHome, relativePath).toString();
 
@@ -58,8 +59,21 @@ public class CSVExporter {
             // Write the workbook content to the file
             workbook.write(fileOut);
             
+            String activity = "Data exported to "  + tableName + "_" + timestamp + ".xlsx.";
+            String logs = "Insert into LOGS(DESCRIPTION) VALUES (?)";
+            
+            try (PreparedStatement pstmt = connection.prepareStatement(logs)) {
+                pstmt.setString(1, activity);
+                // Execute the update
+                pstmt.executeUpdate();
+                exported = true;
+            } 
+	    
+	    return exported;
+            
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
+		return false;
     }
 }

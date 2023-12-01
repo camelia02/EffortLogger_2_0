@@ -492,35 +492,16 @@ public class DashboardController implements Initializable {
     
     @FXML
     void entryToCSV(ActionEvent event) {
-//    	 String userHome = System.getProperty("user.home");
-//
-//         //String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads";
-//    	String relativePath = "/Downloads";
-//         String fullPath = Paths.get(userHome, relativePath).toString();
-//
-//         // Use fullPath for file operations
-//         System.out.println("Full Download Path: " + fullPath);
+
      	CSVExporter.exportToCSV(connection, "ENTRY");
+     	exportPane.setVisible(false);
     }
     
     @FXML
     void reportToCSV(ActionEvent event) {
-    	// Get the user's name
-//        String user = System.getProperty("user.name");
-//
-//        System.out.println("Current user: " + user);
-//    	
-//        String userHome = System.getProperty("user.home");
-//
-//        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads";
-//
-//        String fullPath = Paths.get(userHome, relativePath).toString();
-//        
-     
 
-//        // Use fullPath for file operations
-//        System.out.println("Full Download Path: " + fullPath);
     	CSVExporter.exportToCSV(connection, "REPORT");
+    	exportPane.setVisible(false);
     }
     
     private int seconds = 30;
