@@ -301,6 +301,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Label descriptionLabel;
     
+    @FXML
+    private Pane exportPane;
+    
     
     private Image green_circle;
     
@@ -478,6 +481,22 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	  
+    }
+    
+    @FXML
+    void chooseFile(ActionEvent event) {
+    	exportPane.setVisible(true);
+    }
+    
+    @FXML
+    void entryToCSV(ActionEvent event) {
+    	CSVExporter.exportToCSV(connection, "ENTRY", "/EffortLogger_2_0");
+    }
+    
+    @FXML
+    void reportToCSV(ActionEvent event) {
+    	CSVExporter.exportToCSV(connection, "REPORT", "/EffortLogger_2_0");
     }
     
     private int seconds = 30;

@@ -510,6 +510,9 @@ public class SupervisorController implements Initializable{
     @FXML
     private ImageView username_2_3_img;
 
+    @FXML
+    private VBox team_1_vbox;
+
 
     private Stop[] stops;
     
@@ -636,6 +639,16 @@ public class SupervisorController implements Initializable{
 //		draggableMaker.makeDraggable(avg_completion_pane);
 //		draggableMaker.makeDraggable(similar_proj_pane);
 //		draggableMaker.makeDraggable(defects_pane);
+        
+        mainHomePane.setVisible(true);
+    	mainProjectPane.setVisible(false);
+    	mainReportPane.setVisible(false);
+    	mainTeamPane.setVisible(false);
+    	mainCollabPane.setVisible(false);
+    	mainExportPane.setVisible(false);
+    	mainCustSupportPane.setVisible(false);
+    	mainPrivacyPane.setVisible(false);
+    	mainSettingsPane.setVisible(false);
     }
     
     
@@ -686,6 +699,7 @@ public class SupervisorController implements Initializable{
 
     @FXML
     void teamOpenClicked(ActionEvent event) {
+    	team_1_vbox.setVisible(false);
     	team_1_open_pane.setVisible(true);
     }
 
@@ -817,6 +831,7 @@ public class SupervisorController implements Initializable{
     	
     	if (team_1_open_pane.isVisible()) {
     		team_1_open_pane.setVisible(false);
+    		team_1_vbox.setVisible(true);
     	}
 
     }

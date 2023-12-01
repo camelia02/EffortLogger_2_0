@@ -246,7 +246,7 @@
                </children>
             </VBox>
          </children></Pane>
-      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0">
+      <Pane fx:id="mainEntryPane" layoutX="224.0" layoutY="84.0" pickOnBounds="false" prefHeight="543.0" prefWidth="532.0" visible="false">
          <children>
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="543.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="532.0" />
             <AnchorPane prefHeight="543.0" prefWidth="532.0">
@@ -779,6 +779,34 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Pane fx:id="exportPane" layoutX="72.0" layoutY="155.0" prefHeight="135.0" prefWidth="308.0" style="-fx-background-color: #f6bfc6; -fx-border-radius: 10; -fx-border-color: black;" visible="false">
+                     <children>
+                        <Button fx:id="files" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="273.0" stylesheets="@buttonWhite.css" text="Choose File" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="53.0" mnemonicParsing="false" onAction="#entryToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: orange;" stylesheets="@buttonWhite.css" text="Entry" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="91.0" mnemonicParsing="false" onAction="#reportToCSV" prefHeight="30.0" prefWidth="273.0" style="-fx-background-color: skyblue;" stylesheets="@buttonWhite.css" text="Report" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="135.0" prefWidth="532.0">
@@ -797,7 +825,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
+                        <Button mnemonicParsing="false" onAction="#chooseFile" prefHeight="8.0" prefWidth="160.0" stylesheets="@buttonWhite.css" text="Choose file">
                            <font>
                               <Font size="10.0" />
                            </font>
