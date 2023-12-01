@@ -1000,11 +1000,11 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="402.0" prefWidth="373.0">
+                                    <ScrollPane fx:id="infoScroll" layoutX="15.0" layoutY="90.0" prefHeight="402.0" prefWidth="373.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-vbar-policy: NEVER;">
                                       <content>
                                         <AnchorPane id="info" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="358.0" style="-fx-background-color: #f6bfc0;">
                                              <children>
-                                                <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" text="info" wrapText="true" />
+                                                <Label fx:id="information" alignment="TOP_LEFT" layoutX="6.0" layoutY="6.0" lineSpacing="4.0" prefHeight="406.0" prefWidth="354.0" style="-fx-text-fill: BLACK;" text="info" wrapText="true" />
                                              </children>
                                           </AnchorPane>
                                       </content>
