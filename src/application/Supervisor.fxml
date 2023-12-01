@@ -364,7 +364,7 @@
                               <Rectangle fx:id="project_1_rect" arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="140.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
                               <AnchorPane prefHeight="140.0" prefWidth="462.0">
                                  <children>
-                                    <Button fx:id="project_1_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="\%">
+                                    <Button fx:id="project_1_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="35.10%">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -402,7 +402,7 @@
                               <Rectangle fx:id="project_2_rect" arcHeight="20.0" arcWidth="20.0" fill="#f6bfc6" height="140.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
                               <AnchorPane prefHeight="140.0" prefWidth="462.0">
                                  <children>
-                                    <Button fx:id="project_2_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="\%">
+                                    <Button fx:id="project_2_perc" layoutX="388.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="60.0" stylesheets="@buttonWhite.css" text="25%">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
