@@ -22,7 +22,12 @@ import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -37,7 +42,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 
-public class SupervisorController implements Initializable{
+public class SupervisorController implements Initializable {
 
     @FXML
     private PieChart CSAT_pie;
@@ -509,10 +514,54 @@ public class SupervisorController implements Initializable{
 
     @FXML
     private ImageView username_2_3_img;
-
+    
     @FXML
     private VBox team_1_vbox;
-
+    
+    @FXML
+    private TextArea logTitle;
+    
+    @FXML
+    private TextArea logDate;
+    
+    @FXML
+    private TextArea logType;
+    
+    @FXML
+    private TextArea logTime;
+    
+    @FXML
+    private TextArea logDescription;
+    
+    @FXML
+    private Label titleLabel;
+    
+    @FXML
+    private Label dateLabelLog;
+    
+    @FXML
+    private Label typeLabel;
+    
+    @FXML
+    private Label timeLabelLog;
+    
+    @FXML
+    private Label descriptionLabel;
+    
+    @FXML
+    private Pane loggerPane;
+    
+    @FXML
+    private Pane exportPane;
+    
+    @FXML
+    private Button type;
+    
+    @FXML
+    private Button close;
+    
+    @FXML
+    private Label activityLogs;
 
     private Stop[] stops;
     
@@ -522,8 +571,10 @@ public class SupervisorController implements Initializable{
     
     private Image grey_circle;
     
-    private Connection connection;
     private Employee employee;
+	
+	private Connection connection;
+	
 
 	public void setConnection(Connection connection) {
 	    this.connection = connection;
@@ -553,13 +604,15 @@ public class SupervisorController implements Initializable{
 	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
 	                employeeFromLogin.getFullName() + "\n");
 	    } else {
-	        System.err.println("Employee not set in MainSceneController");
+	        System.err.println("Employee not set in DashboardController");
 	    }
 	}
     
+	
 	@Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-		try {
+    public void initialize(URL url, ResourceBundle resourceBundle){
+    	
+    	try {
     		OracleDBConnection con = new OracleDBConnection();
             connection = con.makeConnection();
             Employee employeeFromLogin = getEmployee();
@@ -570,7 +623,7 @@ public class SupervisorController implements Initializable{
                 System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
                         employeeFromLogin.getFullName() + "\n");
             } else {
-                System.err.println("Employee not set in SupervisorController");
+                System.err.println("Employee not set in DashboardController");
             }
         } catch (Exception e) {
             // Handle the SQLException (log or propagate)
@@ -608,7 +661,7 @@ public class SupervisorController implements Initializable{
 
         // Add a shutdown hook to stop the scheduler when the program exits
         Runtime.getRuntime().addShutdownHook(new Thread(scheduler::shutdown));
-		
+        
 		green_circle = new Image(getClass().getResourceAsStream("green-circle.png"), 15, 15, true, true);
 		
 		grey_circle = new Image(getClass().getResourceAsStream("grey-circle.png"), 15, 15, true, true);
@@ -639,16 +692,10 @@ public class SupervisorController implements Initializable{
 //		draggableMaker.makeDraggable(avg_completion_pane);
 //		draggableMaker.makeDraggable(similar_proj_pane);
 //		draggableMaker.makeDraggable(defects_pane);
+        displayReportDetails();
+        exportPane.setVisible(false);
+        exportPane.toBack();
         
-        mainHomePane.setVisible(true);
-    	mainProjectPane.setVisible(false);
-    	mainReportPane.setVisible(false);
-    	mainTeamPane.setVisible(false);
-    	mainCollabPane.setVisible(false);
-    	mainExportPane.setVisible(false);
-    	mainCustSupportPane.setVisible(false);
-    	mainPrivacyPane.setVisible(false);
-    	mainSettingsPane.setVisible(false);
     }
     
     
@@ -698,11 +745,154 @@ public class SupervisorController implements Initializable{
     }
 
     @FXML
+    void chooseFile(ActionEvent event) {
+    	exportPane.setVisible(true);
+    	exportPane.toFront();
+    }
+    
+    @FXML
     void teamOpenClicked(ActionEvent event) {
-    	team_1_vbox.setVisible(false);
     	team_1_open_pane.setVisible(true);
+    	team_1_vbox.setVisible(false);
     }
 
+
+    @FXML
+    void entryToCSV(ActionEvent event) {
+     	CSVExporter.exportToCSV(connection, "ENTRY");
+     	exportPane.setVisible(false);
+     	exportPane.toBack();
+     	displayLog();
+    }
+    
+    @FXML
+    void reportToCSV(ActionEvent event) {
+    	CSVExporter.exportToCSV(connection, "REPORT");
+    	exportPane.setVisible(false);
+    	exportPane.toBack();
+    	displayLog();
+    }
+    
+    
+    private boolean[] validatedField = {false, false, false, false, false};
+    @FXML
+    void createLog(ActionEvent event) {
+    	boolean allValidated = false;
+    	validatedField[0] = !logTitle.getText().isEmpty();
+    	validatedField[1] = !logDate.getText().isEmpty();
+    	validatedField[2] = !logType.getText().isEmpty();
+    	validatedField[3] = !logTime.getText().isEmpty();
+    	validatedField[4] = !logDescription.getText().isEmpty();
+    	
+    	allValidated = validatedField[0] && validatedField[1] && validatedField[3] && validatedField[4] && validatedField[2];
+    	System.out.println(allValidated);
+    	
+    	if(!allValidated) {
+    		if(!validatedField[0]) {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.RED);
+    		} else {
+    			titleLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[1]) {
+				dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(!isValidDate(logDate.getText())) {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+				}else {
+					dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logDate.getText());
+				}
+    		}
+			if(!validatedField[2]) {
+			    typeLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				typeLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+			if(!validatedField[3]) {
+    			timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				if(isValidTime(logTime.getText())) {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+					System.out.println(logTime.getText());
+				}else {
+					timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+					//System.out.println(timeLabelLog.getText());
+				}
+    		}
+			if(!validatedField[4]) {
+    			descriptionLabel.setTextFill(javafx.scene.paint.Color.RED);
+			}else {
+				descriptionLabel.setTextFill(javafx.scene.paint.Color.BLACK);
+    		}
+    	}else {	
+    		 	boolean isDateValid = isValidDate(logDate.getText());
+    	        boolean isTimeValid = isValidTime(logTime.getText());
+
+    	        if (!isDateValid) {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	            allValidated = false;
+    	        } else {
+    	            dateLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logDate.getText());
+    	        }
+
+    	        if (!isTimeValid) {
+    	        	allValidated = false;
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.RED);
+    	        } else {
+    	            timeLabelLog.setTextFill(javafx.scene.paint.Color.BLACK);
+    	            System.out.println(logTime.getText());
+    	        }
+    		
+    	        boolean executed = false;
+	    	    if(allValidated) {
+	    	    	String entryOrDefect = type.getText().equals("Create new report") ? "REPORT" : "ENTRY";
+		    		System.out.println(entryOrDefect);
+		    		String createLog = "insert into " + entryOrDefect + " (TYPE, TITLE, DESCRIPTION, DATE_COLUMN, TIME) VALUES (?, ?, ?, TO_DATE(?, 'MM/DD/YYYY'), ?)";
+		    		try (PreparedStatement pstmt = connection.prepareStatement(createLog)) {
+		                pstmt.setString(1, logType.getText());
+		                pstmt.setString(2, logTitle.getText());
+		                pstmt.setString(3, logDescription.getText());
+		                pstmt.setString(4, logDate.getText()); 
+		                pstmt.setString(5, logTime.getText());
+
+		                // Execute the update
+		                pstmt.executeUpdate();
+		                executed = true;
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+	    	    
+	    	    }
+	    	    if(executed) {
+	    	    	logTitle.clear();
+	    	    	logType.clear();
+	    	    	logDate.clear();
+	    	    	logTime.clear();
+	    	    	logDescription.clear();
+	    	    	loggerPane.setVisible(false);
+	    	    }
+    	    }
+    }
+
+    @FXML
+    void createReport(ActionEvent event) {
+    	loggerPane.setVisible(true);
+    	type.setText("Create new report");
+    }
+    
+    @FXML
+    void closeLog(ActionEvent event) {
+    	logTitle.clear();
+    	logType.clear();
+    	logDate.clear();
+    	logTime.clear();
+    	logDescription.clear();
+    	loggerPane.setVisible(false);
+    }
+    
+  
     @FXML
     void mainCollabClicked(ActionEvent event) {
     	mainHomePane.setVisible(false);
@@ -742,6 +932,7 @@ public class SupervisorController implements Initializable{
     	mainCustSupportPane.setVisible(false);
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
+    	displayLog();
 
     }
 
@@ -896,5 +1087,76 @@ public class SupervisorController implements Initializable{
     	return false;
     } //boolean checkGray(ToggleButton btn)
     
+    public static boolean isValidDate(String dateString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            LocalDate.parse(dateString, formatter);
+            return true; // Parsing successful, valid date
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid date
+        }
+    }
+
+    public static boolean isValidTime(String timeString) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime.parse(timeString, formatter);
+            return true; // Parsing successful, valid time
+        } catch (Exception e) {
+            return false; // Parsing failed, not a valid time
+        }
+    }
+    
+    public void displayReportDetails() {
+    	String deffect = "SELECT * FROM REPORT WHERE ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(deffect)) {
+
+            pstmt.setInt(1, 1); // Assuming you're fetching the report with ID = 1
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                	String dateTimeString = rs.getString("DATE_COLUMN");
+                    LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    String dateString = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                	
+                    reportTitle.setText("Title: \n" + rs.getString("TITLE"));
+                    reportDate.setText("Date: \n" + rs.getString("DATE_COLUMN"));
+                    reportType.setText("Type: \n" + rs.getString("TYPE"));
+                    reportTimeSpent.setText("Time Spent: \n" + rs.getString("TIME"));
+                    reportDescription.setText("Description: \n" + rs.getString("DESCRIPTION"));
+                	    	
+                	
+//                    // Setting text for each TextField with the data from the database
+//                    reportTitle.setText("Title: EffortLogger Defect Check");
+//                    reportDate.setText("Date: 2023-11-11");
+//                    reportType.setText("Type: Defect");
+//                    reportTimeSpent.setText("Time Spent: 05:10");
+//                    reportDescription.setText("Description: This is Effortlogger defect check.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle SQL exception
+        }
+    }
+    
+    void displayLog() {
+    	String updateLog = "Select * from logs";
+     	StringBuilder activityText = new StringBuilder();
+     	int count = 1;
+     	try (PreparedStatement pstmt = connection.prepareStatement(updateLog)) {
+     		try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                        String activity = rs.getString("DESCRIPTION");
+                        activityText.append(count).append(". ").append(activity).append(".\n");
+                        count++;
+                }
+            }
+            activityLogs.setText(activityText.toString());
+            
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 
 }

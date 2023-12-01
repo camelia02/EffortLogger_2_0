@@ -807,6 +807,19 @@
                         </Button>
                      </children>
                   </Pane>
+                  <ScrollPane layoutX="14.0" layoutY="190.0" prefHeight="323.0" prefWidth="510.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-vbar-policy: NEVER;">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="494.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label fx:id="activityLogs" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="446.0" prefWidth="478.0" style="-fx-text-fill: black;">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="135.0" prefWidth="532.0">
@@ -1332,7 +1345,7 @@
                         </Label>
                         <TextArea fx:id="logTitle" prefHeight="18.0" prefWidth="414.0" wrapText="true">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="14.0" />
                            </font>
                         </TextArea>
                      </children>
@@ -1344,7 +1357,11 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="logDate" prefHeight="60.0" prefWidth="414.0" />
+                        <TextArea fx:id="logDate" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
@@ -1354,7 +1371,11 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="logType" prefHeight="60.0" prefWidth="414.0" />
+                        <TextArea fx:id="logType" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
@@ -1364,7 +1385,11 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="logTime" prefHeight="60.0" prefWidth="414.0" />
+                        <TextArea fx:id="logTime" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-border-color: black;">
@@ -1374,7 +1399,11 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="logDescription" prefHeight="60.0" prefWidth="414.0" />
+                        <TextArea fx:id="logDescription" prefHeight="60.0" prefWidth="414.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
                      </children>
                   </HBox>
                </children>

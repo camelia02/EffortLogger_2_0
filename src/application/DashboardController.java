@@ -305,6 +305,30 @@ public class DashboardController implements Initializable {
     @FXML
     private Pane exportPane;
     
+    @FXML
+    private TextField entryTitle;
+    @FXML
+    private TextField entryDate;
+    @FXML
+    private TextField entryType;
+    @FXML
+    private TextField entryTimeSpent;
+    @FXML
+    private TextField entryDescription;
+    @FXML
+    private TextField reportTitle;
+    @FXML
+    private TextField reportDate;
+    @FXML
+    private TextField reportType;
+    @FXML
+    private TextField reportTimeSpent;
+    @FXML
+    private TextField reportDescription;
+    
+    @FXML
+    private Label activityLogs;
+   
     
     private Image green_circle;
     
@@ -343,7 +367,7 @@ public class DashboardController implements Initializable {
 	        System.out.println(employeeFromLogin.getID() + "\n" + employeeFromLogin.getRank() + "\n" +
 	                employeeFromLogin.getFullName() + "\n");
 	    } else {
-	        System.err.println("Employee not set in MainSceneController");
+	        System.err.println("Employee not set in DashboardController");
 	    }
 	}
     
@@ -414,6 +438,7 @@ public class DashboardController implements Initializable {
 		username_1_3_button.setGraphic(new ImageView(grey_circle));
 		
 		loggerPane.setVisible(false);
+		exportPane.setVisible(false);
 		initializeEmployeeData();
 		displayEntryDetails();
 		displayReportDetails();
@@ -445,6 +470,7 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	//mainEntryPane.setVisible(true);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
     }
     
     @FXML
@@ -458,6 +484,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
     }
     @FXML
     void mainTeamCollabClicked(ActionEvent event) {
@@ -470,9 +497,32 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
     }
+    
+    void displayLog() {
+    	String updateLog = "Select * from logs";
+     	StringBuilder activityText = new StringBuilder();
+     	int count = 1;
+     	try (PreparedStatement pstmt = connection.prepareStatement(updateLog)) {
+     		try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                        String activity = rs.getString("DESCRIPTION");
+                        activityText.append(count).append(". ").append(activity).append(".\n");
+                        count++;
+                }
+            }
+            activityLogs.setText(activityText.toString());
+            
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
     @FXML
     void mainExportClicked(ActionEvent event) {
+    	
+    	
     	mainHomePane.setVisible(false);
     	mainEntryPane.setVisible(false);
     	mainReportPane.setVisible(false);
@@ -482,26 +532,31 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
+    	displayLog();
     	  
     }
     
     @FXML
     void chooseFile(ActionEvent event) {
     	exportPane.setVisible(true);
+    	exportPane.toFront();
     }
     
     @FXML
     void entryToCSV(ActionEvent event) {
-
      	CSVExporter.exportToCSV(connection, "ENTRY");
      	exportPane.setVisible(false);
+     	exportPane.toBack();
+     	displayLog();
     }
     
     @FXML
     void reportToCSV(ActionEvent event) {
-
     	CSVExporter.exportToCSV(connection, "REPORT");
     	exportPane.setVisible(false);
+    	exportPane.toBack();
+    	displayLog();
     }
     
     private int seconds = 30;
@@ -517,9 +572,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
-    	
-    	
-    	
+    	exportPane.toBack();
     	
     	KeyFrame kf = new KeyFrame(Duration.seconds(1), e -> {
     		timer.setText(String.valueOf(seconds));
@@ -547,6 +600,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(true);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
 
     }
     
@@ -561,6 +615,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(true);
     	infoPane.setVisible(false);
+    	exportPane.toBack();
     }
     
     @FXML
@@ -589,18 +644,7 @@ public class DashboardController implements Initializable {
     			username_1_3_button.setGraphic(new ImageView(grey_circle));
     		}
     	}
-    	/*
-		else if () {
-			
-		}
-		    	
-		else if () {
-			
-		}
-		    	
-		else if () {
-			
-		} */
+    	
     }
     
     boolean checkGray(ToggleButton btn) {
@@ -765,38 +809,6 @@ public class DashboardController implements Initializable {
 		
 	    }
     }
-
-    @FXML
-    private TextField entryTitle;
-    @FXML
-    private TextField entryDate;
-    @FXML
-    private TextField entryType;
-    @FXML
-    private TextField entryTimeSpent;
-    @FXML
-    private TextField entryDescription;
-    @FXML
-    private TextField reportTitle;
-    @FXML
-    private TextField reportDate;
-    @FXML
-    private TextField reportType;
-    @FXML
-    private TextField reportTimeSpent;
-    @FXML
-    private TextField reportDescription;
-
-    //private OracleDBConnection dbConnection;
-
-//    public DashboardController() {
-//        try {
-//            dbConnection = new OracleDBConnection(); // Initialize the connection
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            // Handle connection error
-//        }
-//    }
 
     public void displayEntryDetails() {
     	
@@ -1046,7 +1058,7 @@ public class DashboardController implements Initializable {
     	empw3.setText("4");
     }
      
-    void compute() {
+    void compute() { 
     	int userW = Integer.parseInt(myPoint.getText());
     	int otherUser = Integer.parseInt(empw.getText());
     	int avg = (userW + 3*otherUser)/4;
