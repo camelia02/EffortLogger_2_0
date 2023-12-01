@@ -4,6 +4,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +16,17 @@ public class CSVExporter {
     public static void exportToCSV(Connection connection, String tableName) {
         String query = "SELECT * FROM " + tableName;
 
+        String userHome = System.getProperty("user.home");
+
+        String relativePath = "eclipse-workspace/EffortLogger_2_0/downloads/" + tableName + ".xlsx";
+        //String relativePath = "/Downloads";
+        String fullPath = Paths.get(userHome, relativePath).toString();
+
+        // Use fullPath for file operations
+        System.out.println("Full Download Path: " + fullPath);
+        
         try (Workbook workbook = new XSSFWorkbook();
-             FileOutputStream fileOut = new FileOutputStream("/EffortLogger_2_0/downloads/" + tableName + ".xlsx");
+             FileOutputStream fileOut = new FileOutputStream(fullPath);
              ResultSet resultSet = connection.prepareStatement(query).executeQuery()) {
 
             Sheet sheet = workbook.createSheet(tableName);
@@ -42,7 +52,7 @@ public class CSVExporter {
 
             // Write the workbook content to the file
             workbook.write(fileOut);
-
+            
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
