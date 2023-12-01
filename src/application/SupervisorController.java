@@ -932,6 +932,7 @@ public class SupervisorController implements Initializable {
     	mainCustSupportPane.setVisible(false);
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
+    	exportPane.setVisible(false);
     	displayLog();
 
     }

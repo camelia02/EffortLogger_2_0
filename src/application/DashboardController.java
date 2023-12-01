@@ -470,7 +470,7 @@ public class DashboardController implements Initializable {
     	mainSettingsPane.setVisible(false);
     	//mainEntryPane.setVisible(true);
     	infoPane.setVisible(false);
-    	exportPane.toBack();
+    	//exportPane.toBack();
     }
     
     @FXML
@@ -484,7 +484,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
-    	exportPane.toBack();
+    	//exportPane.toBack();
     }
     @FXML
     void mainTeamCollabClicked(ActionEvent event) {
@@ -497,7 +497,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
-    	exportPane.toBack();
+    	//exportPane.toBack();
     }
     
     void displayLog() {
@@ -532,6 +532,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
+    	exportPane.setVisible(false);
     	exportPane.toBack();
     	displayLog();
     	  
@@ -600,7 +601,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(true);
     	mainSettingsPane.setVisible(false);
     	infoPane.setVisible(false);
-    	exportPane.toBack();
+    	//exportPane.toBack();
 
     }
     
@@ -615,7 +616,7 @@ public class DashboardController implements Initializable {
     	mainPrivacyPane.setVisible(false);
     	mainSettingsPane.setVisible(true);
     	infoPane.setVisible(false);
-    	exportPane.toBack();
+    	//exportPane.toBack();
     }
     
     @FXML
